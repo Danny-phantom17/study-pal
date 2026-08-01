@@ -1,0 +1,7153 @@
+[
+  {
+    "id": "chemistry-001",
+    "question": "What is the chemical symbol for sodium?",
+    "options": [
+      "S",
+      "Na",
+      "So",
+      "N"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-002",
+    "question": "The pH value of a neutral solution is ____.",
+    "options": [
+      "0",
+      "7",
+      "10",
+      "14"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-003",
+    "question": "Which gas is released during photosynthesis?",
+    "options": [
+      "Carbon dioxide",
+      "Nitrogen",
+      "Hydrogen",
+      "Oxygen"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": "chemistry-004",
+    "question": "Water is a compound made up of hydrogen and ____.",
+    "options": [
+      "Nitrogen",
+      "Oxygen",
+      "Carbon",
+      "Chlorine"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-005",
+    "question": "Which of the following is an acid?",
+    "options": [
+      "Sodium hydroxide",
+      "Hydrochloric acid",
+      "Ammonia",
+      "Calcium oxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-006",
+    "question": "The smallest particle of an element that retains its properties is called ____.",
+    "options": [
+      "Atom",
+      "Cell",
+      "Electron",
+      "Compound"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-007",
+    "question": "Which of these is a noble gas?",
+    "options": [
+      "Oxygen",
+      "Helium",
+      "Hydrogen",
+      "Nitrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-008",
+    "question": "The atomic number of an element is equal to the number of ____.",
+    "options": [
+      "Neutrons",
+      "Electrons only",
+      "Protons",
+      "Nucleons"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-009",
+    "question": "Which instrument is commonly used to measure the volume of a liquid accurately?",
+    "options": [
+      "Beaker",
+      "Measuring cylinder",
+      "Test tube",
+      "Funnel"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-010",
+    "question": "Which of the following is a physical change?",
+    "options": [
+      "Burning paper",
+      "Rusting iron",
+      "Melting ice",
+      "Cooking food"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-011",
+    "question": "The chemical formula for carbon dioxide is ____.",
+    "options": [
+      "CO",
+      "CO2",
+      "C2O",
+      "CO3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-012",
+    "question": "Which metal is liquid at room temperature?",
+    "options": [
+      "Iron",
+      "Mercury",
+      "Copper",
+      "Aluminium"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-013",
+    "question": "Air is best described as a ____.",
+    "options": [
+      "Compound",
+      "Element",
+      "Mixture",
+      "Solution"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-014",
+    "question": "Which gas is commonly used to extinguish fire?",
+    "options": [
+      "Oxygen",
+      "Hydrogen",
+      "Carbon dioxide",
+      "Nitrogen"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-015",
+    "question": "What is the chemical symbol for gold?",
+    "options": [
+      "Go",
+      "Ag",
+      "Au",
+      "Gd"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-016",
+    "question": "Which of the following is an alkali?",
+    "options": [
+      "Hydrochloric acid",
+      "Sulfuric acid",
+      "Sodium hydroxide",
+      "Carbon dioxide"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-017",
+    "question": "The process by which a solid changes directly into a gas is called ____.",
+    "options": [
+      "Condensation",
+      "Evaporation",
+      "Sublimation",
+      "Freezing"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-018",
+    "question": "Which particle has a negative charge?",
+    "options": [
+      "Proton",
+      "Neutron",
+      "Electron",
+      "Nucleus"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-019",
+    "question": "The most abundant gas in the Earth's atmosphere is ____.",
+    "options": [
+      "Oxygen",
+      "Carbon dioxide",
+      "Nitrogen",
+      "Hydrogen"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-020",
+    "question": "Which of the following is an indicator used in acid-base titration?",
+    "options": [
+      "Phenolphthalein",
+      "Sugar",
+      "Salt",
+      "Starch"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-021",
+    "question": "Matter is best defined as anything that ____.",
+    "options": [
+      "Has no mass",
+      "Has mass and occupies space",
+      "Cannot be measured",
+      "Has no volume"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-022",
+    "question": "The three common states of matter are solid, liquid and ____.",
+    "options": [
+      "Plasma",
+      "Gas",
+      "Vapour",
+      "Steam"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-023",
+    "question": "The change of state from solid to liquid is called ____.",
+    "options": [
+      "Freezing",
+      "Melting",
+      "Boiling",
+      "Condensation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-024",
+    "question": "The change of state from liquid to solid is called ____.",
+    "options": [
+      "Melting",
+      "Evaporation",
+      "Freezing",
+      "Sublimation"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-025",
+    "question": "The change of state from liquid to gas is called ____.",
+    "options": [
+      "Condensation",
+      "Evaporation",
+      "Freezing",
+      "Deposition"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-026",
+    "question": "The change of state from gas to liquid is called ____.",
+    "options": [
+      "Condensation",
+      "Sublimation",
+      "Melting",
+      "Freezing"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-027",
+    "question": "Which of the following substances sublimes (changes directly from solid to gas) when heated?",
+    "options": [
+      "Iodine",
+      "Salt",
+      "Sugar",
+      "Sand"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-028",
+    "question": "The change of state from gas directly to solid is called ____.",
+    "options": [
+      "Deposition",
+      "Sublimation",
+      "Condensation",
+      "Freezing"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-029",
+    "question": "A substance that cannot be broken down into simpler substances by chemical means is called a(n) ____.",
+    "options": [
+      "Compound",
+      "Mixture",
+      "Element",
+      "Solution"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-030",
+    "question": "A pure substance made of two or more elements chemically combined in fixed proportions is a ____.",
+    "options": [
+      "Mixture",
+      "Compound",
+      "Alloy",
+      "Solution"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-031",
+    "question": "A combination of two or more substances that are not chemically combined is called a ____.",
+    "options": [
+      "Compound",
+      "Element",
+      "Mixture",
+      "Molecule"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-032",
+    "question": "Which of the following is an example of a homogeneous mixture?",
+    "options": [
+      "Salt solution",
+      "Sand and water",
+      "Oil and water",
+      "Iron filings and sulphur"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-033",
+    "question": "Which of the following is an example of a heterogeneous mixture?",
+    "options": [
+      "Sugar solution",
+      "Brass",
+      "Sand and water",
+      "Air"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-034",
+    "question": "A mixture in which one substance is completely dissolved in another is called a ____.",
+    "options": [
+      "Suspension",
+      "Solution",
+      "Colloid",
+      "Compound"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-035",
+    "question": "In a solution, the substance that dissolves is called the ____.",
+    "options": [
+      "Solvent",
+      "Solute",
+      "Residue",
+      "Filtrate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-036",
+    "question": "In a solution, the substance that does the dissolving is called the ____.",
+    "options": [
+      "Solute",
+      "Solvent",
+      "Precipitate",
+      "Filtrate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-037",
+    "question": "A mixture in which solid particles are spread through a liquid but do not dissolve is called a ____.",
+    "options": [
+      "Solution",
+      "Suspension",
+      "Alloy",
+      "Compound"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-038",
+    "question": "Which of the following is an example of a colloid?",
+    "options": [
+      "Salt water",
+      "Milk",
+      "Sugar solution",
+      "Vinegar"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-039",
+    "question": "Filtration is used to separate ____.",
+    "options": [
+      "Two miscible liquids",
+      "A solid from a liquid it is not dissolved in",
+      "Two gases",
+      "Dissolved salt from water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-040",
+    "question": "Evaporation is used to separate ____.",
+    "options": [
+      "A dissolved solid from its solution",
+      "Two solids",
+      "Two immiscible liquids",
+      "A gas from a liquid"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-041",
+    "question": "Distillation is used to separate ____.",
+    "options": [
+      "Two immiscible solids",
+      "A liquid from a solution based on boiling point",
+      "Two solid mixtures",
+      "Magnetic materials"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-042",
+    "question": "Chromatography is mainly used to separate ____.",
+    "options": [
+      "Mixtures of dyes or pigments",
+      "Gases only",
+      "Metals from ores",
+      "Immiscible liquids"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-043",
+    "question": "Decantation is a method used to separate ____.",
+    "options": [
+      "A liquid from settled solid particles",
+      "Two gases",
+      "Dissolved salts",
+      "Isotopes"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-044",
+    "question": "Which separation method is used to remove iron filings from a mixture of iron filings and sulphur?",
+    "options": [
+      "Filtration",
+      "Magnetic separation",
+      "Evaporation",
+      "Distillation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-045",
+    "question": "Crystallization is used to obtain ____ from a solution.",
+    "options": [
+      "Pure solid crystals",
+      "Gases",
+      "Liquids only",
+      "Suspensions"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-046",
+    "question": "A separating funnel is used to separate ____.",
+    "options": [
+      "Two immiscible liquids",
+      "Two miscible gases",
+      "Solid mixtures",
+      "Dissolved salts"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-047",
+    "question": "Liquids that mix completely with one another, such as water and ethanol, are said to be ____.",
+    "options": [
+      "Immiscible",
+      "Miscible",
+      "Insoluble",
+      "Volatile"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-048",
+    "question": "Liquids that do not mix, such as oil and water, are said to be ____.",
+    "options": [
+      "Miscible",
+      "Immiscible",
+      "Soluble",
+      "Volatile"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-049",
+    "question": "A mixture of two or more metals (or a metal and a non-metal) is called a(n) ____.",
+    "options": [
+      "Element",
+      "Alloy",
+      "Isotope",
+      "Ion"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-050",
+    "question": "Brass is an alloy of copper and ____.",
+    "options": [
+      "Tin",
+      "Zinc",
+      "Nickel",
+      "Lead"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-051",
+    "question": "Steel is mainly an alloy of iron and ____.",
+    "options": [
+      "Carbon",
+      "Zinc",
+      "Tin",
+      "Silver"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-052",
+    "question": "In the particle theory of matter, particles in a solid are ____.",
+    "options": [
+      "Far apart and move freely",
+      "Closely packed and vibrate in fixed positions",
+      "Randomly spread with no order",
+      "Absent"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-053",
+    "question": "In the particle theory of matter, particles in a gas are ____.",
+    "options": [
+      "Tightly packed",
+      "Far apart and move randomly",
+      "Fixed in position",
+      "Arranged in a lattice"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-054",
+    "question": "The spreading out of particles from a region of high concentration to low concentration is called ____.",
+    "options": [
+      "Osmosis",
+      "Diffusion",
+      "Filtration",
+      "Evaporation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-055",
+    "question": "Density is defined as ____.",
+    "options": [
+      "Mass per unit volume",
+      "Volume per unit mass",
+      "Weight per unit area",
+      "Mass per unit time"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-056",
+    "question": "When matter is heated, its particles generally ____.",
+    "options": [
+      "Move closer together",
+      "Move further apart and the substance expands",
+      "Stop moving",
+      "Disappear"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-057",
+    "question": "When matter is cooled, its particles generally ____.",
+    "options": [
+      "Move further apart",
+      "Move closer together and the substance contracts",
+      "Vibrate faster",
+      "Turn into gas"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-058",
+    "question": "A pure substance, unlike a mixture, has a ____.",
+    "options": [
+      "Variable boiling point",
+      "Fixed melting and boiling point",
+      "No melting point",
+      "Random composition"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-059",
+    "question": "When sugar dissolves completely in water, the resulting mixture is a ____.",
+    "options": [
+      "Suspension",
+      "Solution",
+      "Colloid",
+      "Compound"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-060",
+    "question": "Chalk powder mixed with water forms a ____ because the chalk does not fully dissolve.",
+    "options": [
+      "Solution",
+      "Suspension",
+      "Alloy",
+      "Compound"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-061",
+    "question": "A solution that contains as much dissolved solute as it can hold at a given temperature is called ____.",
+    "options": [
+      "Dilute",
+      "Saturated",
+      "Unsaturated",
+      "Concentrated only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-062",
+    "question": "The maximum amount of a solute that can dissolve in a given amount of solvent at a specific temperature is called its ____.",
+    "options": [
+      "Concentration",
+      "Solubility",
+      "Density",
+      "Molarity"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-063",
+    "question": "Concentration refers to ____.",
+    "options": [
+      "The amount of solute dissolved in a given amount of solvent or solution",
+      "The mass of a substance alone",
+      "The volume of a container",
+      "The temperature of a solution"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-064",
+    "question": "In filtration, the liquid that passes through the filter paper is called the ____.",
+    "options": [
+      "Residue",
+      "Filtrate",
+      "Precipitate",
+      "Solute"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-065",
+    "question": "In filtration, the solid left behind on the filter paper is called the ____.",
+    "options": [
+      "Filtrate",
+      "Residue",
+      "Solvent",
+      "Distillate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-066",
+    "question": "Which of the following is a mixture of gases?",
+    "options": [
+      "Air",
+      "Water",
+      "Carbon dioxide",
+      "Oxygen"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-067",
+    "question": "Duralumin, used in aircraft construction, is an alloy of aluminium and ____.",
+    "options": [
+      "Copper",
+      "Lead",
+      "Silver",
+      "Zinc only"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-068",
+    "question": "Which of the following is a compound rather than an element?",
+    "options": [
+      "Iron",
+      "Sulphur",
+      "Carbon dioxide",
+      "Copper"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-069",
+    "question": "Unlike the formation of a compound, the components of a mixture can usually be separated by ____.",
+    "options": [
+      "Nuclear reactions",
+      "Physical methods",
+      "Chemical reactions only",
+      "None of the above"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-070",
+    "question": "Which of the following is an example of a mixture used in everyday life?",
+    "options": [
+      "Table salt",
+      "Distilled water",
+      "Soft drink (soda)",
+      "Pure oxygen gas"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-071",
+    "question": "The atomic number of an element is the number of ____ in its nucleus.",
+    "options": [
+      "Neutrons",
+      "Protons",
+      "Electrons",
+      "Nucleons"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-072",
+    "question": "Which of the following particles orbits the nucleus of an atom rather than being found inside it?",
+    "options": [
+      "Proton",
+      "Neutron",
+      "Electron",
+      "Nucleon"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-073",
+    "question": "Which particle has a positive charge?",
+    "options": [
+      "Electron",
+      "Neutron",
+      "Proton",
+      "Photon"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-074",
+    "question": "Which particle has no electrical charge?",
+    "options": [
+      "Proton",
+      "Electron",
+      "Neutron",
+      "Ion"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-075",
+    "question": "The mass number of an atom is the sum of its ____.",
+    "options": [
+      "Protons and electrons",
+      "Protons and neutrons",
+      "Neutrons and electrons",
+      "Electrons only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-076",
+    "question": "The protons and neutrons of an atom are found in its ____.",
+    "options": [
+      "Electron shell",
+      "Nucleus",
+      "Orbit",
+      "Valence shell"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-077",
+    "question": "Electrons in an atom are found ____.",
+    "options": [
+      "In the nucleus",
+      "Orbiting the nucleus in shells",
+      "Outside the atom entirely",
+      "Fixed at the centre"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-078",
+    "question": "Atoms of the same element with the same number of protons but different numbers of neutrons are called ____.",
+    "options": [
+      "Isomers",
+      "Isotopes",
+      "Ions",
+      "Allotropes"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-079",
+    "question": "Which of the following is a noble gas?",
+    "options": [
+      "Helium",
+      "Hydrogen",
+      "Nitrogen",
+      "Oxygen"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-080",
+    "question": "Elements in Group 1 of the periodic table are called ____.",
+    "options": [
+      "Halogens",
+      "Alkali metals",
+      "Noble gases",
+      "Transition metals"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-081",
+    "question": "Elements in Group 7 (17) of the periodic table are called ____.",
+    "options": [
+      "Alkali metals",
+      "Alkaline earth metals",
+      "Halogens",
+      "Noble gases"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-082",
+    "question": "Elements in Group 0 (18) of the periodic table are called ____.",
+    "options": [
+      "Halogens",
+      "Noble gases",
+      "Alkali metals",
+      "Transition metals"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-083",
+    "question": "Elements in Group 2 of the periodic table are called ____.",
+    "options": [
+      "Alkali metals",
+      "Alkaline earth metals",
+      "Halogens",
+      "Noble gases"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-084",
+    "question": "The horizontal rows in the periodic table are called ____.",
+    "options": [
+      "Groups",
+      "Periods",
+      "Series",
+      "Blocks"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-085",
+    "question": "The vertical columns in the periodic table are called ____.",
+    "options": [
+      "Periods",
+      "Series",
+      "Groups",
+      "Rows"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-086",
+    "question": "Elements in the modern periodic table are arranged in order of increasing ____.",
+    "options": [
+      "Atomic mass only",
+      "Atomic number",
+      "Number of neutrons",
+      "Melting point"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-087",
+    "question": "Electrons found in the outermost shell of an atom are called ____ electrons.",
+    "options": [
+      "Core",
+      "Valence",
+      "Inner",
+      "Free"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-088",
+    "question": "The combining power of an atom, based on the number of electrons it gains, loses or shares, is called its ____.",
+    "options": [
+      "Atomic number",
+      "Valency",
+      "Mass number",
+      "Density"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-089",
+    "question": "An atom that loses one or more electrons becomes a positively charged ion called a ____.",
+    "options": [
+      "Anion",
+      "Cation",
+      "Neutron",
+      "Isotope"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-090",
+    "question": "An atom that gains one or more electrons becomes a negatively charged ion called a(n) ____.",
+    "options": [
+      "Cation",
+      "Anion",
+      "Isotope",
+      "Molecule"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-091",
+    "question": "The first electron shell of an atom can hold a maximum of ____ electrons.",
+    "options": [
+      "2",
+      "8",
+      "18",
+      "32"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-092",
+    "question": "The second electron shell of an atom can hold a maximum of ____ electrons.",
+    "options": [
+      "2",
+      "8",
+      "18",
+      "6"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-093",
+    "question": "The scientist credited with arranging the first widely accepted periodic table of elements is ____.",
+    "options": [
+      "John Dalton",
+      "Dmitri Mendeleev",
+      "Ernest Rutherford",
+      "Niels Bohr"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-094",
+    "question": "Ernest Rutherford's gold foil experiment led to the discovery of the ____.",
+    "options": [
+      "Electron",
+      "Neutron",
+      "Nucleus",
+      "Proton alone"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-095",
+    "question": "Niels Bohr proposed that electrons move around the nucleus in ____.",
+    "options": [
+      "A single cloud",
+      "Fixed circular shells or energy levels",
+      "Straight lines",
+      "Random paths only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-096",
+    "question": "John Dalton proposed that all matter is made up of tiny indivisible particles called ____.",
+    "options": [
+      "Molecules",
+      "Atoms",
+      "Ions",
+      "Electrons"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-097",
+    "question": "Transition metals are found in the ____ of the periodic table.",
+    "options": [
+      "Left-most group",
+      "Middle block",
+      "Right-most group",
+      "Bottom row only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-098",
+    "question": "In the periodic table, most metals are found on the ____ side.",
+    "options": [
+      "Right",
+      "Left",
+      "Top only",
+      "Bottom only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-099",
+    "question": "In the periodic table, most non-metals are found on the ____ side.",
+    "options": [
+      "Left",
+      "Right",
+      "Bottom left",
+      "Middle"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-100",
+    "question": "Elements that show properties of both metals and non-metals are called ____.",
+    "options": [
+      "Isotopes",
+      "Metalloids",
+      "Halogens",
+      "Alkalis"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-101",
+    "question": "The chemical symbol for an element is usually derived from its ____.",
+    "options": [
+      "Colour",
+      "Name (often in Latin or English)",
+      "Atomic number",
+      "Density"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-102",
+    "question": "The element with atomic number 1 is ____.",
+    "options": [
+      "Helium",
+      "Hydrogen",
+      "Lithium",
+      "Oxygen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-103",
+    "question": "Reactivity of alkali metals in Group 1 generally ____ down the group.",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Stays the same",
+      "Becomes zero"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-104",
+    "question": "Reactivity of halogens in Group 7 generally ____ down the group.",
+    "options": [
+      "Increases",
+      "Decreases",
+      "Stays constant",
+      "Doubles"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-105",
+    "question": "Noble gases are generally ____.",
+    "options": [
+      "Highly reactive",
+      "Unreactive (inert)",
+      "Radioactive only",
+      "Explosive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-106",
+    "question": "The mass of protons and neutrons is measured in units called ____.",
+    "options": [
+      "Grams only",
+      "Atomic mass units (amu)",
+      "Litres",
+      "Newtons"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-107",
+    "question": "In a neutral atom, the number of electrons is equal to the number of ____.",
+    "options": [
+      "Neutrons",
+      "Protons",
+      "Isotopes",
+      "Mass number"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-108",
+    "question": "Two or more atoms chemically bonded together form a ____.",
+    "options": [
+      "Ion",
+      "Molecule",
+      "Isotope",
+      "Nucleus"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-109",
+    "question": "Which of the following elements normally exists as a diatomic molecule?",
+    "options": [
+      "Helium",
+      "Oxygen",
+      "Sodium",
+      "Iron"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-110",
+    "question": "Atoms with unstable nuclei that break down and release radiation are said to be ____.",
+    "options": [
+      "Inert",
+      "Radioactive",
+      "Ionic",
+      "Covalent"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-111",
+    "question": "Carbon-12 and Carbon-14 are examples of ____ of carbon.",
+    "options": [
+      "Isomers",
+      "Isotopes",
+      "Ions",
+      "Alloys"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-112",
+    "question": "The electron arrangement of sodium (atomic number 11) is ____.",
+    "options": [
+      "2,8,1",
+      "2,8,8",
+      "2,8,2",
+      "8,2,1"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-113",
+    "question": "For elements in Group 1, the number of valence electrons is ____.",
+    "options": [
+      "1",
+      "2",
+      "7",
+      "8"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-114",
+    "question": "For elements in Group 7 (halogens), the number of valence electrons is ____.",
+    "options": [
+      "1",
+      "7",
+      "8",
+      "2"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-115",
+    "question": "The modern periodic table has ____ periods.",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "9"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-116",
+    "question": "The lightest and smallest element on the periodic table is ____.",
+    "options": [
+      "Helium",
+      "Hydrogen",
+      "Lithium",
+      "Carbon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-117",
+    "question": "Chemical symbols always begin with a ____ letter.",
+    "options": [
+      "Lower case",
+      "Capital",
+      "Bold",
+      "Italic"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-118",
+    "question": "A neutral atom has no overall electrical charge because it has ____.",
+    "options": [
+      "No protons",
+      "Equal numbers of protons and electrons",
+      "Only neutrons",
+      "More electrons than protons"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-119",
+    "question": "The electron was discovered by ____.",
+    "options": [
+      "J.J. Thomson",
+      "Ernest Rutherford",
+      "James Chadwick",
+      "Niels Bohr"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-120",
+    "question": "The neutron was discovered by ____.",
+    "options": [
+      "J.J. Thomson",
+      "James Chadwick",
+      "Dmitri Mendeleev",
+      "John Dalton"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-121",
+    "question": "Universal indicator paper turns green in a solution that is ____.",
+    "options": [
+      "Strongly acidic",
+      "Neutral",
+      "Strongly alkaline",
+      "Radioactive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-122",
+    "question": "Hydrochloric acid is an example of a(n) ____.",
+    "options": [
+      "Base",
+      "Acid",
+      "Salt",
+      "Alkali"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-123",
+    "question": "Sodium hydroxide is an example of a ____.",
+    "options": [
+      "Acid",
+      "Base",
+      "Salt",
+      "Indicator"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-124",
+    "question": "Starch solution is commonly used in the laboratory as an indicator to test for the presence of ____.",
+    "options": [
+      "Acids",
+      "Iodine",
+      "Oxygen",
+      "Salts"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-125",
+    "question": "A solution with a pH value less than 7 is ____.",
+    "options": [
+      "Acidic",
+      "Basic",
+      "Neutral",
+      "Alkaline"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-126",
+    "question": "A solution with a pH value greater than 7 is ____.",
+    "options": [
+      "Acidic",
+      "Neutral",
+      "Basic",
+      "Salty"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-127",
+    "question": "The reaction between an acid and a base to form salt and water is called ____.",
+    "options": [
+      "Oxidation",
+      "Neutralisation",
+      "Combustion",
+      "Reduction"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-128",
+    "question": "Litmus paper turns ____ in an acidic solution.",
+    "options": [
+      "Blue",
+      "Red",
+      "Green",
+      "Colourless"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-129",
+    "question": "Litmus paper turns ____ in a basic (alkaline) solution.",
+    "options": [
+      "Red",
+      "Blue",
+      "Colourless",
+      "Green"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-130",
+    "question": "Common table salt is chemically known as ____.",
+    "options": [
+      "Calcium chloride",
+      "Sodium chloride",
+      "Potassium chloride",
+      "Sodium hydroxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-131",
+    "question": "Vinegar owes its sour taste to the presence of ____.",
+    "options": [
+      "Acetic acid",
+      "Citric acid",
+      "Hydrochloric acid",
+      "Sulfuric acid"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-132",
+    "question": "The sour taste of lemons and oranges is due to ____.",
+    "options": [
+      "Acetic acid",
+      "Citric acid",
+      "Carbonic acid",
+      "Nitric acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-133",
+    "question": "Fizzy soft drinks are slightly acidic mainly because of dissolved ____.",
+    "options": [
+      "Carbon dioxide forming carbonic acid",
+      "Nitrogen",
+      "Oxygen",
+      "Helium"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-134",
+    "question": "Sulfuric acid is widely used in the manufacture of ____.",
+    "options": [
+      "Soap only",
+      "Fertilizers and car batteries",
+      "Sugar",
+      "Bread"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-135",
+    "question": "Ammonia solution is an example of a ____.",
+    "options": [
+      "Strong acid",
+      "Weak base",
+      "Salt",
+      "Neutral compound"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-136",
+    "question": "An indicator that shows a range of colours corresponding to different pH values is called a ____.",
+    "options": [
+      "Litmus paper",
+      "Universal indicator",
+      "Phenolphthalein only",
+      "Methyl orange only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-137",
+    "question": "Methyl orange indicator turns ____ in an acidic solution.",
+    "options": [
+      "Yellow",
+      "Red/pink",
+      "Blue",
+      "Green"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-138",
+    "question": "Antacid tablets relieve indigestion by neutralising excess ____ in the stomach.",
+    "options": [
+      "Base",
+      "Acid",
+      "Salt",
+      "Water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-139",
+    "question": "Which of the following is classified as a strong acid?",
+    "options": [
+      "Acetic acid",
+      "Hydrochloric acid",
+      "Citric acid",
+      "Carbonic acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-140",
+    "question": "Which of the following is classified as a weak acid?",
+    "options": [
+      "Sulfuric acid",
+      "Hydrochloric acid",
+      "Nitric acid",
+      "Acetic acid"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": "chemistry-141",
+    "question": "When an acid reacts with a reactive metal, the gas usually produced is ____.",
+    "options": [
+      "Oxygen",
+      "Hydrogen",
+      "Carbon dioxide",
+      "Nitrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-142",
+    "question": "When an acid reacts with a metal carbonate, the gas produced is ____.",
+    "options": [
+      "Hydrogen",
+      "Oxygen",
+      "Carbon dioxide",
+      "Nitrogen"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-143",
+    "question": "The products of a neutralisation reaction between an acid and a base are ____.",
+    "options": [
+      "Salt and water",
+      "Salt and gas only",
+      "Water and gas only",
+      "Oxygen and water"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-144",
+    "question": "Baking soda (sodium bicarbonate) dissolved in water forms a solution that is ____.",
+    "options": [
+      "Strongly acidic",
+      "Mildly alkaline",
+      "Neutral only",
+      "Strongly alkaline"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-145",
+    "question": "Most bar soaps are slightly ____ in nature.",
+    "options": [
+      "Acidic",
+      "Alkaline",
+      "Neutral",
+      "Explosive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-146",
+    "question": "The acid naturally present in the human stomach that helps digest food is ____.",
+    "options": [
+      "Sulfuric acid",
+      "Hydrochloric acid",
+      "Nitric acid",
+      "Acetic acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-147",
+    "question": "A salt is formed when the hydrogen ion of an acid is replaced by a ____.",
+    "options": [
+      "Metal ion or ammonium ion",
+      "Non-metal ion",
+      "Water molecule",
+      "Gas molecule"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-148",
+    "question": "Apart from seasoning food, sodium chloride is also used in ____.",
+    "options": [
+      "Preserving food",
+      "Making fuel",
+      "Producing electricity directly",
+      "Making glass fibre"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-149",
+    "question": "Crystals of hydrated copper(II) sulfate are typically ____ in colour.",
+    "options": [
+      "Blue",
+      "Green",
+      "Yellow",
+      "White"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-150",
+    "question": "Limestone is mainly composed of ____.",
+    "options": [
+      "Calcium carbonate",
+      "Sodium chloride",
+      "Calcium oxide",
+      "Silicon dioxide"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-151",
+    "question": "Calcium hydroxide is commonly known as ____.",
+    "options": [
+      "Quicklime",
+      "Slaked lime",
+      "Baking soda",
+      "Washing soda"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-152",
+    "question": "Calcium oxide is commonly known as ____.",
+    "options": [
+      "Slaked lime",
+      "Quicklime",
+      "Gypsum",
+      "Marble"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-153",
+    "question": "Acid rain is mainly caused by the release of ____ into the atmosphere.",
+    "options": [
+      "Oxygen and nitrogen",
+      "Sulfur dioxide and nitrogen oxides",
+      "Helium",
+      "Argon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-154",
+    "question": "Titration is a laboratory technique used to determine ____.",
+    "options": [
+      "The colour of a solution",
+      "The exact concentration of a solution",
+      "The temperature of a reaction",
+      "The mass of an object"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-155",
+    "question": "In an acid-base titration, the point at which the acid has exactly neutralised the base is called the ____.",
+    "options": [
+      "Boiling point",
+      "Equivalence (end) point",
+      "Freezing point",
+      "Saturation point"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-156",
+    "question": "Strong acids and strong alkalis are described as ____ because they can damage skin and materials.",
+    "options": [
+      "Corrosive",
+      "Inert",
+      "Volatile",
+      "Neutral"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-157",
+    "question": "When diluting a concentrated acid, it is safest to ____.",
+    "options": [
+      "Add water to the acid slowly",
+      "Add acid to water slowly",
+      "Mix both quickly at once",
+      "Heat them together first"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-158",
+    "question": "Which of the following is a common household alkali?",
+    "options": [
+      "Vinegar",
+      "Lemon juice",
+      "Ammonia-based cleaner",
+      "Battery acid"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-159",
+    "question": "Unpolluted rainwater is naturally slightly acidic because it contains dissolved ____.",
+    "options": [
+      "Nitrogen",
+      "Carbon dioxide",
+      "Oxygen",
+      "Argon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-160",
+    "question": "Farmers add lime to acidic soils mainly to ____.",
+    "options": [
+      "Increase acidity",
+      "Reduce (neutralise) soil acidity",
+      "Add colour to soil",
+      "Kill all plants"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-161",
+    "question": "Most sodium and potassium salts are generally ____ in water.",
+    "options": [
+      "Insoluble",
+      "Soluble",
+      "Explosive",
+      "Radioactive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-162",
+    "question": "Which of the following salts is generally insoluble in water?",
+    "options": [
+      "Sodium chloride",
+      "Potassium nitrate",
+      "Calcium carbonate",
+      "Sodium sulfate"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-163",
+    "question": "An acid is generally defined as a substance that produces ____ ions in water.",
+    "options": [
+      "Hydroxide (OH-)",
+      "Hydrogen (H+)",
+      "Sodium (Na+)",
+      "Chloride (Cl-)"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-164",
+    "question": "A base is generally defined as a substance that produces ____ ions in water, or reacts with an acid to form a salt and water.",
+    "options": [
+      "Hydrogen (H+)",
+      "Hydroxide (OH-)",
+      "Carbonate",
+      "Sulfate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-165",
+    "question": "An alkali is a base that is ____.",
+    "options": [
+      "Insoluble in water",
+      "Soluble in water",
+      "Always a gas",
+      "Always a metal"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-166",
+    "question": "Pure water has a pH value of approximately ____, making it neutral.",
+    "options": [
+      "0",
+      "7",
+      "14",
+      "3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-167",
+    "question": "The chemical formula for sulfuric acid is ____.",
+    "options": [
+      "HCl",
+      "H2SO4",
+      "HNO3",
+      "H2CO3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-168",
+    "question": "The chemical formula for nitric acid is ____.",
+    "options": [
+      "HNO3",
+      "H2SO4",
+      "HCl",
+      "NaOH"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-169",
+    "question": "The chemical formula for ammonia is ____.",
+    "options": [
+      "NH3",
+      "NH4",
+      "N2H4",
+      "NO2"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-170",
+    "question": "Washing soda (sodium carbonate) is commonly used at home for ____.",
+    "options": [
+      "Sweetening food",
+      "Softening hard water and cleaning",
+      "Curing meat",
+      "Lighting fires"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-171",
+    "question": "Which of the following is an example of a physical change?",
+    "options": [
+      "Dissolving sugar in water",
+      "Burning a candle wick",
+      "Souring of milk",
+      "Digestion of food"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-172",
+    "question": "The reaction between hydrogen and oxygen gas to form water is an example of a ____ reaction.",
+    "options": [
+      "Decomposition",
+      "Combination",
+      "Displacement",
+      "Double decomposition"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-173",
+    "question": "Foam fire extinguishers work mainly by ____.",
+    "options": [
+      "Adding more oxygen to the fire",
+      "Forming a blanket that cuts off the oxygen supply",
+      "Cooling the fire only with ice",
+      "Adding more fuel"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-174",
+    "question": "Rusting of iron is an example of a ____.",
+    "options": [
+      "Physical change",
+      "Chemical change",
+      "Nuclear change",
+      "Reversible change"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-175",
+    "question": "The change of state in which a solid changes directly into a gas without passing through the liquid state is called ____.",
+    "options": [
+      "Condensation",
+      "Evaporation",
+      "Sublimation",
+      "Melting"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-176",
+    "question": "Burning of a candle is an example of a ____ change.",
+    "options": [
+      "Physical",
+      "Chemical",
+      "Both physical and chemical",
+      "Neither"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-177",
+    "question": "Which of the following is a sign that a chemical reaction has taken place?",
+    "options": [
+      "Change in colour",
+      "Change in shape only",
+      "Change in size only",
+      "No change"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-178",
+    "question": "The gas produced when a metal reacts with a dilute acid is usually ____.",
+    "options": [
+      "Oxygen",
+      "Hydrogen",
+      "Nitrogen",
+      "Carbon dioxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-179",
+    "question": "A reaction in which two or more substances combine to form a single new substance is called a ____ reaction.",
+    "options": [
+      "Decomposition",
+      "Combination",
+      "Displacement",
+      "Double decomposition"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-180",
+    "question": "A reaction in which a single compound breaks down into two or more simpler substances is called a ____ reaction.",
+    "options": [
+      "Combination",
+      "Decomposition",
+      "Combustion",
+      "Neutralisation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-181",
+    "question": "A reaction in which a more reactive element displaces a less reactive element from its compound is called a ____ reaction.",
+    "options": [
+      "Combination",
+      "Displacement",
+      "Decomposition",
+      "Neutralisation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-182",
+    "question": "A reaction in which two compounds exchange ions to form two new compounds is called a ____ reaction.",
+    "options": [
+      "Combination",
+      "Double decomposition",
+      "Combustion",
+      "Sublimation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-183",
+    "question": "The rapid chemical combination of a substance with oxygen, producing heat and light, is called ____.",
+    "options": [
+      "Oxidation only",
+      "Combustion",
+      "Reduction",
+      "Neutralisation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-184",
+    "question": "Oxidation is a chemical process that involves the ____.",
+    "options": [
+      "Loss of oxygen",
+      "Gain of oxygen (or loss of electrons)",
+      "Loss of hydrogen only",
+      "Gain of a metal"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-185",
+    "question": "Reduction is a chemical process that involves the ____.",
+    "options": [
+      "Gain of oxygen",
+      "Loss of oxygen (or gain of electrons)",
+      "Gain of water",
+      "Loss of a salt"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-186",
+    "question": "A reaction in which oxidation and reduction occur simultaneously is called a ____ reaction.",
+    "options": [
+      "Neutralisation",
+      "Redox",
+      "Precipitation",
+      "Sublimation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-187",
+    "question": "A chemical reaction that releases heat energy to the surroundings is called a(n) ____ reaction.",
+    "options": [
+      "Endothermic",
+      "Exothermic",
+      "Isothermic",
+      "Neutral"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-188",
+    "question": "A chemical reaction that absorbs heat energy from the surroundings is called a(n) ____ reaction.",
+    "options": [
+      "Exothermic",
+      "Endothermic",
+      "Combustion",
+      "Displacement"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-189",
+    "question": "A substance that speeds up a chemical reaction without being used up itself is called a ____.",
+    "options": [
+      "Reactant",
+      "Catalyst",
+      "Product",
+      "Solvent"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-190",
+    "question": "Which of the following is an example of a reversible physical change?",
+    "options": [
+      "Burning wood",
+      "Melting of wax",
+      "Rusting of iron",
+      "Digestion of food"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-191",
+    "question": "Which of the following is an example of an irreversible chemical change?",
+    "options": [
+      "Freezing water",
+      "Melting butter",
+      "Baking a cake",
+      "Boiling water"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-192",
+    "question": "Increasing the temperature of a reaction generally ____ the rate of reaction.",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Has no effect on",
+      "Stops"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-193",
+    "question": "Increasing the concentration of reactants generally ____ the rate of a reaction.",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Has no effect on",
+      "Reverses"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-194",
+    "question": "Increasing the surface area of a solid reactant (e.g., using a powder instead of a lump) generally ____ the rate of reaction.",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Has no effect on",
+      "Stops"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-195",
+    "question": "Adding a suitable catalyst to a reaction generally ____ the rate of reaction.",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Has no effect on",
+      "Reverses"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-196",
+    "question": "Rusting of iron requires the presence of both ____.",
+    "options": [
+      "Heat and light",
+      "Oxygen and water",
+      "Carbon dioxide and nitrogen",
+      "Acid and salt only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-197",
+    "question": "Which of the following is a common method of preventing iron from rusting?",
+    "options": [
+      "Exposing it to moist air",
+      "Painting or galvanising it",
+      "Soaking it in water",
+      "Heating it continuously"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-198",
+    "question": "Photosynthesis in plants is a chemical reaction in which carbon dioxide and water are converted into ____.",
+    "options": [
+      "Oxygen and glucose",
+      "Nitrogen and starch",
+      "Salt and water",
+      "Carbon and hydrogen"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-199",
+    "question": "Cellular respiration is a chemical reaction in which glucose and oxygen react to release ____.",
+    "options": [
+      "Nitrogen and heat",
+      "Energy, carbon dioxide and water",
+      "Only light",
+      "Only water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-200",
+    "question": "Fermentation is a chemical process carried out by yeast that converts sugar into ____.",
+    "options": [
+      "Salt and water",
+      "Alcohol and carbon dioxide",
+      "Oxygen and nitrogen",
+      "Starch only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-201",
+    "question": "The breakdown of food in the body by enzymes is an example of a ____ change.",
+    "options": [
+      "Physical",
+      "Chemical",
+      "Nuclear",
+      "Reversible physical"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-202",
+    "question": "When baking soda reacts with vinegar, the gas produced that causes fizzing is ____.",
+    "options": [
+      "Oxygen",
+      "Hydrogen",
+      "Carbon dioxide",
+      "Nitrogen"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-203",
+    "question": "An insoluble solid that forms and settles out during a chemical reaction in solution is called a ____.",
+    "options": [
+      "Filtrate",
+      "Precipitate",
+      "Residue",
+      "Solvent"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-204",
+    "question": "The formation of bubbles during a reaction is usually a sign that a ____ has been produced.",
+    "options": [
+      "Solid",
+      "Gas",
+      "Liquid only",
+      "Salt only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-205",
+    "question": "A noticeable rise or drop in temperature during a reaction is a sign that ____ has occurred.",
+    "options": [
+      "No change",
+      "A chemical reaction",
+      "Only evaporation",
+      "Only freezing"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-206",
+    "question": "The law of conservation of mass states that in a chemical reaction, mass is ____.",
+    "options": [
+      "Created",
+      "Destroyed",
+      "Neither created nor destroyed",
+      "Doubled"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-207",
+    "question": "A chemical equation is said to be balanced when ____.",
+    "options": [
+      "The number of atoms of each element is equal on both sides",
+      "Only the reactants are shown",
+      "Only the products are shown",
+      "The equation has no numbers"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-208",
+    "question": "In a chemical equation, the substances written on the left side are called the ____.",
+    "options": [
+      "Products",
+      "Reactants",
+      "Catalysts",
+      "Solvents"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-209",
+    "question": "In a chemical equation, the substances written on the right side, formed as a result of the reaction, are called the ____.",
+    "options": [
+      "Reactants",
+      "Products",
+      "Catalysts",
+      "Indicators"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-210",
+    "question": "Corrosion is the gradual chemical destruction of a metal, usually caused by reaction with ____.",
+    "options": [
+      "Light",
+      "Oxygen and moisture",
+      "Heat only",
+      "Sound"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-211",
+    "question": "A very fast exothermic reaction that releases a large amount of gas and energy suddenly is called a(n) ____.",
+    "options": [
+      "Explosion",
+      "Evaporation",
+      "Neutralisation",
+      "Sublimation"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-212",
+    "question": "A chemical reaction that is triggered or driven by light energy is called a ____ reaction.",
+    "options": [
+      "Photochemical",
+      "Electrochemical",
+      "Thermochemical",
+      "Radioactive"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-213",
+    "question": "The process of using electricity to break down a compound into its elements is called ____.",
+    "options": [
+      "Electrolysis",
+      "Neutralisation",
+      "Distillation",
+      "Sublimation"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-214",
+    "question": "The rapid escape of gas bubbles from a liquid during a reaction is called ____.",
+    "options": [
+      "Effervescence",
+      "Evaporation",
+      "Condensation",
+      "Distillation"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-215",
+    "question": "Complete combustion of a fuel such as methane in plenty of oxygen mainly produces ____.",
+    "options": [
+      "Carbon monoxide and water",
+      "Carbon dioxide and water",
+      "Soot and hydrogen",
+      "Nitrogen and water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-216",
+    "question": "Incomplete combustion, which occurs when oxygen supply is limited, can produce poisonous ____.",
+    "options": [
+      "Carbon dioxide",
+      "Carbon monoxide",
+      "Oxygen",
+      "Nitrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-217",
+    "question": "The souring of milk is caused by a chemical change in which bacteria convert lactose into ____.",
+    "options": [
+      "Lactic acid",
+      "Citric acid",
+      "Sodium chloride",
+      "Glucose only"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-218",
+    "question": "The clearest evidence that a chemical reaction (not just a physical change) has taken place is ____.",
+    "options": [
+      "A change in shape",
+      "The formation of one or more new substances",
+      "A change in size",
+      "A change in position"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-219",
+    "question": "Cutting a piece of paper into smaller pieces is an example of a ____ change.",
+    "options": [
+      "Chemical",
+      "Physical",
+      "Nuclear",
+      "Irreversible chemical"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-220",
+    "question": "Burning a piece of wood into ash is an example of a ____ change.",
+    "options": [
+      "Physical",
+      "Chemical",
+      "Reversible physical",
+      "Neutral"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-221",
+    "question": "After nitrogen, the second most abundant gas in the Earth's atmosphere is ____.",
+    "options": [
+      "Oxygen",
+      "Carbon dioxide",
+      "Argon",
+      "Hydrogen"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-222",
+    "question": "Which gas do plants absorb during photosynthesis?",
+    "options": [
+      "Oxygen",
+      "Carbon dioxide",
+      "Nitrogen",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-223",
+    "question": "Which gas makes up about 21% of the atmosphere?",
+    "options": [
+      "Nitrogen",
+      "Oxygen",
+      "Argon",
+      "Carbon dioxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-224",
+    "question": "The layer of gas that protects the earth from harmful ultraviolet rays is the ____ layer.",
+    "options": [
+      "Ozone",
+      "Nitrogen",
+      "Carbon",
+      "Oxygen"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-225",
+    "question": "Which gas is commonly associated with global warming?",
+    "options": [
+      "Nitrogen",
+      "Oxygen",
+      "Carbon dioxide",
+      "Helium"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-226",
+    "question": "The gas used by plants and animals for respiration is ____.",
+    "options": [
+      "Carbon dioxide",
+      "Oxygen",
+      "Nitrogen",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-227",
+    "question": "Which of the following gases is used in balloons because it is lighter than air?",
+    "options": [
+      "Oxygen",
+      "Helium",
+      "Carbon dioxide",
+      "Nitrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-228",
+    "question": "Which gas turns limewater milky?",
+    "options": [
+      "Oxygen",
+      "Hydrogen",
+      "Carbon dioxide",
+      "Nitrogen"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-229",
+    "question": "Argon, a noble gas, makes up about ____ of the Earth's atmosphere.",
+    "options": [
+      "21%",
+      "78%",
+      "0.9%",
+      "50%"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-230",
+    "question": "The amount of water vapour in the atmosphere ____.",
+    "options": [
+      "Is always exactly the same everywhere",
+      "Varies from place to place and time to time",
+      "Is always zero",
+      "Never changes"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-231",
+    "question": "Oxygen gas can be tested for using a glowing splint, which will ____.",
+    "options": [
+      "Go out immediately",
+      "Relight or glow brighter",
+      "Turn black",
+      "Explode"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-232",
+    "question": "Hydrogen gas can be tested for using a lighted splint, which produces a ____.",
+    "options": [
+      "Yellow flame",
+      "Squeaky pop sound",
+      "Loud bang and smoke",
+      "No reaction"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-233",
+    "question": "Ammonia gas can be identified by its ____.",
+    "options": [
+      "Sweet fruity smell",
+      "Pungent smell and it turns damp red litmus paper blue",
+      "Rotten egg smell",
+      "Complete lack of smell"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-234",
+    "question": "Chlorine gas can be identified by its ____.",
+    "options": [
+      "Sweet smell and colourlessness",
+      "Pungent smell and pale green-yellow colour",
+      "Odourless and colourless nature",
+      "Explosive blue flame"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-235",
+    "question": "For combustion (burning) to occur, a fuel generally needs heat, fuel and ____.",
+    "options": [
+      "Nitrogen",
+      "Oxygen",
+      "Carbon dioxide",
+      "Water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-236",
+    "question": "The three things needed for a fire to start and continue burning are heat, fuel and ____.",
+    "options": [
+      "Oxygen",
+      "Water",
+      "Nitrogen",
+      "Smoke"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-237",
+    "question": "The greenhouse effect refers to the trapping of heat in the Earth's atmosphere mainly by gases such as ____.",
+    "options": [
+      "Oxygen and nitrogen",
+      "Carbon dioxide and methane",
+      "Argon and neon",
+      "Helium and hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-238",
+    "question": "Global warming is largely linked to the increased burning of ____.",
+    "options": [
+      "Wood only",
+      "Fossil fuels",
+      "Water",
+      "Rocks"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-239",
+    "question": "The depletion of the ozone layer has historically been linked to the release of ____.",
+    "options": [
+      "Carbon dioxide only",
+      "Chlorofluorocarbons (CFCs)",
+      "Nitrogen gas",
+      "Water vapour"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-240",
+    "question": "Which of the following is a common source of air pollution?",
+    "options": [
+      "Photosynthesis",
+      "Vehicle exhaust fumes",
+      "Rainfall",
+      "Evaporation of water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-241",
+    "question": "Acid rain forms when sulfur dioxide and nitrogen oxides in the air react with ____.",
+    "options": [
+      "Oxygen only",
+      "Water vapour to form acids",
+      "Nitrogen gas",
+      "Carbon monoxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-242",
+    "question": "In the water cycle, the process by which liquid water changes into water vapour due to heat from the sun is called ____.",
+    "options": [
+      "Condensation",
+      "Evaporation",
+      "Precipitation",
+      "Transpiration only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-243",
+    "question": "In the water cycle, water vapour cools and changes back into tiny liquid droplets to form clouds during ____.",
+    "options": [
+      "Evaporation",
+      "Condensation",
+      "Precipitation",
+      "Runoff"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-244",
+    "question": "Rain, snow and hail falling from clouds back to the Earth's surface is called ____.",
+    "options": [
+      "Evaporation",
+      "Precipitation",
+      "Condensation",
+      "Transpiration"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-245",
+    "question": "Atmospheric (air) pressure is caused by ____.",
+    "options": [
+      "The weight of the layer of air pressing down on the Earth's surface",
+      "The movement of the moon",
+      "The heat of the sun alone",
+      "Ocean currents"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-246",
+    "question": "As altitude (height above sea level) increases, atmospheric pressure generally ____.",
+    "options": [
+      "Increases",
+      "Decreases",
+      "Stays the same",
+      "Doubles"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-247",
+    "question": "Wind is caused mainly by the movement of air from an area of ____ pressure to an area of ____ pressure.",
+    "options": [
+      "Low, high",
+      "High, low",
+      "Equal, equal",
+      "Cold, cold"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-248",
+    "question": "During respiration, living organisms release ____ gas into the atmosphere.",
+    "options": [
+      "Oxygen",
+      "Carbon dioxide",
+      "Nitrogen",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-249",
+    "question": "Plants help regulate the carbon cycle by absorbing carbon dioxide during ____.",
+    "options": [
+      "Respiration",
+      "Photosynthesis",
+      "Fermentation",
+      "Digestion"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-250",
+    "question": "Although nitrogen makes up most of the air, most living things cannot use it directly until it is converted by a process called nitrogen ____.",
+    "options": [
+      "Evaporation",
+      "Fixation",
+      "Condensation",
+      "Sublimation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-251",
+    "question": "Nitrogen gas is often used to pack foods because it is ____.",
+    "options": [
+      "Highly reactive",
+      "Unreactive (inert) and helps prevent spoilage",
+      "Flammable",
+      "Toxic"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-252",
+    "question": "Oxygen gas is supplied to patients in hospitals mainly to help with ____.",
+    "options": [
+      "Digestion",
+      "Breathing/respiration",
+      "Blood clotting",
+      "Bone growth"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-253",
+    "question": "Carbon dioxide gas is dissolved under pressure in soft drinks to make them ____.",
+    "options": [
+      "Sweet",
+      "Fizzy/carbonated",
+      "Coloured",
+      "Warm"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-254",
+    "question": "Hydrogen gas is used, among other things, as a clean fuel because when it burns it mainly produces ____.",
+    "options": [
+      "Carbon dioxide",
+      "Water",
+      "Nitrogen",
+      "Sulfur dioxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-255",
+    "question": "Neon gas is well known for its use in ____.",
+    "options": [
+      "Fire extinguishers",
+      "Advertising and glow lights",
+      "Fertilizers",
+      "Water purification"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-256",
+    "question": "The lowest layer of the Earth's atmosphere, where weather occurs, is called the ____.",
+    "options": [
+      "Stratosphere",
+      "Troposphere",
+      "Mesosphere",
+      "Thermosphere"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-257",
+    "question": "The layer of the atmosphere that contains most of the ozone layer is the ____.",
+    "options": [
+      "Troposphere",
+      "Stratosphere",
+      "Mesosphere",
+      "Exosphere"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-258",
+    "question": "Smoke from burning fuels contains tiny solid particles known as ____, which can pollute the air.",
+    "options": [
+      "Aerosols/particulates",
+      "Pure oxygen",
+      "Water vapour only",
+      "Nitrogen only"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-259",
+    "question": "Cutting down large numbers of trees (deforestation) tends to increase atmospheric carbon dioxide because ____.",
+    "options": [
+      "Trees produce carbon dioxide",
+      "Fewer trees are available to absorb carbon dioxide",
+      "Trees release oxygen only at night",
+      "Trees have no role in the carbon cycle"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-260",
+    "question": "Carbon dioxide fire extinguishers put out fires mainly by ____.",
+    "options": [
+      "Cooling the fuel only",
+      "Cutting off the oxygen supply to the fire",
+      "Adding more fuel",
+      "Adding water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-261",
+    "question": "When a hydrocarbon fuel burns completely in air, the main products formed are ____.",
+    "options": [
+      "Carbon dioxide and water",
+      "Oxygen and nitrogen",
+      "Hydrogen and salt",
+      "Sulfur and nitrogen"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-262",
+    "question": "Approximately what percentage of the atmosphere is made up of nitrogen gas?",
+    "options": [
+      "21%",
+      "78%",
+      "0.03%",
+      "50%"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-263",
+    "question": "Carbon dioxide makes up only a small fraction of the atmosphere, approximately ____.",
+    "options": [
+      "21%",
+      "78%",
+      "0.04%",
+      "10%"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-264",
+    "question": "Weather balloons are often filled with helium or hydrogen because these gases are ____.",
+    "options": [
+      "Denser than air",
+      "Lighter than air",
+      "Poisonous",
+      "Corrosive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-265",
+    "question": "Photochemical smog forms when sunlight reacts with pollutants such as vehicle exhaust gases, producing ____.",
+    "options": [
+      "Clean air",
+      "Harmful ground-level ozone and haze",
+      "Pure oxygen",
+      "Rainfall only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-266",
+    "question": "Most of the oxygen in Earth's atmosphere today is produced by ____.",
+    "options": [
+      "Volcanic eruptions",
+      "Photosynthesis of plants and algae",
+      "Burning fuels",
+      "Animal respiration"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-267",
+    "question": "Carbon monoxide is dangerous to breathe because it is a colourless, odourless gas that ____.",
+    "options": [
+      "Has a strong smell warning people",
+      "Reduces the blood's ability to carry oxygen",
+      "Is heavier than air only",
+      "Causes instant freezing"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-268",
+    "question": "Apart from carbon dioxide, another important greenhouse gas released from sources like landfills and livestock is ____.",
+    "options": [
+      "Methane",
+      "Argon",
+      "Neon",
+      "Helium"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-269",
+    "question": "Which of the following actions would most directly help reduce air pollution from vehicles?",
+    "options": [
+      "Burning more petrol",
+      "Using public transport or cleaner fuels",
+      "Cutting down more trees",
+      "Increasing traffic congestion"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-270",
+    "question": "The Earth's atmosphere is mainly a mixture of nitrogen, oxygen and small amounts of ____.",
+    "options": [
+      "Pure water only",
+      "Argon, carbon dioxide and other trace gases",
+      "Only carbon dioxide",
+      "Only hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-271",
+    "question": "The chemical symbol for aluminium is ____.",
+    "options": [
+      "Al",
+      "Am",
+      "Au",
+      "An"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-272",
+    "question": "The chemical symbol for platinum is ____.",
+    "options": [
+      "Pt",
+      "Pl",
+      "Pn",
+      "Po"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-273",
+    "question": "The chemical formula for silicon dioxide, found in sand, is ____.",
+    "options": [
+      "SiO2",
+      "SO2",
+      "Si2O",
+      "SiO4"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-274",
+    "question": "What is the chemical symbol for iron?",
+    "options": [
+      "Ir",
+      "Fe",
+      "In",
+      "I"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-275",
+    "question": "The chemical formula for water is ____.",
+    "options": [
+      "H2O",
+      "HO2",
+      "H2O2",
+      "HO"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-276",
+    "question": "What is the chemical symbol for potassium?",
+    "options": [
+      "Po",
+      "Pt",
+      "K",
+      "P"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-277",
+    "question": "A bond formed by the sharing of electrons between atoms is called a ____ bond.",
+    "options": [
+      "Ionic",
+      "Covalent",
+      "Metallic",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-278",
+    "question": "The chemical symbol for oxygen is ____.",
+    "options": [
+      "Ox",
+      "O",
+      "O2",
+      "Og"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-279",
+    "question": "The chemical symbol for hydrogen is ____.",
+    "options": [
+      "H",
+      "Hy",
+      "Hd",
+      "He"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-280",
+    "question": "The chemical symbol for helium is ____.",
+    "options": [
+      "H",
+      "Hl",
+      "He",
+      "Hm"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-281",
+    "question": "The chemical symbol for carbon is ____.",
+    "options": [
+      "Ca",
+      "C",
+      "Cb",
+      "Co"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-282",
+    "question": "The chemical symbol for nitrogen is ____.",
+    "options": [
+      "Ni",
+      "N",
+      "Na",
+      "Nt"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-283",
+    "question": "The chemical symbol for chlorine is ____.",
+    "options": [
+      "Cl",
+      "Ch",
+      "C",
+      "Co"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-284",
+    "question": "The chemical symbol for calcium is ____.",
+    "options": [
+      "Cl",
+      "Ca",
+      "Cm",
+      "C"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-285",
+    "question": "The chemical symbol for magnesium is ____.",
+    "options": [
+      "Mg",
+      "Ma",
+      "Mn",
+      "Mgs"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-286",
+    "question": "The chemical symbol for silver is ____.",
+    "options": [
+      "Si",
+      "Sv",
+      "Ag",
+      "Sr"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-287",
+    "question": "The chemical symbol for lead is ____.",
+    "options": [
+      "Ld",
+      "Le",
+      "Pb",
+      "Pl"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-288",
+    "question": "The chemical symbol for tin is ____.",
+    "options": [
+      "Ti",
+      "Tn",
+      "Sn",
+      "Sb"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-289",
+    "question": "The chemical symbol for copper is ____.",
+    "options": [
+      "Co",
+      "Cu",
+      "Cp",
+      "Cr"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-290",
+    "question": "The chemical symbol for zinc is ____.",
+    "options": [
+      "Zc",
+      "Zn",
+      "Zi",
+      "Z"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-291",
+    "question": "The chemical symbol for phosphorus is ____.",
+    "options": [
+      "Ph",
+      "P",
+      "Po",
+      "Ps"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-292",
+    "question": "The chemical symbol for sulphur is ____.",
+    "options": [
+      "Su",
+      "Sl",
+      "S",
+      "Sf"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-293",
+    "question": "The chemical symbol for mercury is ____.",
+    "options": [
+      "Me",
+      "Mc",
+      "Hg",
+      "Hy"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-294",
+    "question": "The chemical formula for common table salt (sodium chloride) is ____.",
+    "options": [
+      "NaCl",
+      "NaCl2",
+      "Na2Cl",
+      "NCl"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-295",
+    "question": "The chemical formula for methane, a common fuel gas, is ____.",
+    "options": [
+      "CH4",
+      "C2H6",
+      "CO2",
+      "C2H4"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-296",
+    "question": "The chemical formula for hydrogen peroxide is ____.",
+    "options": [
+      "H2O",
+      "H2O2",
+      "HO2",
+      "H3O2"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-297",
+    "question": "The chemical formula for calcium carbonate (limestone) is ____.",
+    "options": [
+      "CaCO3",
+      "CaO",
+      "CaCl2",
+      "Ca(OH)2"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-298",
+    "question": "The chemical formula for sodium hydroxide is ____.",
+    "options": [
+      "NaOH",
+      "NaCl",
+      "Na2O",
+      "NaH"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-299",
+    "question": "The chemical formula for glucose, a simple sugar, is ____.",
+    "options": [
+      "C6H12O6",
+      "C12H22O11",
+      "CH4O",
+      "C2H6O"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-300",
+    "question": "Oxygen gas naturally exists as diatomic molecules with the formula ____.",
+    "options": [
+      "O",
+      "O2",
+      "O3",
+      "O4"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-301",
+    "question": "Nitrogen gas naturally exists as diatomic molecules with the formula ____.",
+    "options": [
+      "N",
+      "N2",
+      "N3",
+      "N4"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-302",
+    "question": "Hydrogen gas naturally exists as diatomic molecules with the formula ____.",
+    "options": [
+      "H",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-303",
+    "question": "A chemical bond formed by the transfer of electrons from one atom to another, creating oppositely charged ions that attract, is called a(n) ____ bond.",
+    "options": [
+      "Covalent",
+      "Ionic",
+      "Metallic",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-304",
+    "question": "The strong attraction between positive metal ions and a 'sea' of shared, freely moving electrons is called a ____ bond.",
+    "options": [
+      "Covalent bond",
+      "Ionic bond",
+      "Metallic bond",
+      "Hydrogen bond"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-305",
+    "question": "A molecule is best described as ____.",
+    "options": [
+      "Two or more atoms chemically joined together",
+      "Only a single atom",
+      "A mixture of substances",
+      "An electrically charged particle"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-306",
+    "question": "In the name of a compound made of two elements, such as sodium chloride, the ending is usually changed to ____.",
+    "options": [
+      "-ate",
+      "-ide",
+      "-ite",
+      "-ous"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-307",
+    "question": "Which of the following elements does NOT normally exist as a diatomic molecule?",
+    "options": [
+      "Oxygen",
+      "Nitrogen",
+      "Helium",
+      "Hydrogen"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-308",
+    "question": "In a chemical formula such as H2O, the small number '2' written after H shows ____.",
+    "options": [
+      "The charge on hydrogen",
+      "The number of hydrogen atoms in the molecule",
+      "The atomic number of hydrogen",
+      "The mass number of hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-309",
+    "question": "In a chemical equation, a large number placed in front of a formula, such as the '2' in 2H2O, shows ____.",
+    "options": [
+      "The number of molecules of that substance",
+      "The charge of the molecule",
+      "The atomic number",
+      "The valency"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-310",
+    "question": "Writing a reaction using chemical formulae instead of full names is called a ____ equation.",
+    "options": [
+      "Word equation",
+      "Symbol (chemical) equation",
+      "Ionic name",
+      "Structural diagram"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-311",
+    "question": "In most of its compounds, hydrogen has a valency of ____.",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-312",
+    "question": "In most of its compounds, oxygen has a valency of ____.",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-313",
+    "question": "Carbon commonly has a valency of ____ in its compounds.",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "1"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-314",
+    "question": "For ionic compounds, the simplest whole-number ratio of ions is represented by the ____.",
+    "options": [
+      "Molecular formula",
+      "Formula unit",
+      "Structural formula",
+      "Empirical mass"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-315",
+    "question": "A molecule of water is made up of two hydrogen atoms and ____ oxygen atom(s).",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Zero"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-316",
+    "question": "The chemical symbol 'K' for potassium comes from its Latin name, ____.",
+    "options": [
+      "Ferrum",
+      "Kalium",
+      "Natrium",
+      "Plumbum"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-317",
+    "question": "The chemical symbol 'Na' for sodium comes from its Latin name, ____.",
+    "options": [
+      "Natrium",
+      "Kalium",
+      "Aurum",
+      "Argentum"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-318",
+    "question": "The chemical symbol 'Fe' for iron comes from its Latin name, ____.",
+    "options": [
+      "Ferrum",
+      "Ferricum",
+      "Ironium",
+      "Plumbum"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-319",
+    "question": "Unlike mixtures, compounds have a fixed ____ by mass.",
+    "options": [
+      "Colour",
+      "Composition (ratio of elements)",
+      "Density only",
+      "Temperature"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-320",
+    "question": "The chemical formula for carbon monoxide is ____.",
+    "options": [
+      "CO",
+      "CO2",
+      "C2O",
+      "COO"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-321",
+    "question": "A wash bottle in the laboratory is typically used to ____.",
+    "options": [
+      "Store acids long-term",
+      "Rinse apparatus with small amounts of distilled water",
+      "Heat substances",
+      "Measure exact volumes"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-322",
+    "question": "Which apparatus is most suitable for heating a small quantity of a substance directly over a flame?",
+    "options": [
+      "Beaker",
+      "Test tube",
+      "Measuring cylinder",
+      "Funnel"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-323",
+    "question": "The apparatus used to filter a mixture is called a ____.",
+    "options": [
+      "Funnel",
+      "Beaker",
+      "Pipette",
+      "Burette"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-324",
+    "question": "Which piece of laboratory equipment is used to measure a precise, fixed volume of liquid?",
+    "options": [
+      "Beaker",
+      "Pipette",
+      "Test tube",
+      "Flask"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-325",
+    "question": "The SI unit of mass is the ____.",
+    "options": [
+      "Litre",
+      "Kilogram",
+      "Metre",
+      "Newton"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-326",
+    "question": "Which apparatus is used to hold test tubes while heating?",
+    "options": [
+      "Tripod stand",
+      "Test tube holder",
+      "Beaker",
+      "Retort stand"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-327",
+    "question": "The instrument used to measure temperature in the laboratory is the ____.",
+    "options": [
+      "Barometer",
+      "Thermometer",
+      "Hygrometer",
+      "Manometer"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-328",
+    "question": "A tool used to support a beaker or flask over a Bunsen burner is called a ____.",
+    "options": [
+      "Tripod stand",
+      "Clamp",
+      "Pipette",
+      "Funnel"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-329",
+    "question": "A beaker is mainly used in the laboratory for ____.",
+    "options": [
+      "Measuring exact volumes",
+      "Holding, mixing and heating liquids roughly",
+      "Weighing solids precisely",
+      "Viewing microscopic samples"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-330",
+    "question": "A conical (Erlenmeyer) flask is especially useful during titration because its shape ____.",
+    "options": [
+      "Prevents liquid from splashing out while swirling",
+      "Measures exact volume automatically",
+      "Heats liquids faster",
+      "Cools liquids instantly"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-331",
+    "question": "A burette is a graduated glass tube with a tap, used mainly to ____.",
+    "options": [
+      "Store chemicals long-term",
+      "Deliver a precisely measured, variable volume of liquid",
+      "Heat substances",
+      "Weigh solids"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-332",
+    "question": "A round-bottomed flask is commonly used in distillation because it ____.",
+    "options": [
+      "Cannot be heated",
+      "Allows even heating and boiling of liquids",
+      "Measures volume precisely",
+      "Has no opening"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-333",
+    "question": "An evaporating dish is used to ____.",
+    "options": [
+      "Measure liquid volume",
+      "Evaporate a liquid to leave a solid residue",
+      "Filter mixtures",
+      "Weigh substances"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-334",
+    "question": "A crucible is a container designed to ____.",
+    "options": [
+      "Store cold liquids",
+      "Withstand very high temperatures during strong heating",
+      "Measure volume accurately",
+      "Filter solids"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-335",
+    "question": "A wire gauze is placed on a tripod stand mainly to ____.",
+    "options": [
+      "Spread heat evenly under a beaker or flask",
+      "Filter liquids",
+      "Measure temperature",
+      "Hold test tubes"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-336",
+    "question": "A retort stand with a clamp is used in the laboratory to ____.",
+    "options": [
+      "Heat substances directly",
+      "Hold apparatus such as flasks or burettes firmly in place",
+      "Measure liquid volumes",
+      "Store chemicals"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-337",
+    "question": "A mortar and pestle are laboratory tools used to ____.",
+    "options": [
+      "Measure volume",
+      "Grind and crush solids into powder",
+      "Heat liquids",
+      "Filter mixtures"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-338",
+    "question": "A spatula is a small laboratory tool used to ____.",
+    "options": [
+      "Measure liquid volume precisely",
+      "Transfer or scoop small amounts of solid chemicals",
+      "Heat substances",
+      "Filter solutions"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-339",
+    "question": "A dropper is used in the laboratory to ____.",
+    "options": [
+      "Add liquids drop by drop in small quantities",
+      "Measure large volumes accurately",
+      "Heat chemicals",
+      "Weigh solids"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-340",
+    "question": "A test tube rack is used to ____.",
+    "options": [
+      "Heat test tubes directly",
+      "Hold and store test tubes safely upright",
+      "Measure liquid volume",
+      "Filter solutions"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-341",
+    "question": "A delivery tube is commonly used to ____.",
+    "options": [
+      "Measure the mass of a gas",
+      "Carry or channel gas produced in a reaction to another container",
+      "Heat liquids",
+      "Weigh solids"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-342",
+    "question": "A gas jar is mainly used in the laboratory to ____.",
+    "options": [
+      "Heat substances",
+      "Collect and store gases",
+      "Measure liquid volume precisely",
+      "Weigh chemicals"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-343",
+    "question": "Filter paper is used together with a funnel to ____.",
+    "options": [
+      "Heat liquids",
+      "Separate insoluble solids from a liquid",
+      "Measure exact volume",
+      "Store gases"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-344",
+    "question": "Litmus paper is used in the laboratory to test whether a substance is ____.",
+    "options": [
+      "Hot or cold",
+      "Acidic or alkaline",
+      "Solid or liquid",
+      "Pure or impure"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-345",
+    "question": "A Bunsen burner is a common laboratory apparatus used mainly to ____.",
+    "options": [
+      "Measure volume",
+      "Provide a controlled flame for heating",
+      "Weigh substances",
+      "Filter mixtures"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-346",
+    "question": "For a Bunsen burner, the hottest and most efficient flame for heating is the ____ flame.",
+    "options": [
+      "Yellow, luminous",
+      "Blue, non-luminous",
+      "Orange",
+      "Green"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-347",
+    "question": "When reading the volume of a liquid in a measuring cylinder, the reading should be taken at eye level from the bottom of the ____.",
+    "options": [
+      "Cylinder wall",
+      "Meniscus (curve of the liquid surface)",
+      "Top edge",
+      "Label"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-348",
+    "question": "A weighing (electronic or beam) balance is used in the laboratory to measure the ____ of an object.",
+    "options": [
+      "Volume",
+      "Mass",
+      "Temperature",
+      "Density directly"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-349",
+    "question": "The SI unit commonly used for measuring the volume of liquids in the laboratory is the ____.",
+    "options": [
+      "Kilogram",
+      "Litre (or cubic centimetre)",
+      "Metre",
+      "Newton"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-350",
+    "question": "The SI unit of length is the ____.",
+    "options": [
+      "Kilogram",
+      "Litre",
+      "Metre",
+      "Second"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-351",
+    "question": "The SI unit of temperature is the ____.",
+    "options": [
+      "Celsius",
+      "Kelvin",
+      "Fahrenheit",
+      "Joule"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-352",
+    "question": "In everyday school laboratory work, temperature is most commonly measured and recorded in degrees ____.",
+    "options": [
+      "Kelvin",
+      "Celsius",
+      "Fahrenheit",
+      "Rankine"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-353",
+    "question": "Safety goggles are worn in the laboratory mainly to protect the ____.",
+    "options": [
+      "Hands",
+      "Eyes",
+      "Feet",
+      "Hair"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-354",
+    "question": "A laboratory coat is worn during practical work mainly to protect ____.",
+    "options": [
+      "The eyes",
+      "The clothes and skin from chemical spills",
+      "The feet",
+      "The hair only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-355",
+    "question": "Eating and drinking in the laboratory is strictly forbidden mainly because ____.",
+    "options": [
+      "It is against tradition",
+      "Chemicals could contaminate food and cause poisoning",
+      "It makes the lab untidy",
+      "It wastes time"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-356",
+    "question": "When testing the smell of a chemical in the lab, it should be done by ____.",
+    "options": [
+      "Sniffing directly from the container",
+      "Gently wafting the fumes towards the nose with the hand",
+      "Inhaling deeply",
+      "Tasting it first"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-357",
+    "question": "In case of a small laboratory fire, one of the first safety actions is to ____.",
+    "options": [
+      "Run away without informing anyone",
+      "Turn off gas taps and use a fire extinguisher or fire blanket",
+      "Pour petrol on it",
+      "Ignore it"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-358",
+    "question": "If a corrosive chemical splashes onto the skin, the first aid response is to ____.",
+    "options": [
+      "Ignore it",
+      "Wash the area immediately with plenty of water",
+      "Rub it vigorously",
+      "Apply another chemical to neutralise it"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-359",
+    "question": "All chemical containers in the laboratory should be clearly labelled mainly to ____.",
+    "options": [
+      "Make the shelf look neat",
+      "Prevent confusion and accidental misuse of chemicals",
+      "Increase their price",
+      "Decorate the laboratory"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-360",
+    "question": "A laboratory hazard symbol showing a flame is used to warn that a substance is ____.",
+    "options": [
+      "Corrosive",
+      "Flammable",
+      "Toxic",
+      "Radioactive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-361",
+    "question": "A laboratory hazard symbol showing a substance dissolving a surface warns that the chemical is ____.",
+    "options": [
+      "Flammable",
+      "Corrosive",
+      "Explosive",
+      "Harmless"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-362",
+    "question": "A laboratory hazard symbol showing a skull and crossbones warns that a substance is ____.",
+    "options": [
+      "Flammable",
+      "Corrosive",
+      "Toxic (poisonous)",
+      "Oxidising"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-363",
+    "question": "Taking accurate measurements in the laboratory is important mainly because it ____.",
+    "options": [
+      "Wastes time",
+      "Ensures reliable and reproducible results",
+      "Uses more chemicals",
+      "Makes experiments longer"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-364",
+    "question": "Reading a scale from an angle instead of straight at eye level can cause a ____ error.",
+    "options": [
+      "Random",
+      "Parallax",
+      "Zero",
+      "Rounding"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-365",
+    "question": "An instrument that does not read zero when it should, before any measurement is taken, is said to have a ____ error.",
+    "options": [
+      "Parallax error",
+      "Zero error",
+      "Random error",
+      "Human error"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-366",
+    "question": "Taking several repeat readings during an experiment and finding their average mainly helps to ____.",
+    "options": [
+      "Increase errors",
+      "Improve the accuracy and reliability of results",
+      "Waste materials",
+      "Slow down the experiment"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-367",
+    "question": "During a practical, it is good scientific practice to record observations ____.",
+    "options": [
+      "From memory after leaving the lab",
+      "Immediately and accurately as they are made",
+      "Only if they seem important",
+      "Only at the very end"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-368",
+    "question": "To measure exactly 25.0 mL of a solution for a titration, the most appropriate apparatus is a ____.",
+    "options": [
+      "Beaker",
+      "Pipette",
+      "Test tube",
+      "Funnel"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-369",
+    "question": "To roughly measure and mix about 100 mL of a solution where high precision is not required, a ____ is commonly used.",
+    "options": [
+      "Pipette",
+      "Burette",
+      "Beaker",
+      "Volumetric flask"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-370",
+    "question": "A volumetric flask is designed to hold one precise, fixed volume of liquid and is often used to ____.",
+    "options": [
+      "Heat solids",
+      "Prepare solutions of an accurately known concentration",
+      "Filter mixtures",
+      "Store gases"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-371",
+    "question": "Which of the following metals is well known for being soft enough to be cut with a knife?",
+    "options": [
+      "Iron",
+      "Sodium",
+      "Copper",
+      "Zinc"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-372",
+    "question": "Metals are generally good conductors of ____.",
+    "options": [
+      "Heat only",
+      "Electricity only",
+      "Both heat and electricity",
+      "Neither"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-373",
+    "question": "Which of the following is a non-metal?",
+    "options": [
+      "Iron",
+      "Copper",
+      "Sulphur",
+      "Zinc"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-374",
+    "question": "The property of a metal that allows it to be drawn into wires is called ____.",
+    "options": [
+      "Malleability",
+      "Ductility",
+      "Brittleness",
+      "Density"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-375",
+    "question": "The property of a metal that allows it to be hammered into sheets is called ____.",
+    "options": [
+      "Ductility",
+      "Malleability",
+      "Conductivity",
+      "Elasticity"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-376",
+    "question": "Which of these metals does not rust?",
+    "options": [
+      "Iron",
+      "Gold",
+      "Steel",
+      "Tin"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-377",
+    "question": "Soap is produced by the chemical reaction between fat/oil and ____.",
+    "options": [
+      "Water",
+      "Alkali",
+      "Acid",
+      "Salt"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-378",
+    "question": "The chemical used to purify drinking water in many treatment plants is ____.",
+    "options": [
+      "Chlorine",
+      "Nitrogen",
+      "Helium",
+      "Argon"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-379",
+    "question": "Which of the following non-metals is essential for making steel stronger when combined with iron?",
+    "options": [
+      "Sulphur",
+      "Carbon",
+      "Oxygen",
+      "Neon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-380",
+    "question": "The shiny appearance of a freshly cut or polished metal surface is called ____.",
+    "options": [
+      "Malleability",
+      "Lustre",
+      "Ductility",
+      "Density"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-381",
+    "question": "Metals that produce a ringing sound when struck are described as ____.",
+    "options": [
+      "Brittle",
+      "Sonorous",
+      "Dull",
+      "Insulating"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-382",
+    "question": "Most metals generally have ____ melting and boiling points compared to non-metals.",
+    "options": [
+      "Lower",
+      "Higher",
+      "Equal",
+      "No"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-383",
+    "question": "Solid non-metals are generally ____ rather than malleable.",
+    "options": [
+      "Ductile",
+      "Malleable",
+      "Brittle",
+      "Sonorous"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-384",
+    "question": "Non-metals are generally ____ conductors of electricity.",
+    "options": [
+      "Excellent",
+      "Poor",
+      "The best",
+      "Equal to metals as"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-385",
+    "question": "Graphite, a form of carbon, is unusual among non-metals because it can ____.",
+    "options": [
+      "Melt at room temperature",
+      "Conduct electricity",
+      "Float on water only",
+      "React violently with air"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-386",
+    "question": "The reactivity series arranges metals in order of ____.",
+    "options": [
+      "Their cost",
+      "Their reactivity from most to least reactive",
+      "Their colour",
+      "Their melting point only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-387",
+    "question": "Among common metals, potassium and sodium are known to be very ____.",
+    "options": [
+      "Unreactive",
+      "Reactive",
+      "Dense",
+      "Heavy"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-388",
+    "question": "Gold and platinum are examples of metals that are very ____.",
+    "options": [
+      "Reactive",
+      "Unreactive",
+      "Radioactive",
+      "Magnetic only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-389",
+    "question": "When a metal burns or reacts with oxygen, it typically forms a ____.",
+    "options": [
+      "Metal hydride",
+      "Metal oxide",
+      "Metal chloride",
+      "Metal carbonate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-390",
+    "question": "Very reactive metals such as sodium react with cold water to produce hydrogen gas and a ____.",
+    "options": [
+      "Metal oxide only",
+      "Metal hydroxide",
+      "Metal chloride",
+      "Metal sulfate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-391",
+    "question": "Steel, an alloy of iron and carbon, is widely used in construction mainly because it is ____.",
+    "options": [
+      "Very soft",
+      "Strong and durable",
+      "Extremely light",
+      "Non-magnetic"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-392",
+    "question": "Stainless steel resists rusting mainly because it contains added ____.",
+    "options": [
+      "Carbon only",
+      "Chromium",
+      "Zinc only",
+      "Lead"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-393",
+    "question": "Bronze is an alloy mainly made of copper and ____.",
+    "options": [
+      "Zinc",
+      "Tin",
+      "Nickel",
+      "Lead"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-394",
+    "question": "Coating iron with a thin layer of zinc to prevent rusting is called ____.",
+    "options": [
+      "Anodising",
+      "Galvanising",
+      "Alloying",
+      "Smelting"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-395",
+    "question": "Painting an iron gate helps prevent rusting mainly by ____.",
+    "options": [
+      "Making it heavier",
+      "Keeping air and moisture away from the metal surface",
+      "Making it magnetic",
+      "Increasing its reactivity"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-396",
+    "question": "A naturally occurring rock or mineral from which a metal can be economically extracted is called a(n) ____.",
+    "options": [
+      "Alloy",
+      "Ore",
+      "Isotope",
+      "Ion"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-397",
+    "question": "Most metals are extracted from their ores by a chemical process involving ____.",
+    "options": [
+      "Freezing",
+      "Reduction (removing oxygen)",
+      "Filtration only",
+      "Dissolving in water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-398",
+    "question": "Iron is commercially extracted from its ore mainly in a ____.",
+    "options": [
+      "Distillation column",
+      "Blast furnace",
+      "Filter press",
+      "Titration flask"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-399",
+    "question": "Iron and steel are widely used to construct ____.",
+    "options": [
+      "Balloons",
+      "Buildings, bridges and vehicles",
+      "Perfumes",
+      "Soft drinks"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-400",
+    "question": "Aluminium is widely used to make aircraft parts and drink cans mainly because it is ____.",
+    "options": [
+      "Very heavy",
+      "Light in weight yet strong",
+      "Highly reactive with food",
+      "Magnetic"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-401",
+    "question": "Copper is widely used in electrical wiring mainly because it is an excellent ____.",
+    "options": [
+      "Insulator",
+      "Conductor of electricity",
+      "Magnet",
+      "Fuel"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-402",
+    "question": "Gold is commonly used in jewellery partly because it ____.",
+    "options": [
+      "Rusts easily",
+      "Does not tarnish or corrode easily",
+      "Is magnetic",
+      "Is the lightest metal"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-403",
+    "question": "Apart from galvanising iron, zinc is also used in making ____.",
+    "options": [
+      "Batteries",
+      "Only glass",
+      "Only paper",
+      "Only rubber"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-404",
+    "question": "Cement, when mixed with water, sand and gravel to form concrete, undergoes a chemical reaction that causes it to ____.",
+    "options": [
+      "Dissolve completely",
+      "Harden and set",
+      "Remain liquid forever",
+      "Evaporate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-405",
+    "question": "Ordinary glass is mainly made by melting ____ together with other materials.",
+    "options": [
+      "Iron ore",
+      "Sand (silica)",
+      "Salt",
+      "Sugar"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-406",
+    "question": "Chlorine is added during water treatment mainly to ____.",
+    "options": [
+      "Sweeten the water",
+      "Kill harmful microorganisms and disinfect the water",
+      "Remove colour only",
+      "Increase water hardness"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-407",
+    "question": "Salting or drying meat and fish helps preserve them mainly by ____.",
+    "options": [
+      "Adding nutrients",
+      "Removing water that bacteria need to grow",
+      "Increasing bacterial growth",
+      "Making them heavier"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-408",
+    "question": "Refrigerating food helps preserve it mainly by ____.",
+    "options": [
+      "Speeding up chemical reactions and bacterial growth",
+      "Slowing down chemical reactions and bacterial growth",
+      "Adding preservative chemicals",
+      "Removing all water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-409",
+    "question": "Fermentation, a process used to make products such as bread, yoghurt and local drinks, involves the action of ____.",
+    "options": [
+      "Only heat",
+      "Microorganisms such as yeast or bacteria",
+      "Only pressure",
+      "Only sunlight"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-410",
+    "question": "Unlike traditional soap, synthetic detergents are usually made from ____.",
+    "options": [
+      "Only natural animal fat",
+      "Petroleum-based chemicals",
+      "Only plant oil",
+      "Only salt"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-411",
+    "question": "Soaps and detergents help clean by allowing grease and dirt, which normally repel water, to ____.",
+    "options": [
+      "Sink to the bottom",
+      "Mix with and be washed away by water",
+      "Evaporate instantly",
+      "Turn into gas"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-412",
+    "question": "Chemical fertilizers commonly supply plants with essential elements such as nitrogen, phosphorus and ____.",
+    "options": [
+      "Potassium",
+      "Helium",
+      "Neon",
+      "Argon"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-413",
+    "question": "Iron left in salty, moist air rusts ____ than iron kept dry and away from salt.",
+    "options": [
+      "Slower",
+      "Faster",
+      "At exactly the same rate",
+      "Never"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-414",
+    "question": "Vinegar is sometimes used as a mild household cleaning agent mainly because of its ____ properties.",
+    "options": [
+      "Strong basic",
+      "Mild acidic",
+      "Neutral",
+      "Explosive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-415",
+    "question": "Baking powder helps cakes rise mainly because it releases ____ gas when heated or mixed with liquid.",
+    "options": [
+      "Oxygen",
+      "Carbon dioxide",
+      "Nitrogen",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-416",
+    "question": "A more reactive metal can displace a less reactive metal from its salt solution; for example, iron can displace copper from ____ solution.",
+    "options": [
+      "Iron sulfate",
+      "Copper sulfate",
+      "Zinc sulfate",
+      "Sodium chloride"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-417",
+    "question": "A simple battery produces electricity through a chemical reaction between two different metals and a(n) ____.",
+    "options": [
+      "Alloy",
+      "Electrolyte",
+      "Insulator",
+      "Isotope"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-418",
+    "question": "Recycling metals such as aluminium and steel is beneficial mainly because it ____.",
+    "options": [
+      "Uses more raw materials and energy",
+      "Saves raw materials and energy compared to extracting new metal",
+      "Increases pollution",
+      "Destroys the metal completely"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-419",
+    "question": "Corrosion of metals is a major economic problem because it ____.",
+    "options": [
+      "Improves the strength of structures",
+      "Weakens and damages metal structures and machinery over time",
+      "Has no effect on materials",
+      "Only affects gold"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-420",
+    "question": "Many toothpastes contain fluoride mainly to help ____.",
+    "options": [
+      "Whiten hair",
+      "Strengthen tooth enamel and prevent decay",
+      "Clean clothes",
+      "Purify water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-421",
+    "question": "Organic chemistry is mainly the study of compounds containing ____.",
+    "options": [
+      "Only metals",
+      "Carbon (usually combined with hydrogen)",
+      "Only water",
+      "Only salts"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-422",
+    "question": "A compound made up of only carbon and hydrogen atoms is called a ____.",
+    "options": [
+      "Carbohydrate",
+      "Hydrocarbon",
+      "Alcohol",
+      "Ester"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-423",
+    "question": "Alkanes are saturated hydrocarbons with the general formula ____.",
+    "options": [
+      "CnH2n",
+      "CnH2n+2",
+      "CnH2n-2",
+      "CnHn"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-424",
+    "question": "Alkenes are unsaturated hydrocarbons containing a carbon-carbon double bond, with the general formula ____.",
+    "options": [
+      "CnH2n+2",
+      "CnH2n",
+      "CnH2n-2",
+      "CnHn"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-425",
+    "question": "Alkynes are unsaturated hydrocarbons containing a carbon-carbon triple bond, with the general formula ____.",
+    "options": [
+      "CnH2n+2",
+      "CnH2n",
+      "CnH2n-2",
+      "CnHn"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-426",
+    "question": "A hydrocarbon containing only single bonds between carbon atoms is described as ____.",
+    "options": [
+      "Unsaturated",
+      "Saturated",
+      "Aromatic",
+      "Ionic"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-427",
+    "question": "The simplest alkane, containing only one carbon atom, is ____.",
+    "options": [
+      "Ethane",
+      "Methane",
+      "Propane",
+      "Butane"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-428",
+    "question": "The simplest alkene, containing two carbon atoms, is ____.",
+    "options": [
+      "Ethene",
+      "Methene",
+      "Propene",
+      "Butene"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-429",
+    "question": "Bromine water can be used to test for unsaturation in a hydrocarbon; an alkene will ____ the bromine water.",
+    "options": [
+      "Have no effect on",
+      "Decolourise",
+      "Turn blue",
+      "Boil"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-430",
+    "question": "Crude oil (petroleum) is mainly a mixture of ____.",
+    "options": [
+      "Salts and metals",
+      "Hydrocarbons",
+      "Acids and bases",
+      "Only water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-431",
+    "question": "The process used to separate crude oil into useful fractions such as petrol, kerosene and diesel is called ____.",
+    "options": [
+      "Simple distillation",
+      "Fractional distillation",
+      "Filtration",
+      "Crystallization"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-432",
+    "question": "Petrol (gasoline) obtained from crude oil is mainly used as ____.",
+    "options": [
+      "A fertilizer",
+      "A fuel for vehicles",
+      "A building material",
+      "A food additive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-433",
+    "question": "Natural gas is mainly composed of the hydrocarbon ____.",
+    "options": [
+      "Methane",
+      "Ethanol",
+      "Propanol",
+      "Benzene"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-434",
+    "question": "The functional group that characterises alcohols is ____.",
+    "options": [
+      "-COOH",
+      "-OH",
+      "-CHO",
+      "-NH2"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-435",
+    "question": "The functional group that characterises carboxylic acids is ____.",
+    "options": [
+      "-OH",
+      "-COOH",
+      "-CHO",
+      "-NH2"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-436",
+    "question": "The type of alcohol found in alcoholic drinks is ____.",
+    "options": [
+      "Methanol",
+      "Ethanol",
+      "Propanol",
+      "Butanol"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-437",
+    "question": "Ethanol can be produced naturally by the fermentation of sugar using ____.",
+    "options": [
+      "Bacteria only",
+      "Yeast",
+      "Enzymes from animals only",
+      "Sunlight alone"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-438",
+    "question": "The carboxylic acid present in vinegar is ____.",
+    "options": [
+      "Citric acid",
+      "Acetic (ethanoic) acid",
+      "Formic acid",
+      "Lactic acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-439",
+    "question": "An ester is typically formed by the reaction between an alcohol and a ____.",
+    "options": [
+      "Metal",
+      "Carboxylic acid",
+      "Salt",
+      "Base"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-440",
+    "question": "Esters are well known in everyday life for having a pleasant, fruity ____.",
+    "options": [
+      "Colour",
+      "Smell",
+      "Sound",
+      "Texture"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-441",
+    "question": "A large molecule made up of many repeating smaller units joined together is called a ____.",
+    "options": [
+      "Monomer",
+      "Polymer",
+      "Isotope",
+      "Isomer"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-442",
+    "question": "The small repeating unit that joins together to form a polymer is called a ____.",
+    "options": [
+      "Polymer",
+      "Monomer",
+      "Molecule complex",
+      "Alloy"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-443",
+    "question": "Polythene (polyethylene) is a common plastic formed by joining together many molecules of ____.",
+    "options": [
+      "Ethene",
+      "Methane",
+      "Propane",
+      "Benzene"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-444",
+    "question": "Which of the following is a naturally occurring polymer?",
+    "options": [
+      "Polythene",
+      "Starch",
+      "PVC",
+      "Nylon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-445",
+    "question": "Which of the following is a synthetic (man-made) polymer?",
+    "options": [
+      "Cellulose",
+      "Starch",
+      "Nylon",
+      "Protein"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-446",
+    "question": "Complete combustion of hydrocarbon fuels in oxygen mainly produces ____.",
+    "options": [
+      "Carbon dioxide and water",
+      "Only carbon",
+      "Only hydrogen gas",
+      "Nitrogen and salt"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-447",
+    "question": "A family of organic compounds with the same general formula and similar chemical properties, differing by a CH2 unit, is called a ____.",
+    "options": [
+      "Isomer group",
+      "Homologous series",
+      "Alloy series",
+      "Isotope series"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-448",
+    "question": "Compounds with the same molecular formula but different structural arrangements of atoms are called ____.",
+    "options": [
+      "Isotopes",
+      "Isomers",
+      "Allotropes",
+      "Alloys"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-449",
+    "question": "Carbohydrates such as glucose and starch are organic compounds made up of carbon, hydrogen and ____.",
+    "options": [
+      "Nitrogen",
+      "Oxygen",
+      "Sulphur",
+      "Chlorine"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-450",
+    "question": "Proteins are large organic molecules made up of smaller units called ____.",
+    "options": [
+      "Amino acids",
+      "Fatty acids",
+      "Glucose units",
+      "Nucleotides only"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-451",
+    "question": "Unlike natural materials, many synthetic plastics are described as non-biodegradable because they ____.",
+    "options": [
+      "Break down quickly in soil",
+      "Do not break down easily in the environment",
+      "Dissolve instantly in water",
+      "Burn without producing any gas"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-452",
+    "question": "Cracking is an industrial process in which large hydrocarbon molecules are broken down into ____.",
+    "options": [
+      "Smaller, more useful hydrocarbon molecules",
+      "Only carbon and hydrogen gas separately",
+      "Metals",
+      "Salts"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-453",
+    "question": "Coal, like petroleum and natural gas, is classified as a ____.",
+    "options": [
+      "Renewable resource",
+      "Fossil fuel",
+      "Metal ore",
+      "Alloy"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-454",
+    "question": "Benzene is an example of a(n) ____ hydrocarbon, containing a ring of six carbon atoms.",
+    "options": [
+      "Aliphatic",
+      "Aromatic",
+      "Saturated straight-chain",
+      "Inorganic"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-455",
+    "question": "Kerosene, a fraction obtained from crude oil, is commonly used as fuel for ____.",
+    "options": [
+      "Only cars",
+      "Lamps, stoves and jet engines",
+      "Only ships",
+      "Only power plants"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-456",
+    "question": "Bitumen (asphalt), a heavy fraction of crude oil, is mainly used for ____.",
+    "options": [
+      "Cooking fuel",
+      "Surfacing roads",
+      "Drinking water treatment",
+      "Making soap"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-457",
+    "question": "The alkane with four carbon atoms is called ____.",
+    "options": [
+      "Propane",
+      "Butane",
+      "Pentane",
+      "Hexane"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-458",
+    "question": "The alkane with five carbon atoms is called ____.",
+    "options": [
+      "Butane",
+      "Pentane",
+      "Hexane",
+      "Heptane"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-459",
+    "question": "Vegetable oils and animal fats are organic compounds broadly classified as ____.",
+    "options": [
+      "Carbohydrates",
+      "Lipids",
+      "Proteins",
+      "Alcohols"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-460",
+    "question": "The chemical reaction between a fat/oil and an alkali to produce soap is called ____.",
+    "options": [
+      "Fermentation",
+      "Saponification",
+      "Neutralisation only",
+      "Polymerisation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-461",
+    "question": "A reversible reaction is said to be at chemical equilibrium when ____.",
+    "options": [
+      "The reaction has completely stopped",
+      "The rate of the forward reaction equals the rate of the backward reaction",
+      "Only products remain",
+      "Only reactants remain"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-462",
+    "question": "According to Le Chatelier's principle, when a system at equilibrium is disturbed, it will shift to ____.",
+    "options": [
+      "Destroy itself",
+      "Oppose the change and restore a new equilibrium",
+      "Stop reacting completely",
+      "Increase the disturbance"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-463",
+    "question": "Increasing pressure on a gaseous equilibrium generally favours the side with ____.",
+    "options": [
+      "More gas molecules",
+      "Fewer gas molecules",
+      "Equal gas molecules",
+      "No gas molecules"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-464",
+    "question": "For an exothermic reversible reaction at equilibrium, increasing the temperature generally favours the ____ reaction.",
+    "options": [
+      "Forward (exothermic)",
+      "Backward (endothermic)",
+      "Neither",
+      "Both equally"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-465",
+    "question": "In a chemical equation, a reversible reaction is shown using ____.",
+    "options": [
+      "A single arrow (->)",
+      "Two half arrows pointing in opposite directions",
+      "An equals sign",
+      "A plus sign"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-466",
+    "question": "Electrolysis is the process of using ____ to bring about a chemical decomposition.",
+    "options": [
+      "Heat only",
+      "Electrical energy",
+      "Light energy only",
+      "Sound waves"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-467",
+    "question": "A substance that conducts electricity when molten or dissolved in water, and is decomposed in the process, is called a(n) ____.",
+    "options": [
+      "Insulator",
+      "Electrolyte",
+      "Catalyst",
+      "Alloy"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-468",
+    "question": "In electrolysis, the electrode connected to the positive terminal of the power source is called the ____.",
+    "options": [
+      "Cathode",
+      "Anode",
+      "Neutral electrode",
+      "Salt bridge"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-469",
+    "question": "In electrolysis, the electrode connected to the negative terminal of the power source is called the ____.",
+    "options": [
+      "Anode",
+      "Cathode",
+      "Neutral electrode",
+      "Salt bridge"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-470",
+    "question": "During electrolysis, positively charged ions (cations) move towards the ____.",
+    "options": [
+      "Anode",
+      "Cathode",
+      "Salt bridge",
+      "Surface only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-471",
+    "question": "During electrolysis, negatively charged ions (anions) move towards the ____.",
+    "options": [
+      "Cathode",
+      "Anode",
+      "Salt bridge",
+      "Surface only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-472",
+    "question": "Electroplating uses electrolysis to coat one metal with a thin layer of another metal mainly to ____.",
+    "options": [
+      "Make the object heavier",
+      "Improve appearance and resist corrosion",
+      "Reduce its cost always",
+      "Make it magnetic"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-473",
+    "question": "The electrolysis of acidified water produces hydrogen gas at the cathode and ____ gas at the anode.",
+    "options": [
+      "Nitrogen",
+      "Oxygen",
+      "Carbon dioxide",
+      "Chlorine"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-474",
+    "question": "The industrial electrolysis of concentrated sodium chloride solution (brine) is used to manufacture chlorine, hydrogen and ____.",
+    "options": [
+      "Sodium metal",
+      "Sodium hydroxide",
+      "Sodium sulfate",
+      "Sodium nitrate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-475",
+    "question": "A simple electrochemical cell converts ____ energy into electrical energy.",
+    "options": [
+      "Chemical",
+      "Nuclear",
+      "Sound",
+      "Light"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-476",
+    "question": "In a simple voltaic cell, using two different metals such as zinc and copper generally produces a ____.",
+    "options": [
+      "No reaction at all",
+      "Flow of electric current",
+      "Precipitate only",
+      "Solid alloy"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-477",
+    "question": "In an exothermic reaction, the energy of the products is ____ the energy of the reactants.",
+    "options": [
+      "Higher than",
+      "Lower than",
+      "Equal to",
+      "Unrelated to"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-478",
+    "question": "In an endothermic reaction, the energy of the products is ____ the energy of the reactants.",
+    "options": [
+      "Lower than",
+      "Higher than",
+      "Equal to",
+      "Unrelated to"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-479",
+    "question": "The minimum amount of energy needed to start a chemical reaction is called the ____ energy.",
+    "options": [
+      "Kinetic",
+      "Activation",
+      "Potential",
+      "Bond"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-480",
+    "question": "A catalyst speeds up a reaction mainly by ____.",
+    "options": [
+      "Increasing the activation energy needed",
+      "Lowering the activation energy needed",
+      "Increasing the temperature permanently",
+      "Removing reactants"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-481",
+    "question": "Breaking chemical bonds in reactants generally ____ energy.",
+    "options": [
+      "Releases",
+      "Requires (absorbs)",
+      "Has no effect on",
+      "Destroys"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-482",
+    "question": "Forming new chemical bonds in products generally ____ energy.",
+    "options": [
+      "Requires",
+      "Releases",
+      "Has no effect on",
+      "Destroys"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-483",
+    "question": "The rate of a chemical reaction refers to ____.",
+    "options": [
+      "The colour change during the reaction",
+      "How fast reactants are converted into products",
+      "The mass of the reactants only",
+      "The temperature of the reaction only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-484",
+    "question": "According to collision theory, for a reaction to occur, reacting particles must ____.",
+    "options": [
+      "Avoid each other completely",
+      "Collide with enough energy and correct orientation",
+      "Remain far apart",
+      "Stop moving entirely"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-485",
+    "question": "A catalyst increases reaction rate by providing an alternative pathway with ____.",
+    "options": [
+      "Higher activation energy",
+      "Lower activation energy",
+      "No activation energy needed at all",
+      "More reactant particles"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-486",
+    "question": "Enzymes found in living organisms act as biological ____.",
+    "options": [
+      "Reactants",
+      "Catalysts",
+      "Products",
+      "Solvents"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-487",
+    "question": "A dry cell battery, commonly used in torches and remote controls, converts stored chemical energy directly into ____ energy.",
+    "options": [
+      "Nuclear",
+      "Electrical",
+      "Sound",
+      "Light only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-488",
+    "question": "A hydrogen fuel cell generates electricity by combining hydrogen and oxygen, producing ____ as the main by-product.",
+    "options": [
+      "Carbon dioxide",
+      "Water",
+      "Nitrogen",
+      "Sulfur dioxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-489",
+    "question": "Rusting of iron is considered an electrochemical process because it involves the loss and gain of ____.",
+    "options": [
+      "Protons",
+      "Electrons",
+      "Neutrons",
+      "Photons"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-490",
+    "question": "The reaction between nitrogen and hydrogen to form ammonia in industry (the Haber process) is an example of a ____ reaction.",
+    "options": [
+      "Irreversible",
+      "Reversible",
+      "Single displacement only",
+      "Neutralisation only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-491",
+    "question": "Adding a catalyst to a reaction at equilibrium ____ the position of equilibrium, but helps it get there faster.",
+    "options": [
+      "Shifts",
+      "Does not shift",
+      "Destroys",
+      "Reverses"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-492",
+    "question": "Increasing the concentration of a reactant in a reversible reaction at equilibrium generally shifts the equilibrium to favour the ____ reaction.",
+    "options": [
+      "Backward",
+      "Forward",
+      "Neither",
+      "Both equally"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-493",
+    "question": "Which of the following is an example of an exothermic reaction that releases heat?",
+    "options": [
+      "Photosynthesis",
+      "Combustion of fuel",
+      "Melting of ice",
+      "Evaporation of water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-494",
+    "question": "Which of the following is an example of an endothermic process that absorbs heat?",
+    "options": [
+      "Combustion of fuel",
+      "Photosynthesis",
+      "Rusting of iron",
+      "Explosion of dynamite"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-495",
+    "question": "In an electrochemical cell, the two separate compartments where oxidation and reduction occur are called ____.",
+    "options": [
+      "Electrolytes",
+      "Half-cells",
+      "Cathodes only",
+      "Salt bridges"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-496",
+    "question": "In an electrochemical cell, a salt bridge is used to ____.",
+    "options": [
+      "Generate electricity directly",
+      "Complete the electrical circuit by allowing ion flow between half-cells",
+      "Heat the solutions",
+      "Filter the solutions"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-497",
+    "question": "Electrolysis is used industrially to purify copper by transferring copper from an impure anode to a pure ____.",
+    "options": [
+      "Cathode",
+      "Salt bridge",
+      "Electrolyte gas",
+      "Filter"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-498",
+    "question": "On an energy profile diagram for an exothermic reaction, the overall energy change (products minus reactants) is ____.",
+    "options": [
+      "Positive",
+      "Negative",
+      "Zero",
+      "Undefined"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-499",
+    "question": "Which of the following would most likely increase the rate of a reaction between a solid and a liquid?",
+    "options": [
+      "Using larger solid lumps",
+      "Crushing the solid into powder",
+      "Cooling the mixture",
+      "Diluting the liquid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-500",
+    "question": "Aluminium metal is extracted from its ore (bauxite) on an industrial scale mainly by ____.",
+    "options": [
+      "Simple heating in air",
+      "Electrolysis of molten aluminium oxide",
+      "Filtration",
+      "Fermentation"
+    ],
+    "answer": "B"
+  },
+
+  {
+    "id": "chemistry-501",
+    "question": "A gas occupies 500 cm3 at a pressure of 2 atm. What volume will it occupy at a pressure of 5 atm, if temperature remains constant?",
+    "options": [
+      "1250 cm3",
+      "200 cm3",
+      "100 cm3",
+      "2500 cm3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-502",
+    "question": "A gas has a volume of 300 cm3 at 27 C (300 K). What will its volume be at 127 C (400 K), if pressure is kept constant?",
+    "options": [
+      "400 cm3",
+      "300 cm3",
+      "200 cm3",
+      "1200 cm3"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-503",
+    "question": "The equation PV = nRT is known as the ____ gas equation.",
+    "options": [
+      "Ideal",
+      "Real",
+      "Boyle's",
+      "Charles's"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-504",
+    "question": "According to Graham's law of diffusion, a gas with a smaller molar mass will diffuse ____ than a gas with a larger molar mass.",
+    "options": [
+      "Slower",
+      "Faster",
+      "At the same rate",
+      "Not at all"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-505",
+    "question": "Standard temperature and pressure (S.T.P.) is defined as a temperature of 273 K and a pressure of ____.",
+    "options": [
+      "1 atm (760 mmHg)",
+      "2 atm",
+      "0.5 atm",
+      "100 atm"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-506",
+    "question": "The relationship between vapour density (V.D.) and relative molecular mass (M) of a gas is given by ____.",
+    "options": [
+      "M = V.D.",
+      "M = 2 x V.D.",
+      "M = V.D. / 2",
+      "M = V.D. squared"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-507",
+    "question": "A gas occupies 150 cm3 at 300 K and constant pressure. What volume will it occupy at 600 K, assuming pressure remains constant?",
+    "options": [
+      "75 cm3",
+      "150 cm3",
+      "300 cm3",
+      "600 cm3"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-508",
+    "question": "Calculate the number of moles in 11 g of carbon(IV) oxide, CO2. [C=12, O=16]",
+    "options": [
+      "0.25 mol",
+      "0.5 mol",
+      "2.5 mol",
+      "4 mol"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-509",
+    "question": "Calculate the mass of 2 moles of calcium carbonate, CaCO3. [Ca=40, C=12, O=16]",
+    "options": [
+      "100 g",
+      "150 g",
+      "200 g",
+      "400 g"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-510",
+    "question": "What is the empirical formula of a compound containing 40% carbon, 6.7% hydrogen and 53.3% oxygen by mass? [C=12, H=1, O=16]",
+    "options": [
+      "CH2O",
+      "C2H4O2",
+      "CHO",
+      "C3H6O3"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-511",
+    "question": "In a titration, 25 cm3 of a sodium hydroxide solution exactly neutralized 20 cm3 of 0.1 mol/dm3 hydrochloric acid. Calculate the concentration of the sodium hydroxide solution. [1:1 mole ratio]",
+    "options": [
+      "0.08 mol/dm3",
+      "0.1 mol/dm3",
+      "0.125 mol/dm3",
+      "0.2 mol/dm3"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-512",
+    "question": "Calculate the percentage by mass of nitrogen in ammonium sulphate, (NH4)2SO4. [N=14, H=1, S=32, O=16]",
+    "options": [
+      "14.0%",
+      "21.2%",
+      "28.0%",
+      "42.4%"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-513",
+    "question": "A current of 2 amperes was passed through a solution of copper(II) sulphate for 965 seconds. Calculate the quantity of electricity (charge) passed.",
+    "options": [
+      "965 C",
+      "1930 C",
+      "4825 C",
+      "96500 C"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-514",
+    "question": "Using a charge of 1930 C, determine the number of moles of electrons passed. [1 Faraday = 96500 C/mol]",
+    "options": [
+      "0.01 mol",
+      "0.02 mol",
+      "0.1 mol",
+      "0.2 mol"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-515",
+    "question": "During the electrolysis of molten lead(II) bromide, 0.2 mol of electrons passed through the cell. Given Pb2+ + 2e- -> Pb, calculate the number of moles of lead deposited.",
+    "options": [
+      "0.05 mol",
+      "0.1 mol",
+      "0.2 mol",
+      "0.4 mol"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-516",
+    "question": "Burning a fuel released 420 J of heat, which was used to heat 100 g of water. Calculate the rise in temperature. [Specific heat capacity of water = 4.2 J/g C]",
+    "options": [
+      "1 C",
+      "2 C",
+      "4.2 C",
+      "10 C"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-517",
+    "question": "In a reaction, doubling the concentration of a reactant caused the rate of reaction to quadruple. This shows the reaction is ____ order with respect to that reactant.",
+    "options": [
+      "Zero",
+      "First",
+      "Second",
+      "Third"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-518",
+    "question": "In the reversible reaction between nitrogen and hydrogen to form ammonia (N2 + 3H2 -> 2NH3, reversible), increasing the pressure of the system will shift the equilibrium towards ____.",
+    "options": [
+      "The reactants",
+      "The side with more gas molecules",
+      "The products (more ammonia)",
+      "No change"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-519",
+    "question": "If the forward reaction in a reversible system is exothermic, increasing the temperature will shift the equilibrium towards ____.",
+    "options": [
+      "The products",
+      "The reactants",
+      "No change",
+      "Cannot be predicted"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-520",
+    "question": "The solubility of a salt is defined as the number of grams of the salt that will dissolve in ____ of the solvent to form a saturated solution at a given temperature.",
+    "options": [
+      "1 g",
+      "1 cm3",
+      "100 g",
+      "1 dm3"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-521",
+    "question": "Alkanes are hydrocarbons with the general formula ____.",
+    "options": [
+      "CnH2n",
+      "CnH2n+2",
+      "CnH2n-2",
+      "CnHn"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-522",
+    "question": "Alkenes are hydrocarbons with the general formula ____.",
+    "options": [
+      "CnH2n+2",
+      "CnH2n",
+      "CnH2n-2",
+      "CnH2n-1"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-523",
+    "question": "The functional group present in alkenes, which makes them undergo addition reactions, is the ____.",
+    "options": [
+      "Single C-C bond",
+      "Double C=C bond",
+      "Hydroxyl group",
+      "Carboxyl group"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-524",
+    "question": "The first member of the alkane series, with the molecular formula CH4, is called ____.",
+    "options": [
+      "Ethane",
+      "Methane",
+      "Propane",
+      "Butane"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-525",
+    "question": "Ethanol belongs to the homologous series known as ____.",
+    "options": [
+      "Alkanes",
+      "Alkenes",
+      "Alcohols",
+      "Carboxylic acids"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-526",
+    "question": "The functional group of an alcohol is ____.",
+    "options": [
+      "-COOH",
+      "-OH",
+      "-CHO",
+      "-CO-"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-527",
+    "question": "The functional group of a carboxylic acid is ____.",
+    "options": [
+      "-OH",
+      "-COOH",
+      "-NH2",
+      "-CHO"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-528",
+    "question": "Ethanoic acid is commonly known as ____.",
+    "options": [
+      "Formic acid",
+      "Acetic acid",
+      "Citric acid",
+      "Lactic acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-529",
+    "question": "The reaction between an alcohol and a carboxylic acid to form an ester is called ____.",
+    "options": [
+      "Hydrolysis",
+      "Esterification",
+      "Saponification",
+      "Polymerization"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-530",
+    "question": "The process of breaking down large hydrocarbon molecules into smaller, more useful ones is called ____.",
+    "options": [
+      "Polymerization",
+      "Cracking",
+      "Distillation",
+      "Isomerization"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-531",
+    "question": "Compounds with the same molecular formula but different structural arrangements are called ____.",
+    "options": [
+      "Isotopes",
+      "Isomers",
+      "Isobars",
+      "Homologues"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-532",
+    "question": "The process by which small molecules (monomers) join together to form a large molecule (polymer) is called ____.",
+    "options": [
+      "Cracking",
+      "Polymerization",
+      "Fermentation",
+      "Distillation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-533",
+    "question": "Poly(ethene), commonly called polythene, is formed by the polymerization of the monomer ____.",
+    "options": [
+      "Ethanol",
+      "Ethene",
+      "Ethane",
+      "Ethanoic acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-534",
+    "question": "The process by which sugar is converted into ethanol and carbon dioxide using yeast (enzymes) is called ____.",
+    "options": [
+      "Distillation",
+      "Fermentation",
+      "Cracking",
+      "Hydrolysis"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-535",
+    "question": "Members of a homologous series differ from one successive member to the next by a common difference of ____ in molecular formula.",
+    "options": [
+      "CH2",
+      "CH4",
+      "C2H4",
+      "OH"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-536",
+    "question": "The industrial process used to manufacture ammonia from nitrogen and hydrogen gases is called the ____ process.",
+    "options": [
+      "Contact",
+      "Haber",
+      "Solvay",
+      "Bessemer"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-537",
+    "question": "In the Haber process, the catalyst commonly used to speed up the reaction is ____.",
+    "options": [
+      "Platinum",
+      "Iron",
+      "Vanadium(V) oxide",
+      "Manganese(IV) oxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-538",
+    "question": "The industrial process used to manufacture sulphuric acid is called the ____ process.",
+    "options": [
+      "Haber",
+      "Contact",
+      "Solvay",
+      "Downs"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-539",
+    "question": "In the Contact process, the catalyst used to convert sulphur(IV) oxide to sulphur(VI) oxide is ____.",
+    "options": [
+      "Iron",
+      "Platinum or Vanadium(V) oxide",
+      "Nickel",
+      "Manganese(IV) oxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-540",
+    "question": "The gas that turns acidified potassium dichromate(VI) paper from orange to green is ____.",
+    "options": [
+      "Carbon dioxide",
+      "Sulphur(IV) oxide",
+      "Nitrogen dioxide",
+      "Ammonia"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-541",
+    "question": "The gas that turns moist red litmus paper blue is ____.",
+    "options": [
+      "Carbon dioxide",
+      "Ammonia",
+      "Hydrogen",
+      "Sulphur dioxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-542",
+    "question": "Chlorine gas can be tested using moist blue litmus paper, which it ____.",
+    "options": [
+      "Turns red then bleaches (turns white)",
+      "Turns permanently blue",
+      "Has no effect on",
+      "Turns green"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-543",
+    "question": "The main constituent of natural gas, and the simplest alkane, is ____.",
+    "options": [
+      "Ethane",
+      "Methane",
+      "Propane",
+      "Butane"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-544",
+    "question": "Which gas is used in the Solvay process to manufacture sodium carbonate?",
+    "options": [
+      "Sulphur dioxide",
+      "Ammonia",
+      "Nitrogen",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-545",
+    "question": "Nitrogen gas makes up approximately ____ of the Earth's atmosphere by volume.",
+    "options": [
+      "21%",
+      "78%",
+      "1%",
+      "50%"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-546",
+    "question": "Oxygen gas makes up approximately ____ of the Earth's atmosphere by volume.",
+    "options": [
+      "78%",
+      "21%",
+      "1%",
+      "10%"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-547",
+    "question": "Carbon(II) oxide (carbon monoxide) is a dangerous gas mainly because it ____.",
+    "options": [
+      "Is highly explosive only",
+      "Combines irreversibly with haemoglobin in blood, reducing oxygen transport",
+      "Is radioactive",
+      "Is a strong acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-548",
+    "question": "In the reactivity series of metals, the metal usually extracted from its ore by electrolysis, due to its high reactivity, is ____.",
+    "options": [
+      "Iron",
+      "Aluminium",
+      "Copper",
+      "Zinc"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-549",
+    "question": "Iron is extracted from its ore, haematite, in a furnace known as the ____ furnace.",
+    "options": [
+      "Bessemer",
+      "Blast",
+      "Electric arc",
+      "Open hearth"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-550",
+    "question": "Rusting of iron can be prevented by coating the iron with a layer of zinc, a process called ____.",
+    "options": [
+      "Electroplating",
+      "Galvanizing",
+      "Painting",
+      "Tinning"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-551",
+    "question": "Which of the following metals is the most reactive, according to the reactivity series?",
+    "options": [
+      "Copper",
+      "Potassium",
+      "Iron",
+      "Lead"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-552",
+    "question": "Aluminium, despite being a reactive metal, resists corrosion in air because it forms a thin, protective layer of ____ on its surface.",
+    "options": [
+      "Aluminium hydroxide",
+      "Aluminium oxide",
+      "Aluminium chloride",
+      "Aluminium carbonate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-553",
+    "question": "Brass is an alloy of copper and ____.",
+    "options": [
+      "Tin",
+      "Zinc",
+      "Nickel",
+      "Lead"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-554",
+    "question": "Duralumin, an alloy used in aircraft construction because it is light and strong, is mainly composed of aluminium and ____.",
+    "options": [
+      "Zinc",
+      "Copper",
+      "Iron",
+      "Tin"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-555",
+    "question": "Stainless steel is an alloy of iron, carbon and mainly ____, which gives it resistance to rusting.",
+    "options": [
+      "Zinc",
+      "Chromium",
+      "Tin",
+      "Lead"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-556",
+    "question": "Acid rain is mainly caused by atmospheric pollution from oxides of ____.",
+    "options": [
+      "Carbon and oxygen",
+      "Sulphur and nitrogen",
+      "Hydrogen and helium",
+      "Noble gases"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-557",
+    "question": "The gas mainly responsible for the greenhouse effect and global warming is ____.",
+    "options": [
+      "Oxygen",
+      "Carbon dioxide",
+      "Nitrogen",
+      "Argon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-558",
+    "question": "The layer of the atmosphere that protects the Earth from harmful ultraviolet radiation is the ____ layer.",
+    "options": [
+      "Nitrogen",
+      "Ozone",
+      "Carbon dioxide",
+      "Hydrogen"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-559",
+    "question": "Temporary hardness of water is caused mainly by the presence of dissolved ____ in the water.",
+    "options": [
+      "Sodium chloride",
+      "Calcium/magnesium hydrogencarbonate",
+      "Potassium nitrate",
+      "Copper sulphate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-560",
+    "question": "Temporary hardness of water can be removed by ____.",
+    "options": [
+      "Adding more soap",
+      "Boiling",
+      "Adding sodium chloride",
+      "Filtration only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-561",
+    "question": "Permanent hardness of water, caused by dissolved calcium and magnesium sulphates, can be removed by ____.",
+    "options": [
+      "Boiling alone",
+      "Adding washing soda (sodium carbonate)",
+      "Adding more water",
+      "Freezing"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-562",
+    "question": "A solution that can dissolve more solute at a given temperature is described as ____.",
+    "options": [
+      "Saturated",
+      "Unsaturated",
+      "Supersaturated",
+      "Concentrated only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-563",
+    "question": "In a reaction, 8 g of product was theoretically expected but only 6 g was actually obtained. Calculate the percentage yield.",
+    "options": [
+      "60%",
+      "75%",
+      "80%",
+      "133%"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-564",
+    "question": "Which of the following statements about a limiting reactant is correct?",
+    "options": [
+      "It is the reactant left over at the end of the reaction",
+      "It is the reactant completely consumed, determining the maximum product formed",
+      "It is always the reactant with the greatest mass",
+      "It is a catalyst for the reaction"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-565",
+    "question": "Calculate the concentration, in mol/dm3, of a solution containing 4 g of sodium hydroxide dissolved in 500 cm3 of solution. [Na=23, O=16, H=1]",
+    "options": [
+      "0.1 mol/dm3",
+      "0.2 mol/dm3",
+      "0.4 mol/dm3",
+      "0.8 mol/dm3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-566",
+    "question": "Calculate the number of atoms present in 0.5 mole of oxygen gas, O2. [Avogadro's number = 6.02 x 10^23]",
+    "options": [
+      "3.01 x 10^23",
+      "6.02 x 10^23",
+      "1.204 x 10^24",
+      "1.505 x 10^23"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-567",
+    "question": "What is the oxidation number of sulphur in sulphuric acid, H2SO4?",
+    "options": [
+      "+2",
+      "+4",
+      "+6",
+      "-2"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-568",
+    "question": "What is the oxidation number of manganese in potassium permanganate, KMnO4?",
+    "options": [
+      "+2",
+      "+4",
+      "+6",
+      "+7"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": "chemistry-569",
+    "question": "What is the oxidation number of chromium in potassium dichromate(VI), K2Cr2O7?",
+    "options": [
+      "+3",
+      "+6",
+      "+7",
+      "+2"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-570",
+    "question": "When a radioactive nucleus emits an alpha particle, its mass number decreases by ____ and its atomic number decreases by ____.",
+    "options": [
+      "4, 2",
+      "2, 4",
+      "1, 1",
+      "4, 4"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-571",
+    "question": "When a radioactive nucleus emits a beta particle, its atomic number ____ by one, while its mass number remains unchanged.",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Stays the same",
+      "Doubles"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-572",
+    "question": "The time taken for half the atoms in a radioactive sample to decay is called its ____.",
+    "options": [
+      "Decay time",
+      "Half-life",
+      "Full life",
+      "Reaction time"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-573",
+    "question": "Which of the following statements is TRUE about catalysts?",
+    "options": [
+      "They are used up in the reaction",
+      "They alter the equilibrium position of a reversible reaction",
+      "They increase the rate of both forward and backward reactions equally in a reversible system",
+      "They only work at high temperatures"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-574",
+    "question": "Which of the following pairs of gases would effuse/diffuse at the same rate under identical conditions? [C=12, N=14, O=16]",
+    "options": [
+      "H2 and O2",
+      "CO2 and N2O",
+      "CH4 and O2",
+      "NH3 and HCl"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-575",
+    "question": "A hydrocarbon has the molecular formula C4H8. To which homologous series does it most likely belong?",
+    "options": [
+      "Alkanes",
+      "Alkenes",
+      "Alkynes",
+      "Alcohols"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-576",
+    "question": "A hydrocarbon has the molecular formula C5H8. To which homologous series does it belong?",
+    "options": [
+      "Alkanes",
+      "Alkenes",
+      "Alkynes",
+      "Alcohols"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-577",
+    "question": "Calculate the volume of oxygen gas needed to completely burn 2 dm3 of methane gas: CH4 + 2O2 -> CO2 + 2H2O (all gas volumes at the same temperature and pressure).",
+    "options": [
+      "1 dm3",
+      "2 dm3",
+      "4 dm3",
+      "8 dm3"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-578",
+    "question": "0.1 mole of calcium carbonate reacts completely with excess dilute hydrochloric acid: CaCO3 + 2HCl -> CaCl2 + H2O + CO2. Calculate the volume of CO2 produced at S.T.P. [22.4 dm3/mol]",
+    "options": [
+      "1.12 dm3",
+      "2.24 dm3",
+      "22.4 dm3",
+      "0.224 dm3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-579",
+    "question": "50 cm3 of a 2 mol/dm3 solution of hydrochloric acid is diluted with water to a final volume of 200 cm3. Calculate the new concentration.",
+    "options": [
+      "0.25 mol/dm3",
+      "0.5 mol/dm3",
+      "1 mol/dm3",
+      "8 mol/dm3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-580",
+    "question": "The vapour density of a gas is 14. Calculate its relative molecular mass.",
+    "options": [
+      "7",
+      "14",
+      "28",
+      "56"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-581",
+    "question": "The IUPAC name for the compound CH3-CH2-CH2-OH is ____.",
+    "options": [
+      "Methanol",
+      "Ethanol",
+      "Propan-1-ol",
+      "Propan-2-ol"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-582",
+    "question": "The IUPAC name for CH3-CH(OH)-CH3 is ____.",
+    "options": [
+      "Propan-1-ol",
+      "Propan-2-ol",
+      "Propanal",
+      "Propanoic acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-583",
+    "question": "How many carbon atoms are present in the alkane butane?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-584",
+    "question": "The general formula for cycloalkanes is ____.",
+    "options": [
+      "CnH2n",
+      "CnH2n+2",
+      "CnH2n-2",
+      "CnHn"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-585",
+    "question": "Which of the following is a saturated hydrocarbon?",
+    "options": [
+      "Ethene",
+      "Ethyne",
+      "Ethane",
+      "Benzene"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-586",
+    "question": "Unsaturated hydrocarbons can be distinguished from saturated ones using ____, which decolorizes in the presence of a double or triple bond.",
+    "options": [
+      "Litmus paper",
+      "Bromine water",
+      "Limewater",
+      "Universal indicator"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-587",
+    "question": "Ethyne (acetylene), C2H2, belongs to which homologous series?",
+    "options": [
+      "Alkanes",
+      "Alkenes",
+      "Alkynes",
+      "Alcohols"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-588",
+    "question": "The reaction of an alkene with hydrogen in the presence of a nickel catalyst to form an alkane is called ____.",
+    "options": [
+      "Cracking",
+      "Hydrogenation",
+      "Polymerization",
+      "Fermentation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-589",
+    "question": "In the laboratory, oxygen gas can be prepared by heating hydrogen peroxide in the presence of manganese(IV) oxide as catalyst. This is an example of a ____ reaction.",
+    "options": [
+      "Combination reaction",
+      "Decomposition reaction",
+      "Displacement reaction",
+      "Neutralization reaction"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-590",
+    "question": "In the laboratory, carbon(IV) oxide is prepared by reacting a metal carbonate, such as marble chips, with ____.",
+    "options": [
+      "Concentrated sulphuric acid",
+      "Dilute hydrochloric acid",
+      "Sodium hydroxide solution",
+      "Distilled water"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-591",
+    "question": "Ammonia gas is prepared in the laboratory by heating an ammonium salt with ____.",
+    "options": [
+      "Dilute hydrochloric acid",
+      "Calcium hydroxide (slaked lime)",
+      "Water",
+      "Concentrated sulphuric acid"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-592",
+    "question": "Which drying agent is unsuitable for drying ammonia gas because it reacts with it?",
+    "options": [
+      "Calcium oxide",
+      "Concentrated sulphuric acid",
+      "Fused calcium chloride",
+      "Soda lime"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-593",
+    "question": "Hydrogen gas is prepared in the laboratory by reacting a reactive metal such as zinc with ____.",
+    "options": [
+      "Dilute hydrochloric acid",
+      "Concentrated nitric acid",
+      "Sodium chloride solution",
+      "Water at room temperature"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-594",
+    "question": "Zinc is extracted from its ore, zinc blende, mainly by roasting followed by ____.",
+    "options": [
+      "Electrolysis",
+      "Reduction with carbon in a furnace",
+      "Thermal decomposition alone",
+      "Displacement with a more reactive metal"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-595",
+    "question": "Which of the following metals is extracted from its ore mainly by simple thermal decomposition, because it is low in the reactivity series?",
+    "options": [
+      "Potassium",
+      "Aluminium",
+      "Mercury",
+      "Sodium"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-596",
+    "question": "Distilled water is preferred over tap water in the laboratory mainly because it is free from ____.",
+    "options": [
+      "Oxygen",
+      "Dissolved salts and impurities",
+      "Hydrogen",
+      "Colour only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-597",
+    "question": "The chemical test for the presence of water is that anhydrous copper(II) sulphate, which is white, turns ____ when water is added.",
+    "options": [
+      "Colourless",
+      "Blue",
+      "Green",
+      "Yellow"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-598",
+    "question": "Anhydrous cobalt(II) chloride paper, which is blue, is used to test for water; it turns ____ in the presence of water.",
+    "options": [
+      "Blue",
+      "Pink",
+      "Green",
+      "Yellow"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-599",
+    "question": "Eutrophication of water bodies is mainly caused by excessive ____ from agricultural runoff, such as fertilizers and detergents.",
+    "options": [
+      "Heavy metals",
+      "Nitrates and phosphates",
+      "Crude oil",
+      "Carbon dioxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-600",
+    "question": "The main pollutant responsible for photochemical smog in urban areas is ____, released mainly from vehicle exhaust.",
+    "options": [
+      "Carbon dioxide",
+      "Nitrogen oxides and hydrocarbons",
+      "Water vapour",
+      "Argon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-601",
+    "question": "For the reversible reaction 2SO2(g) + O2(g) forming 2SO3(g), with the forward reaction exothermic, which condition would increase the yield of SO3?",
+    "options": [
+      "High temperature and low pressure",
+      "Low temperature and high pressure",
+      "High temperature and high pressure",
+      "Removing the catalyst"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-602",
+    "question": "In the Contact process, although a lower temperature favors a higher yield of sulphur(VI) oxide, an intermediate temperature of about 450 C is used mainly to ____.",
+    "options": [
+      "Reduce the cost of production",
+      "Achieve a reasonably fast rate of reaction while maintaining a good yield",
+      "Prevent the catalyst from working",
+      "Increase the pressure"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-603",
+    "question": "The equilibrium constant, Kc, for a reaction is used to indicate ____.",
+    "options": [
+      "The rate of the reaction",
+      "The extent to which a reaction proceeds towards products at equilibrium",
+      "The temperature of the reaction",
+      "The catalyst used"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-604",
+    "question": "A large value of the equilibrium constant, Kc (Kc much greater than 1), for a reaction indicates that at equilibrium ____.",
+    "options": [
+      "Mostly reactants are present",
+      "Mostly products are present",
+      "Equal amounts of reactants and products are present",
+      "The reaction has stopped"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-605",
+    "question": "In the electrolysis of dilute sulphuric acid using inert (platinum) electrodes, the gas liberated at the cathode is ____.",
+    "options": [
+      "Oxygen",
+      "Hydrogen",
+      "Sulphur dioxide",
+      "Chlorine"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-606",
+    "question": "In the electrolysis of dilute sulphuric acid using inert electrodes, the gas liberated at the anode is ____.",
+    "options": [
+      "Hydrogen",
+      "Oxygen",
+      "Sulphur trioxide",
+      "Hydrogen sulphide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-607",
+    "question": "During the electrolysis of concentrated brine (sodium chloride solution), the gas produced at the anode is ____.",
+    "options": [
+      "Hydrogen",
+      "Oxygen",
+      "Chlorine",
+      "Nitrogen"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-608",
+    "question": "In an electrochemical cell, oxidation always occurs at the ____.",
+    "options": [
+      "Cathode",
+      "Anode",
+      "Salt bridge",
+      "External circuit only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-609",
+    "question": "A metal M displaces hydrogen from dilute acids but does not react with cold water. Where would M most likely be placed in the reactivity series?",
+    "options": [
+      "Above potassium",
+      "Between magnesium and hydrogen",
+      "Below silver",
+      "Between calcium and sodium"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-610",
+    "question": "50 cm3 of 0.2 mol/dm3 sulphuric acid completely neutralized 100 cm3 of sodium hydroxide solution: H2SO4 + 2NaOH -> Na2SO4 + 2H2O. Calculate the concentration of the sodium hydroxide.",
+    "options": [
+      "0.1 mol/dm3",
+      "0.2 mol/dm3",
+      "0.4 mol/dm3",
+      "0.02 mol/dm3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-611",
+    "question": "Calculate the mass of water produced when 4 g of hydrogen gas is completely burnt in excess oxygen: 2H2 + O2 -> 2H2O. [H=1, O=16]",
+    "options": [
+      "4 g",
+      "18 g",
+      "36 g",
+      "72 g"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-612",
+    "question": "What volume of hydrogen gas (at S.T.P.) is produced when 4.6 g of sodium reacts completely with excess water: 2Na + 2H2O -> 2NaOH + H2? [Na=23, molar volume at S.T.P.=22.4 dm3/mol]",
+    "options": [
+      "1.12 dm3",
+      "2.24 dm3",
+      "4.48 dm3",
+      "22.4 dm3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-613",
+    "question": "Which of the following correctly ranks the particles in a typical atom from smallest to largest relative mass?",
+    "options": [
+      "Electron, neutron, proton",
+      "Electron, proton, neutron",
+      "Proton, neutron, electron",
+      "Neutron, proton, electron"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-614",
+    "question": "A radioactive isotope has a half-life of 10 days. What fraction of the original sample remains after 30 days?",
+    "options": [
+      "1/2",
+      "1/4",
+      "1/8",
+      "1/16"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-615",
+    "question": "Which of the following elements is most likely to form an ion with a 2- charge?",
+    "options": [
+      "Sodium (Group I)",
+      "Oxygen (Group VI)",
+      "Chlorine (Group VII)",
+      "Neon (Group 0)"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-616",
+    "question": "An element X has the electronic configuration 2,8,7. Which group of the periodic table does it belong to?",
+    "options": [
+      "Group II",
+      "Group IV",
+      "Group VII",
+      "Group 0"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-617",
+    "question": "An element Y has the electronic configuration 2,8,2. To which period and group does it belong?",
+    "options": [
+      "Period 2, Group II",
+      "Period 3, Group II",
+      "Period 3, Group VIII",
+      "Period 2, Group VIII"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-618",
+    "question": "Polymers such as nylon and terylene, formed by joining monomers with the elimination of a small molecule like water, are formed by ____ polymerization.",
+    "options": [
+      "Addition",
+      "Condensation",
+      "Cracking",
+      "Fermentation"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-619",
+    "question": "Which of the following is a natural polymer?",
+    "options": [
+      "Polythene",
+      "PVC (polyvinyl chloride)",
+      "Starch",
+      "Nylon"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-620",
+    "question": "The main environmental concern associated with the widespread use of non-biodegradable plastics such as polythene is that they ____.",
+    "options": [
+      "Decompose quickly and release toxic ash",
+      "Persist in the environment for a very long time, causing pollution",
+      "React explosively with water",
+      "Are radioactive"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-621",
+    "question": "Calculate the relative molecular mass of glucose, C6H12O6. [C=12, H=1, O=16]",
+    "options": [
+      "90",
+      "150",
+      "180",
+      "342"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-622",
+    "question": "Calculate the number of moles of oxygen atoms present in 0.5 mole of glucose, C6H12O6.",
+    "options": [
+      "0.5 mol",
+      "3 mol",
+      "6 mol",
+      "12 mol"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-623",
+    "question": "A compound has an empirical formula of CH2 and a relative molecular mass of 70. What is its molecular formula? [C=12, H=1]",
+    "options": [
+      "C3H6",
+      "C4H8",
+      "C5H10",
+      "C6H12"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-624",
+    "question": "Which law states that equal volumes of all gases, at the same temperature and pressure, contain the same number of molecules?",
+    "options": [
+      "Boyle's law",
+      "Charles's law",
+      "Avogadro's law",
+      "Graham's law"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-625",
+    "question": "According to the law of conservation of energy applied to chemical reactions, the total energy of the reactants and products, including heat exchanged with the surroundings, remains ____.",
+    "options": [
+      "Variable",
+      "Constant",
+      "Zero",
+      "Undefined"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-626",
+    "question": "Which of these correctly describes an exothermic reaction on an energy level diagram?",
+    "options": [
+      "Products are at a higher energy level than reactants",
+      "Products are at a lower energy level than reactants",
+      "Products and reactants are at the same energy level",
+      "There is no defined energy level"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-627",
+    "question": "In an endothermic reaction, the enthalpy change, delta H, is ____.",
+    "options": [
+      "Negative",
+      "Positive",
+      "Zero",
+      "Undefined"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-628",
+    "question": "Which of the following best explains why powdered calcium carbonate reacts faster with hydrochloric acid than an equal mass of marble chips?",
+    "options": [
+      "Powdered calcium carbonate has higher purity",
+      "Powdered calcium carbonate has a greater surface area exposed to the acid",
+      "Powdered calcium carbonate is a different compound",
+      "Powdered calcium carbonate is less dense"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-629",
+    "question": "A student investigates the effect of a catalyst on the decomposition of hydrogen peroxide. Which observation confirms manganese(IV) oxide acted as a catalyst?",
+    "options": [
+      "It is completely consumed",
+      "It increases the rate of oxygen production but remains chemically unchanged in mass and composition",
+      "The reaction stops immediately",
+      "A new coloured precipitate forms permanently"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-630",
+    "question": "Which of the following would NOT increase the rate of reaction between magnesium ribbon and dilute hydrochloric acid?",
+    "options": [
+      "Increasing the concentration of the acid",
+      "Increasing the temperature",
+      "Using magnesium powder instead of ribbon",
+      "Using a larger volume of the same concentration of acid, with conditions otherwise unchanged"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": "chemistry-631",
+    "question": "The pH of a solution changes from 3 to 5. This represents a decrease in hydrogen ion concentration by a factor of ____.",
+    "options": [
+      "2",
+      "20",
+      "100",
+      "1000"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-632",
+    "question": "A solution has a hydrogen ion concentration of 1 x 10^-4 mol/dm3. What is its pH?",
+    "options": [
+      "2",
+      "4",
+      "10",
+      "14"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-633",
+    "question": "Which of the following best explains why concentrated sulphuric acid is described as a dehydrating agent?",
+    "options": [
+      "It adds water to substances",
+      "It has a strong affinity for water and can remove it, even chemically combined water, from substances",
+      "It is a weak acid",
+      "It is used only for drying gases"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-634",
+    "question": "Concentrated sulphuric acid turns blue copper(II) sulphate crystals white due to its ____ property.",
+    "options": [
+      "Oxidizing",
+      "Dehydrating",
+      "Reducing",
+      "Diluting"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-635",
+    "question": "Which gas, when passed into freshly prepared iron(II) sulphate solution followed by careful addition of concentrated sulphuric acid, gives a brown ring at the interface, used as a test for nitrate ions?",
+    "options": [
+      "Nitrogen(II) oxide, formed from reduction of the nitrate",
+      "Ammonia",
+      "Chlorine",
+      "Carbon dioxide"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-636",
+    "question": "The test for the sulphate ion (SO4 2-) in solution involves adding dilute hydrochloric acid followed by barium chloride solution; a positive result is a ____ precipitate.",
+    "options": [
+      "Yellow",
+      "White, insoluble in acid",
+      "Blue",
+      "Black"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-637",
+    "question": "The test for the chloride ion (Cl-) in solution involves adding dilute nitric acid followed by silver nitrate solution; a positive result is a ____ precipitate.",
+    "options": [
+      "Yellow",
+      "White, which turns grey/purple on exposure to light",
+      "Blue",
+      "Green"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-638",
+    "question": "The test for the carbonate ion (CO3 2-) involves adding dilute acid; a positive result is confirmed by a gas that turns limewater ____.",
+    "options": [
+      "Blue",
+      "Milky",
+      "Pink",
+      "Colourless permanently"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-639",
+    "question": "A sodium compound, when heated in a Bunsen flame, gives a characteristic ____ flame colouration.",
+    "options": [
+      "Lilac",
+      "Golden yellow",
+      "Brick-red",
+      "Green"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-640",
+    "question": "A potassium compound gives a characteristic ____ flame colouration.",
+    "options": [
+      "Golden yellow",
+      "Lilac (pale purple)",
+      "Brick-red",
+      "Apple-green"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-641",
+    "question": "A calcium compound gives a characteristic ____ flame colouration.",
+    "options": [
+      "Lilac",
+      "Golden yellow",
+      "Brick-red",
+      "Apple-green"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-642",
+    "question": "A copper compound gives a characteristic ____ flame colouration.",
+    "options": [
+      "Blue-green",
+      "Lilac",
+      "Brick-red",
+      "Golden yellow"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-643",
+    "question": "The addition of aqueous sodium hydroxide, followed by gentle warming, to a solution containing ammonium ions produces a gas that turns moist red litmus paper blue; this gas is ____.",
+    "options": [
+      "Hydrogen",
+      "Ammonia",
+      "Chlorine",
+      "Carbon dioxide"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-644",
+    "question": "Which of the following ions gives a blue precipitate, insoluble in excess, when aqueous sodium hydroxide is added?",
+    "options": [
+      "Cu2+",
+      "Fe2+",
+      "Fe3+",
+      "Zn2+"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "chemistry-645",
+    "question": "Zinc hydroxide is described as amphoteric because it reacts with ____.",
+    "options": [
+      "Only acids",
+      "Only bases",
+      "Both acids and bases",
+      "Neither acids nor bases"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "chemistry-646",
+    "question": "The empirical formula of a hydrocarbon is CH2, and its vapour density is 21. What is its molecular formula? [C=12, H=1]",
+    "options": [
+      "C2H4",
+      "C3H6",
+      "C4H8",
+      "C5H10"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-647",
+    "question": "A gaseous hydrocarbon contains 85.7% carbon and 14.3% hydrogen by mass, and has a relative molecular mass of 42. Determine its molecular formula. [C=12, H=1]",
+    "options": [
+      "C2H4",
+      "C3H6",
+      "C4H8",
+      "CH2"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-648",
+    "question": "Which of the following correctly represents the trend in first ionization energy across Period 3, from sodium to argon?",
+    "options": [
+      "Decreases steadily",
+      "Generally increases across the period",
+      "Remains constant",
+      "Increases then sharply drops to zero"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "chemistry-649",
+    "question": "Which of the following elements would you expect to have the largest atomic radius?",
+    "options": [
+      "Lithium",
+      "Sodium",
+      "Potassium",
+      "Rubidium"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": "chemistry-650",
+    "question": "The formula for calculating the percentage purity of a sample is ____.",
+    "options": [
+      "(mass of pure substance / mass of impure sample) x 100",
+      "(mass of impure sample / mass of pure substance) x 100",
+      "mass of pure substance x mass of impure sample",
+      "mass of impure sample - mass of pure substance"
+    ],
+    "answer": "A"
+  }
+]

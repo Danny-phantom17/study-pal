@@ -1,0 +1,772 @@
+[
+  {
+    "id": "geography-001",
+    "question": "Which planet is known as the Red Planet?",
+    "options": [
+      "Venus",
+      "Mars",
+      "Jupiter",
+      "Mercury"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-002",
+    "question": "Which line divides the Earth into the Northern and Southern Hemispheres?",
+    "options": [
+      "Prime Meridian",
+      "Equator",
+      "Tropic of Cancer",
+      "International Date Line"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-003",
+    "question": "The imaginary line that passes through Greenwich, England is called the ____.",
+    "options": [
+      "Equator",
+      "Prime Meridian",
+      "Tropic of Capricorn",
+      "Arctic Circle"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-004",
+    "question": "The shape of the earth is best described as a?",
+    "options": [
+      "Perfect sphere",
+      "Oblate spheroid",
+      "Cube",
+      "Ellipse"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-005",
+    "question": "The rotation of the earth on its axis causes?",
+    "options": [
+      "Seasons",
+      "Day and night",
+      "Eclipses",
+      "Tides"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-006",
+    "question": "The revolution of the earth around the sun takes approximately how many days?",
+    "options": [
+      "24 hours",
+      "30 days",
+      "365 1/4 days",
+      "180 days"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-007",
+    "question": "The imaginary lines running from the North Pole to the South Pole are called?",
+    "options": [
+      "Latitudes",
+      "Meridians",
+      "Tropics",
+      "Parallels"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-008",
+    "question": "The distance between the Equator and either pole is divided into how many degrees?",
+    "options": [
+      "90",
+      "180",
+      "360",
+      "45"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "geography-009",
+    "question": "Which force is responsible for the deflection of winds and ocean currents due to the earth's rotation?",
+    "options": [
+      "Gravity",
+      "Coriolis force",
+      "Centrifugal force",
+      "Magnetic force"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-010",
+    "question": "The capital city of Nigeria is ____.",
+    "options": [
+      "Lagos",
+      "Port Harcourt",
+      "Abuja",
+      "Kano"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-011",
+    "question": "Which state in Nigeria is known as the 'Centre of Excellence'?",
+    "options": [
+      "Rivers",
+      "Lagos",
+      "Kaduna",
+      "Enugu"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-012",
+    "question": "Nigeria is located in which region of Africa?",
+    "options": [
+      "North Africa",
+      "West Africa",
+      "East Africa",
+      "Southern Africa"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-013",
+    "question": "Nigeria shares a land border with which of the following countries?",
+    "options": [
+      "Ghana",
+      "Cameroon",
+      "Kenya",
+      "Egypt"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-014",
+    "question": "The largest state by land area in Nigeria is?",
+    "options": [
+      "Niger State",
+      "Borno State",
+      "Kano State",
+      "Taraba State"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "geography-015",
+    "question": "How many states make up the Federal Republic of Nigeria?",
+    "options": [
+      "30",
+      "36",
+      "37",
+      "40"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-016",
+    "question": "Which of these is a landlocked country in Africa?",
+    "options": [
+      "Nigeria",
+      "Niger",
+      "Ghana",
+      "Senegal"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-017",
+    "question": "Nigeria became an independent nation in which year?",
+    "options": [
+      "1957",
+      "1960",
+      "1963",
+      "1970"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-018",
+    "question": "Which is the longest river in the world?",
+    "options": [
+      "River Niger",
+      "River Nile",
+      "Amazon River",
+      "Mississippi River"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-019",
+    "question": "Which ocean is the largest?",
+    "options": [
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Pacific Ocean",
+      "Arctic Ocean"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-020",
+    "question": "Which ocean lies west of Africa?",
+    "options": [
+      "Pacific Ocean",
+      "Indian Ocean",
+      "Atlantic Ocean",
+      "Southern Ocean"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-021",
+    "question": "The two major rivers in Nigeria are River Niger and?",
+    "options": [
+      "River Nile",
+      "River Benue",
+      "River Congo",
+      "River Volta"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-022",
+    "question": "Lake Chad is located in which part of Nigeria?",
+    "options": [
+      "South West",
+      "North East",
+      "South East",
+      "North Central"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-023",
+    "question": "The confluence of River Niger and River Benue is located at?",
+    "options": [
+      "Onitsha",
+      "Lokoja",
+      "Yenagoa",
+      "Jebba"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-024",
+    "question": "Which sea separates Europe from Africa?",
+    "options": [
+      "Red Sea",
+      "Mediterranean Sea",
+      "Caspian Sea",
+      "Black Sea"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-025",
+    "question": "The River Benue, a major tributary of the River Niger, originates from which country?",
+    "options": [
+      "Chad",
+      "Cameroon",
+      "Niger Republic",
+      "Ghana"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-026",
+    "question": "Mount Everest is located in which mountain range?",
+    "options": [
+      "Andes",
+      "Rockies",
+      "Himalayas",
+      "Alps"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-027",
+    "question": "Which desert is the largest hot desert in the world?",
+    "options": [
+      "Kalahari Desert",
+      "Gobi Desert",
+      "Sahara Desert",
+      "Namib Desert"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-028",
+    "question": "A landform that rises steeply from its surroundings with a pointed or rounded top is called a?",
+    "options": [
+      "Plateau",
+      "Mountain",
+      "Valley",
+      "Plain"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-029",
+    "question": "An extensive flat or gently undulating land at a high elevation is called a?",
+    "options": [
+      "Plain",
+      "Plateau",
+      "Valley",
+      "Basin"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-030",
+    "question": "The Jos Plateau is located in which part of Nigeria?",
+    "options": [
+      "North Central",
+      "South West",
+      "North East",
+      "South South"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "geography-031",
+    "question": "A depression on the earth's surface carved out by a river is called a?",
+    "options": [
+      "Ridge",
+      "Valley",
+      "Cliff",
+      "Delta"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-032",
+    "question": "The Niger Delta is an example of a?",
+    "options": [
+      "Plateau",
+      "River delta",
+      "Mountain range",
+      "Rift valley"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-033",
+    "question": "A narrow strip of land connecting two larger land masses is called a?",
+    "options": [
+      "Isthmus",
+      "Peninsula",
+      "Plateau",
+      "Delta"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "geography-034",
+    "question": "Which type of rainfall is caused by heated air rising?",
+    "options": [
+      "Relief rainfall",
+      "Cyclonic rainfall",
+      "Convectional rainfall",
+      "Frontal rainfall"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-035",
+    "question": "Which instrument is used to measure atmospheric pressure?",
+    "options": [
+      "Thermometer",
+      "Hygrometer",
+      "Barometer",
+      "Rain gauge"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-036",
+    "question": "Which layer of the atmosphere contains the ozone layer?",
+    "options": [
+      "Troposphere",
+      "Mesosphere",
+      "Stratosphere",
+      "Thermosphere"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-037",
+    "question": "What is the study of weather and climate called?",
+    "options": [
+      "Geology",
+      "Meteorology",
+      "Ecology",
+      "Oceanography"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-038",
+    "question": "The instrument used to measure rainfall is called a?",
+    "options": [
+      "Barometer",
+      "Rain gauge",
+      "Anemometer",
+      "Hygrometer"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-039",
+    "question": "The instrument used to measure wind speed is called a?",
+    "options": [
+      "Thermometer",
+      "Anemometer",
+      "Barometer",
+      "Rain gauge"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-040",
+    "question": "Nigeria has how many main climatic seasons?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-041",
+    "question": "The dry, dusty wind that blows from the Sahara Desert over West Africa is called?",
+    "options": [
+      "Monsoon",
+      "Harmattan",
+      "Trade wind",
+      "Cyclone"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-042",
+    "question": "Relief rainfall occurs mainly when?",
+    "options": [
+      "Warm air meets cold air",
+      "Air is forced to rise over a mountain",
+      "Air is heated directly by the sun",
+      "Two air masses of different temperatures meet"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-043",
+    "question": "The layer of the atmosphere closest to the earth's surface, where weather occurs, is the?",
+    "options": [
+      "Stratosphere",
+      "Troposphere",
+      "Mesosphere",
+      "Thermosphere"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-044",
+    "question": "Climate refers to?",
+    "options": [
+      "The day to day condition of the atmosphere",
+      "The average weather condition of a place over a long period",
+      "The temperature of a place in a single day",
+      "The amount of rainfall in a week"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-045",
+    "question": "Which country has the largest population in Africa?",
+    "options": [
+      "Egypt",
+      "South Africa",
+      "Nigeria",
+      "Ethiopia"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-046",
+    "question": "The movement of people from rural to urban areas in search of better opportunities is called?",
+    "options": [
+      "Immigration",
+      "Rural-urban migration",
+      "Emigration",
+      "Transhumance"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-047",
+    "question": "A settlement pattern where houses are built close together along a road or river is called?",
+    "options": [
+      "Nucleated settlement",
+      "Linear settlement",
+      "Dispersed settlement",
+      "Circular settlement"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-048",
+    "question": "A count of the number of people living in a country at a particular time is called a?",
+    "options": [
+      "Survey",
+      "Census",
+      "Sample",
+      "Estimate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-049",
+    "question": "Which of the following best describes overpopulation?",
+    "options": [
+      "When resources exceed the population",
+      "When population exceeds available resources",
+      "When population is evenly distributed",
+      "When birth rate equals death rate"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-050",
+    "question": "The largest city in Nigeria by population is?",
+    "options": [
+      "Abuja",
+      "Kano",
+      "Lagos",
+      "Ibadan"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-051",
+    "question": "The natural increase in a population is calculated by?",
+    "options": [
+      "Birth rate minus death rate",
+      "Immigration minus emigration",
+      "Total population divided by area",
+      "Birth rate plus death rate"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "geography-052",
+    "question": "Which natural resource is Nigeria most famous for exporting?",
+    "options": [
+      "Coal",
+      "Tin",
+      "Crude oil",
+      "Gold"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-053",
+    "question": "Which of the following is a renewable natural resource?",
+    "options": [
+      "Coal",
+      "Petroleum",
+      "Natural gas",
+      "Solar energy"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": "geography-054",
+    "question": "The main occupation of people in rural Nigeria is?",
+    "options": [
+      "Mining",
+      "Farming",
+      "Fishing only",
+      "Trading only"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-055",
+    "question": "Groundnut pyramids were historically associated with which Nigerian city?",
+    "options": [
+      "Lagos",
+      "Kano",
+      "Enugu",
+      "Calabar"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-056",
+    "question": "Cocoa production in Nigeria is mostly associated with which region?",
+    "options": [
+      "North West",
+      "South West",
+      "North East",
+      "South South"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-057",
+    "question": "Coal was historically mined in commercial quantity in which Nigerian city?",
+    "options": [
+      "Enugu",
+      "Jos",
+      "Sokoto",
+      "Maiduguri"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "geography-058",
+    "question": "The exploitation of forest resources such as timber for economic purposes is called?",
+    "options": [
+      "Mining",
+      "Lumbering",
+      "Fishing",
+      "Quarrying"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-059",
+    "question": "Petroleum in Nigeria is mostly found in which region?",
+    "options": [
+      "North Central",
+      "Niger Delta",
+      "South West",
+      "North West"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-060",
+    "question": "Fishing as an economic activity is most predominant in which part of Nigeria?",
+    "options": [
+      "North West",
+      "Niger Delta / coastal areas",
+      "North East",
+      "North Central"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-061",
+    "question": "What is the largest continent in the world?",
+    "options": [
+      "Africa",
+      "Asia",
+      "Europe",
+      "North America"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-062",
+    "question": "Which continent is known as the 'Dark Continent'?",
+    "options": [
+      "Asia",
+      "Europe",
+      "Africa",
+      "Australia"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-063",
+    "question": "Which country is famous for the pyramids of Giza?",
+    "options": [
+      "Sudan",
+      "Libya",
+      "Egypt",
+      "Morocco"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-064",
+    "question": "The smallest continent in the world is?",
+    "options": [
+      "Europe",
+      "Australia",
+      "Antarctica",
+      "South America"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-065",
+    "question": "The Great Wall is a famous landmark found in?",
+    "options": [
+      "India",
+      "China",
+      "Japan",
+      "Egypt"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-066",
+    "question": "The Sahara Desert is located mainly in which part of Africa?",
+    "options": [
+      "East Africa",
+      "North Africa",
+      "Southern Africa",
+      "Central Africa"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-067",
+    "question": "Victoria Falls, one of the largest waterfalls in the world, is located between which two countries?",
+    "options": [
+      "Kenya and Tanzania",
+      "Zambia and Zimbabwe",
+      "Nigeria and Cameroon",
+      "Egypt and Sudan"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-068",
+    "question": "The Statue of Liberty is located in which country?",
+    "options": [
+      "France",
+      "United Kingdom",
+      "United States of America",
+      "Canada"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "geography-069",
+    "question": "Which African country is completely surrounded by South Africa?",
+    "options": [
+      "Swaziland",
+      "Lesotho",
+      "Botswana",
+      "Zimbabwe"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "geography-070",
+    "question": "The world's largest country by land area is?",
+    "options": [
+      "Canada",
+      "China",
+      "Russia",
+      "United States of America"
+    ],
+    "answer": "C"
+  }
+]

@@ -1,0 +1,772 @@
+[
+  {
+    "id": "math-001",
+    "question": "What is 25 × 4?",
+    "options": [
+      "80",
+      "90",
+      "100",
+      "120"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-002",
+    "question": "Solve: 144 ÷ 12.",
+    "options": [
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-003",
+    "question": "Find the value of 7 × 8.",
+    "options": [
+      "54",
+      "56",
+      "58",
+      "64"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-004",
+    "question": "What is 56 + 78?",
+    "options": [
+      "124",
+      "130",
+      "134",
+      "144"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-005",
+    "question": "What is 245 - 89?",
+    "options": [
+      "146",
+      "156",
+      "166",
+      "176"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-006",
+    "question": "What is 12 × 12?",
+    "options": [
+      "124",
+      "134",
+      "144",
+      "154"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-007",
+    "question": "What is 350 ÷ 7?",
+    "options": [
+      "45",
+      "50",
+      "55",
+      "60"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-008",
+    "question": "What is 9 × 11?",
+    "options": [
+      "89",
+      "99",
+      "109",
+      "119"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-009",
+    "question": "What is the value of x if x + 9 = 20?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-010",
+    "question": "Solve: 2x = 18. Find x.",
+    "options": [
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-011",
+    "question": "Solve: 3x + 5 = 20.",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-012",
+    "question": "If y - 7 = 15, find y.",
+    "options": [
+      "20",
+      "21",
+      "22",
+      "23"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-013",
+    "question": "Solve: 4(x - 2) = 16.",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-014",
+    "question": "If 2x + 3x = 25, find x.",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-015",
+    "question": "Solve: x/4 = 9.",
+    "options": [
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-016",
+    "question": "Which of the following is a prime number?",
+    "options": [
+      "21",
+      "27",
+      "29",
+      "35"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-017",
+    "question": "Which of the following is an even number?",
+    "options": [
+      "17",
+      "19",
+      "22",
+      "25"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-018",
+    "question": "What is the Lowest Common Multiple (LCM) of 6 and 8?",
+    "options": [
+      "12",
+      "18",
+      "24",
+      "48"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-019",
+    "question": "Which of the following is a prime number?",
+    "options": [
+      "15",
+      "21",
+      "23",
+      "33"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-020",
+    "question": "What is the Highest Common Factor (HCF) of 12 and 18?",
+    "options": [
+      "2",
+      "3",
+      "6",
+      "9"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-021",
+    "question": "Which of the following is an odd number?",
+    "options": [
+      "44",
+      "56",
+      "63",
+      "70"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-022",
+    "question": "What is the LCM of 4 and 5?",
+    "options": [
+      "9",
+      "15",
+      "20",
+      "25"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-023",
+    "question": "Which number is divisible by both 2 and 3?",
+    "options": [
+      "14",
+      "15",
+      "18",
+      "21"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-024",
+    "question": "What is 15²?",
+    "options": [
+      "125",
+      "200",
+      "225",
+      "250"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-025",
+    "question": "What is the square root of 196?",
+    "options": [
+      "12",
+      "13",
+      "14",
+      "16"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-026",
+    "question": "Solve: 5³.",
+    "options": [
+      "15",
+      "25",
+      "125",
+      "625"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-027",
+    "question": "What is 2⁵?",
+    "options": [
+      "16",
+      "25",
+      "32",
+      "64"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-028",
+    "question": "What is the square root of 121?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-029",
+    "question": "Solve: 10³.",
+    "options": [
+      "100",
+      "1000",
+      "10000",
+      "10"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-030",
+    "question": "What is the cube root of 27?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "9"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-031",
+    "question": "What is 4² + 3²?",
+    "options": [
+      "23",
+      "24",
+      "25",
+      "26"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-032",
+    "question": "Simplify: 3/4 + 1/4.",
+    "options": [
+      "1/2",
+      "3/4",
+      "1",
+      "5/4"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-033",
+    "question": "Convert 0.5 to a fraction.",
+    "options": [
+      "1/3",
+      "1/4",
+      "1/2",
+      "2/3"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-034",
+    "question": "Simplify: 2/3 + 1/6.",
+    "options": [
+      "1/2",
+      "2/3",
+      "5/6",
+      "1"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-035",
+    "question": "Convert 3/4 to a decimal.",
+    "options": [
+      "0.25",
+      "0.5",
+      "0.75",
+      "0.8"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-036",
+    "question": "Simplify: 5/10.",
+    "options": [
+      "1/5",
+      "1/2",
+      "2/5",
+      "1/4"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-037",
+    "question": "What is 0.25 as a fraction?",
+    "options": [
+      "1/2",
+      "1/4",
+      "1/5",
+      "1/3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-038",
+    "question": "Simplify: 7/8 - 3/8.",
+    "options": [
+      "1/2",
+      "3/4",
+      "5/8",
+      "1"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "math-039",
+    "question": "Find 20% of 150.",
+    "options": [
+      "20",
+      "25",
+      "30",
+      "35"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-040",
+    "question": "What is 50% of 200?",
+    "options": [
+      "50",
+      "100",
+      "150",
+      "200"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-041",
+    "question": "Find 10% of 450.",
+    "options": [
+      "35",
+      "40",
+      "45",
+      "50"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-042",
+    "question": "What percentage is 25 out of 100?",
+    "options": [
+      "15%",
+      "20%",
+      "25%",
+      "30%"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-043",
+    "question": "If a shirt costs ₦2,000 and is discounted by 20%, what is the new price?",
+    "options": [
+      "₦1,500",
+      "₦1,600",
+      "₦1,700",
+      "₦1,800"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-044",
+    "question": "What is 75% of 80?",
+    "options": [
+      "55",
+      "60",
+      "65",
+      "70"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-045",
+    "question": "If a triangle has angles of 50° and 60°, what is the third angle?",
+    "options": [
+      "60°",
+      "70°",
+      "80°",
+      "90°"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-046",
+    "question": "The sum of angles in a triangle is?",
+    "options": [
+      "90°",
+      "180°",
+      "270°",
+      "360°"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-047",
+    "question": "If two angles of a triangle are 45° and 55°, what is the third angle?",
+    "options": [
+      "70°",
+      "75°",
+      "80°",
+      "85°"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-048",
+    "question": "An angle greater than 90° but less than 180° is called?",
+    "options": [
+      "Acute angle",
+      "Right angle",
+      "Obtuse angle",
+      "Reflex angle"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-049",
+    "question": "A triangle with all sides equal is called a?",
+    "options": [
+      "Scalene triangle",
+      "Isosceles triangle",
+      "Equilateral triangle",
+      "Right triangle"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-050",
+    "question": "The sum of angles on a straight line is?",
+    "options": [
+      "90°",
+      "180°",
+      "270°",
+      "360°"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-051",
+    "question": "What is the perimeter of a square with side 9 cm?",
+    "options": [
+      "18 cm",
+      "27 cm",
+      "36 cm",
+      "81 cm"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-052",
+    "question": "What is the area of a rectangle with length 8 cm and width 5 cm?",
+    "options": [
+      "13 cm²",
+      "26 cm²",
+      "40 cm²",
+      "80 cm²"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-053",
+    "question": "What is the area of a triangle with base 10 cm and height 6 cm?",
+    "options": [
+      "16 cm²",
+      "30 cm²",
+      "60 cm²",
+      "80 cm²"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-054",
+    "question": "What is the perimeter of a rectangle with length 12 cm and width 7 cm?",
+    "options": [
+      "19 cm",
+      "24 cm",
+      "38 cm",
+      "84 cm"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-055",
+    "question": "What is the circumference of a circle with radius 7 cm? (Use π ≈ 22/7)",
+    "options": [
+      "22 cm",
+      "44 cm",
+      "66 cm",
+      "88 cm"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-056",
+    "question": "What is the area of a circle with radius 7 cm? (Use π ≈ 22/7)",
+    "options": [
+      "44 cm²",
+      "77 cm²",
+      "154 cm²",
+      "308 cm²"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-057",
+    "question": "What is the perimeter of a square with side 15 cm?",
+    "options": [
+      "30 cm",
+      "45 cm",
+      "60 cm",
+      "75 cm"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-058",
+    "question": "Solve: 9 + 6 × 4.",
+    "options": [
+      "60",
+      "45",
+      "33",
+      "24"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-059",
+    "question": "Simplify: 18 ÷ 3 × 2.",
+    "options": [
+      "3",
+      "6",
+      "12",
+      "18"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-060",
+    "question": "Solve: 6 + 4 × 2 - 3.",
+    "options": [
+      "11",
+      "13",
+      "15",
+      "17"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "math-061",
+    "question": "Solve: (5 + 3) × 2.",
+    "options": [
+      "11",
+      "13",
+      "16",
+      "18"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-062",
+    "question": "Solve: 20 - 4 × 3 + 5.",
+    "options": [
+      "13",
+      "15",
+      "17",
+      "19"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "math-063",
+    "question": "Solve: 8 ÷ 2 + 3 × 2.",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "math-064",
+    "question": "Solve: 15 - (2 + 3) × 2.",
+    "options": [
+      "5",
+      "7",
+      "9",
+      "11"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "math-065",
+    "question": "The value of π (pi) is approximately ____.",
+    "options": [
+      "2.14",
+      "3.14",
+      "4.13",
+      "3.41"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-066",
+    "question": "Using π ≈ 22/7, what is the approximate value of π as a fraction?",
+    "options": [
+      "21/7",
+      "22/7",
+      "23/7",
+      "24/7"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-067",
+    "question": "The value of √2 is approximately?",
+    "options": [
+      "1.14",
+      "1.41",
+      "1.51",
+      "1.61"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-068",
+    "question": "The value of e (Euler's number) is approximately?",
+    "options": [
+      "2.72",
+      "2.82",
+      "3.14",
+      "3.41"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "math-069",
+    "question": "Which of these is the closest approximation of π to two decimal places?",
+    "options": [
+      "3.12",
+      "3.14",
+      "3.16",
+      "3.18"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "math-070",
+    "question": "The value of √3 is approximately?",
+    "options": [
+      "1.63",
+      "1.73",
+      "1.83",
+      "1.93"
+    ],
+    "answer": "B"
+  }
+]

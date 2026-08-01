@@ -1,0 +1,552 @@
+[
+  {
+    "id": "maritime-001",
+    "question": "A vessel travels 150 nautical miles in 6 hours. What is its average speed in knots?",
+    "options": [
+      "15 knots",
+      "20 knots",
+      "25 knots",
+      "30 knots"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-002",
+    "question": "A cylindrical oil tank has a radius of 5 meters and a height of 10 meters. What is the volume of the tank? (Use π ≈ 3.14159)",
+    "options": [
+      "157.08 cubic meters",
+      "785.40 cubic meters",
+      "1256.64 cubic meters",
+      "50.27 cubic meters"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-003",
+    "question": "A vessel consumes 20 tonnes of fuel per day at 12 knots. If fuel consumption is directly proportional to the cube of the vessel's speed, what is the daily consumption when the vessel travels at 15 knots?",
+    "options": [
+      "25.00 tonnes",
+      "31.25 tonnes",
+      "35.50 tonnes",
+      "39.06 tonnes"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": "maritime-004",
+    "question": "Two ships leave a port at the same time. Ship A travels 12 miles due North. Ship B travels 9 miles due East. What is the straight-line distance between the two ships?",
+    "options": [
+      "12 miles",
+      "15 miles",
+      "21 miles",
+      "25 miles"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-005",
+    "question": "A ship's total displacement is 12,000 tonnes. The ratio of the ship's deadweight (cargo, fuel, stores) to lightweight (empty ship weight) is 3:1. What is the lightweight of the ship?",
+    "options": [
+      "3,000 tonnes",
+      "4,000 tonnes",
+      "9,000 tonnes",
+      "12,000 tonnes"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "maritime-006",
+    "question": "A navigator on a ship observes a lighthouse. The angle of elevation to the top of the lighthouse is 15°. If the lighthouse is known to be 40 meters tall, how far is the ship from the base of the lighthouse?",
+    "options": [
+      "10.7 meters",
+      "100.0 meters",
+      "149.3 meters",
+      "154.5 meters"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-007",
+    "question": "A vessel sails for 50 nautical miles on a course of 060° and then for 40 nautical miles on a course of 150°. What is the straight-line distance from the starting point to the final position?",
+    "options": [
+      "10.0 nautical miles",
+      "60.0 nautical miles",
+      "64.0 nautical miles",
+      "90.0 nautical miles"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-008",
+    "question": "The velocity of a vessel over a period of time is given by the function v(t) = 3t² + 2t in meters per second. How far does the vessel travel in the first 3 seconds?",
+    "options": [
+      "27 meters",
+      "33 meters",
+      "36 meters",
+      "42 meters"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-009",
+    "question": "The draft (D) of a ship in meters is changing with time (t) in hours according to the equation D(t) = 5 - 0.2t + 0.01t². What is the rate of change of the draft at exactly t = 5 hours?",
+    "options": [
+      "-0.5 m/hour",
+      "-0.1 m/hour",
+      "0.1 m/hour",
+      "0.5 m/hour"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-010",
+    "question": "A ship is approaching a dock. The horizontal distance from the top of a 30-meter high crane to the ship's bow is 40 meters. What is the angle of depression from the top of the crane to the ship's bow?",
+    "options": [
+      "30.0°",
+      "36.9°",
+      "45.0°",
+      "53.1°"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-011",
+    "question": "A lifebuoy has an outer diameter of 80 cm and an inner diameter of 40 cm. What is the total surface area of the lifebuoy ring face? (Use π ≈ 3.14159)",
+    "options": [
+      "1256.64 sq cm",
+      "1884.95 sq cm",
+      "3769.91 sq cm",
+      "5026.54 sq cm"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-012",
+    "question": "A ship's propeller makes 120 revolutions per minute (RPM). If the radius of the propeller blade is 2.5 meters, what distance does the tip of the propeller blade sweep through in one minute?",
+    "options": [
+      "15.71 meters",
+      "942.48 meters",
+      "1884.95 meters",
+      "3769.91 meters"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-013",
+    "question": "Sonar equipment measures sound intensity returning from the seabed. The decibel level (L) is given by L = 10 log10(I/I0). If the returning intensity I is measured to be 1,000,000 times the baseline intensity I0, what is the decibel reading?",
+    "options": [
+      "10 dB",
+      "30 dB",
+      "60 dB",
+      "100 dB"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-014",
+    "question": "A ship's radar unit sweeps through a sector angle of 120 degrees across the bow. What is this sweep angle expressed in radians?",
+    "options": [
+      "π/3 radians",
+      "π/2 radians",
+      "2π/3 radians",
+      "3π/4 radians"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-015",
+    "question": "A safety distress flare is fired vertically from a ship's deck. Its height h in meters is modeled by h(t) = -5t² + 20t + 25, where t is time in seconds. How long does it take for the flare to hit the water surface (h = 0)?",
+    "options": [
+      "3 seconds",
+      "4 seconds",
+      "5 seconds",
+      "6 seconds"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-016",
+    "question": "A bunker barge is filling two separate structural fuel tanks. Tank A and Tank B together hold 500 tonnes of fuel. If Tank A holds 60 tonnes more than Tank B, how much fuel is inside Tank B?",
+    "options": [
+      "220 tonnes",
+      "250 tonnes",
+      "280 tonnes",
+      "310 tonnes"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "maritime-017",
+    "question": "In an oblique triangle tracking path, side a = 10 miles and its opposite angle A = 30°. If the opposite angle B for side b is 45°, what is the length of side b?",
+    "options": [
+      "7.07 miles",
+      "14.14 miles",
+      "17.32 miles",
+      "20.00 miles"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-018",
+    "question": "A bilge pump can clear a flooded compartment at a rate of 40 liters per minute. A second auxiliary pump handles 60 liters per minute. Working together, how many minutes will it take them to drain 3,000 liters of water?",
+    "options": [
+      "20 minutes",
+      "30 minutes",
+      "50 minutes",
+      "75 minutes"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-019",
+    "question": "A target vessel is located at coordinate position (3, 4) on a radar display grid relative to your own ship position at (0, 0). If the grid coordinates are scaled in kilometers, what is the direct line distance to the target?",
+    "options": [
+      "3 km",
+      "4 km",
+      "5 km",
+      "7 km"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-020",
+    "question": "Over a five-day observation period, a ship records noon day runs of 240, 260, 255, 245, and 250 nautical miles. What was the mean daily distance covered?",
+    "options": [
+      "245 miles",
+      "250 miles",
+      "252 miles",
+      "255 miles"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-021",
+    "question": "A rectangular pontoon is 10 meters long, 5 meters wide, and 2 meters deep. It floats in seawater with a draft of exactly 1 meter. What is the buoyant force acting on the pontoon? (Assume density of seawater = 1025 kg/m³)",
+    "options": [
+      "25.12 tonnes",
+      "51.25 tonnes",
+      "102.50 tonnes",
+      "205.00 tonnes"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-022",
+    "question": "A submarine hull dives to a depth of 200 meters. What is the approximate hydrostatic water pressure exerted directly on the hull skin? (Assume seawater density = 1025 kg/m³ and g = 9.81 m/s²)",
+    "options": [
+      "201,000 Pa",
+      "1,005,425 Pa",
+      "2,010,850 Pa",
+      "4,021,700 Pa"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-023",
+    "question": "When a ship lists or heels over to one side due to external forces, which point serves as the true geometric center of action for the upward acting buoyant forces?",
+    "options": [
+      "Center of Gravity (G)",
+      "Center of Buoyancy (B)",
+      "Metacenter (M)",
+      "Center of Flotation (F)"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-024",
+    "question": "A 15,000-tonne cargo ship is moving forward at a velocity of 8 m/s. If a constant astern thrust (reverse force) of 60,000 Newtons is applied, how much time is required to bring the ship to a complete stop?",
+    "options": [
+      "1,000 seconds",
+      "1,500 seconds",
+      "2,000 seconds",
+      "3,000 seconds"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-025",
+    "question": "A marine diesel engine absorbs 2000 Joules of heat energy from fuel combustion and outputs 600 Joules of useful mechanical shaft work. What is the thermal efficiency of the engine cycle?",
+    "options": [
+      "20%",
+      "30%",
+      "40%",
+      "70%"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-026",
+    "question": "Water flows through a main onboard fire line pipe. If the cross-sectional area of the pipe decreases by half at a reduction joint, what happens to the velocity of the fluid flow?",
+    "options": [
+      "It decreases by half.",
+      "It remains completely unchanged.",
+      "It doubles.",
+      "It increases fourfold."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-027",
+    "question": "A ship mechanic uses a hand lever arm tool to loosen a tight valve. If the distance from the pivot point to the hand grip is 0.5 meters and a perpendicular force of 200 Newtons is applied, what is the torque generated?",
+    "options": [
+      "50 N·m",
+      "100 N·m",
+      "200 N·m",
+      "400 N·m"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-028",
+    "question": "An electric emergency steering motor has an internal resistance of 4 Ohms. If it is connected to a 24-volt DC battery source supply, what current flows through the circuit?",
+    "options": [
+      "4 Amperes",
+      "6 Amperes",
+      "12 Amperes",
+      "96 Amperes"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-029",
+    "question": "An echo-sounder transducer sends a sonar ping into the water that has a frequency of 50,000 Hz. If the speed of sound in seawater is 1500 m/s, what is the wavelength of this signal?",
+    "options": [
+      "0.03 meters",
+      "0.30 meters",
+      "3.33 meters",
+      "33.3 meters"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "maritime-030",
+    "question": "A heavy cargo crate weighing 1,000 Newtons sits on a steel deck plate. If the coefficient of static friction (μs) between the surfaces is 0.4, how much horizontal force is needed to start moving the crate?",
+    "options": [
+      "250 Newtons",
+      "400 Newtons",
+      "600 Newtons",
+      "1,000 Newtons"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-031",
+    "question": "A mooring wire rope with a cross-sectional area of 0.002 m² experiences a tension force of 50,000 Newtons. What is the internal mechanical tensile stress inside the rope material?",
+    "options": [
+      "25 kPa",
+      "100 kPa",
+      "25 MPa",
+      "100 MPa"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-032",
+    "question": "Which method of thermal energy transfer is primarily responsible for heat moving through a solid bulk metal engine block wall?",
+    "options": [
+      "Conduction",
+      "Convection",
+      "Radiation",
+      "Insulation"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "maritime-033",
+    "question": "A deck winch lifts an anchor chain load weighing 20,000 Newtons through a vertical distance of 10 meters in exactly 20 seconds. What useful power was exerted by the winch?",
+    "options": [
+      "5,000 Watts",
+      "10,000 Watts",
+      "20,000 Watts",
+      "40,000 Watts"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-034",
+    "question": "A hydrometer drops into a sample jar filled with ballast fluid tank mix. It reads a density value of 1.000 g/cm³. What baseline liquid environment is matching this characteristic profile?",
+    "options": [
+      "Pure Fresh Water",
+      "Average Salt Seawater",
+      "Heavy Fuel Oil",
+      "Concentrated Brine Fluid"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "maritime-035",
+    "question": "Why are deck expansion loops built into long vessel structural cargo tank liquid transfer pipelines?",
+    "options": [
+      "To reduce fluid flow pressures.",
+      "To permit temperature volume shifts without snapping metal lines.",
+      "To trap solid sludge particles.",
+      "To accelerate fluid transfer rates."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-036",
+    "question": "An air compressor storage bottle holds a fixed mass of gas at constant temperature. If the volume of the tank chamber is reduced by exactly half, what happens to the internal pressure?",
+    "options": [
+      "It drops to half.",
+      "It remains uniform.",
+      "It doubles.",
+      "It quadruples."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-037",
+    "question": "A cargo ship unloads a heavy container from a high deck down to a low lower-hold location. What direct impact does this have on the ship's overall vertical center of gravity (G)?",
+    "options": [
+      "Center G shifts upward.",
+      "Center G shifts downward.",
+      "Center G shifts horizontally to starboard.",
+      "Center G remains identical."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-038",
+    "question": "A rescue speedboat accelerates uniformly from rest (0 m/s) to a target scouting velocity of 12 m/s in a time frame of 4 seconds. What was its acceleration rate?",
+    "options": [
+      "2 m/s²",
+      "3 m/s²",
+      "4 m/s²",
+      "48 m/s²"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-039",
+    "question": "A merchant vessel transits from a river outlet canal filled with fresh water into open ocean seawater zones. What change occurs to the vessel's hull draft line?",
+    "options": [
+      "The ship sinks lower into the water.",
+      "The ship rises up slightly.",
+      "The draft line remains completely unchanged.",
+      "The ship rolls violently to port."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-040",
+    "question": "Through which medium type will a submarine sonar acoustic wave pulse travel at the fastest physical propagation velocity?",
+    "options": [
+      "Open Air atmosphere",
+      "Liquid water tanks",
+      "Solid steel structural bulkheads",
+      "Complete vacuum space"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-041",
+    "question": "In nautical terminology, which direction or side of the vessel does the word \"starboard\" refer to?",
+    "options": [
+      "The left side when looking forward.",
+      "The right side when looking forward.",
+      "The area directly behind the stern.",
+      "The upper deck superstructure level."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-042",
+    "question": "What is the maritime term for the housing that encloses a ship's magnetic compass and protects it from external metallic interference?",
+    "options": [
+      "The bridge",
+      "The windlass",
+      "The binnacle",
+      "The capstan"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-043",
+    "question": "In voyage planning and operational reporting logs, what does the common maritime abbreviation \"ETA\" stand for?",
+    "options": [
+      "Expected Transit Agreement",
+      "Estimated Time of Arrival",
+      "Essential Travel Authorization",
+      "Emergency Tracking Alignment"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-044",
+    "question": "What does the phrase \"slack away\" mean when issued during maritime operations or deck line handling work?",
+    "options": [
+      "To tension a line quickly.",
+      "To let out a line slowly and carefully under control.",
+      "To cut a line in an emergency.",
+      "To secure a line tightly around a bollard pin."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-045",
+    "question": "According to the Standard Marine Communication Phrases (SMCP), which phrase should a vessel use to report that its steering gear has failed completely?",
+    "options": [
+      "I am drifting at sea.",
+      "I am not under command.",
+      "I have lost my rudder.",
+      "I request immediate assistance."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-046",
+    "question": "What is the specific nautical term for the heavy machinery winch unit mounted on the forecastle deck used to drop or hoist the anchor?",
+    "options": [
+      "The bitt",
+      "The windlass",
+      "The cleat",
+      "The gantry"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-047",
+    "question": "Which safety prefix voice signal is used over VHF radio channels to introduce an important urgent message concerning the safety of a mobile station or person?",
+    "options": [
+      "MAYDAY",
+      "PAN PAN",
+      "SECURITE",
+      "ROGER"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "maritime-048",
+    "question": "If a lookout reports an object located directly behind the ship along its centerline path, where is that target situated?",
+    "options": [
+      "Dead ahead",
+      "On the beam",
+      "Astern",
+      "On the quarter"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-049",
+    "question": "Under SMCP guidelines, when an officer wants to request information from another vessel or shore VTS station, which message marker must prefix the radio call?",
+    "options": [
+      "INSTRUCTION",
+      "ADVICE",
+      "QUESTION",
+      "WARNING"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "maritime-050",
+    "question": "What is the name of the heavy deck fittings or vertical posts on a ship or dock used to secure mooring lines?",
+    "options": [
+      "Bilges",
+      "Scuppers",
+      "Bollards",
+      "Bulkheads"
+    ],
+    "answer": "C"
+  }
+]

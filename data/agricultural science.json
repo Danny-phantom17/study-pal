@@ -1,0 +1,122 @@
+[
+  {
+    "id": "agric-001",
+    "question": "Agriculture is the science and art of ____.",
+    "options": ["Mining", "Farming", "Fishing", "Trading"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-002",
+    "question": "Which of the following is a cereal crop?",
+    "options": ["Cassava", "Maize", "Yam", "Cocoyam"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-003",
+    "question": "The process of removing weeds from a farm is called ____.",
+    "options": ["Harvesting", "Weeding", "Mulching", "Pruning"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-004",
+    "question": "Which farm animal is classified as poultry?",
+    "options": ["Goat", "Chicken", "Cow", "Pig"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-005",
+    "question": "Which soil type is best for most crops?",
+    "options": ["Clay", "Sandy", "Loamy", "Gravel"],
+    "answer": "C"
+  },
+  {
+    "id": "agric-006",
+    "question": "Which nutrient mainly promotes leafy growth in plants?",
+    "options": ["Phosphorus", "Nitrogen", "Potassium", "Calcium"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-007",
+    "question": "The young one of a goat is called a ____.",
+    "options": ["Calf", "Kid", "Lamb", "Chick"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-008",
+    "question": "Which farm tool is mainly used for digging?",
+    "options": ["Cutlass", "Hoe", "Spade", "Rake"],
+    "answer": "C"
+  },
+  {
+    "id": "agric-009",
+    "question": "Crop rotation helps to ____.",
+    "options": ["Reduce soil fertility", "Control pests and improve soil fertility", "Increase erosion", "Reduce crop yield"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-010",
+    "question": "Which of the following is a leguminous crop?",
+    "options": ["Rice", "Beans", "Maize", "Millet"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-011",
+    "question": "The process of adding nutrients to the soil is called ____.",
+    "options": ["Irrigation", "Fertilization", "Harvesting", "Threshing"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-012",
+    "question": "Which farming system involves growing only one crop?",
+    "options": ["Mixed farming", "Crop rotation", "Monocropping", "Shifting cultivation"],
+    "answer": "C"
+  },
+  {
+    "id": "agric-013",
+    "question": "Which of the following is an example of livestock?",
+    "options": ["Cassava", "Cow", "Maize", "Cocoa"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-014",
+    "question": "The main function of roots is to ____.",
+    "options": ["Produce flowers", "Absorb water and minerals", "Carry out pollination", "Produce seeds"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-015",
+    "question": "Which method supplies water artificially to crops?",
+    "options": ["Drainage", "Irrigation", "Mulching", "Pruning"],
+    "answer": "B"
+  },
+  {
+    "id": "agric-016",
+    "question": "Which of the following is an organic manure?",
+    "options": ["NPK", "Urea", "Compost", "Ammonium sulphate"],
+    "answer": "C"
+  },
+  {
+    "id": "agric-017",
+    "question": "The removal of unwanted branches from plants is called ____.",
+    "options": ["Pruning", "Weeding", "Harvesting", "Planting"],
+    "answer": "A"
+  },
+  {
+    "id": "agric-018",
+    "question": "Which pest commonly attacks stored grains?",
+    "options": ["Weevil", "Grasshopper", "Butterfly", "Bee"],
+    "answer": "A"
+  },
+  {
+    "id": "agric-019",
+    "question": "Which vitamin is abundant in fresh vegetables?",
+    "options": ["Vitamin C", "Vitamin D", "Vitamin K", "Vitamin B12"],
+    "answer": "A"
+  },
+  {
+    "id": "agric-020",
+    "question": "The practice of keeping bees for honey production is called ____.",
+    "options": ["Sericulture", "Apiculture", "Pisciculture", "Horticulture"],
+    "answer": "B"
+  }
+]
