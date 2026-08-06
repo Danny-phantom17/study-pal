@@ -1,156 +1,231 @@
-# WhatsApp Study Group Bot
+# StudyPal v2
 
-A modular Node.js bot for WhatsApp study groups. It uses `whatsapp-web.js` for WhatsApp, `qrcode-terminal` for login, `dotenv` for configuration, and Google Sheets or Apps Script for scores and attendance.
+StudyPal is an AI-powered personal study tutor for WAEC and JAMB students on WhatsApp. It helps students practise exam-style questions, receive Gemini AI explanations, track progress, review weak areas, and build consistent study habits.
+
+## Product Model
+
+StudyPal has two environments:
+
+- StudyPal Community: the WhatsApp group for educational questions, peer discussion, announcements, daily study tips, motivation, and optional challenges.
+- StudyPal Private Chat: the student's personal tutor space for quizzes, scores, progress, statistics, achievements, streaks, wrong-answer review, and AI explanations.
+
+Quizzes are not run in the group. If a student sends `!quiz` in a group, StudyPal redirects them to DM so their learning record stays private.
 
 ## Features
 
-- WhatsApp QR code authentication
-- Commands: `!help`, `!quiz`, `!leaderboard`, `!attendance`, `!score`
-- Topic-based JAMB-style internet question lookup for 50-question quizzes
-- Subject question files in `data/` as a fallback
-- Timed quizzes with one question at a time
-- Automatic answer checking and point awards
-- Duplicate scoring prevention per user per question
-- Attendance logging whenever a member participates
-- Google Sheets persistence for scores and attendance
-- Console logging and guarded error handling
+- Private WAEC/JAMB-style quizzes from JSON question banks
+- Gemini explanations after every question
+- Explanation of why the correct option is correct and why wrong options are wrong
+- Memory tips and natural follow-up tutoring
+- Quiz history and per-session summaries
+- Personal statistics and subject progress comparison
+- Daily goals and study streaks
+- Achievement badges
+- Free/Premium subscription profiles linked to WhatsApp numbers
+- Weekly reports
+- Wrong-answer review
+- Optional Google Sheets integration for legacy points, attendance, and sheet-hosted questions
+- Render Background Worker deployment with persistent disk support
 
-## Study Members
+## Commands
 
-- Daniel: English and Physics
-- Vivian: Chemistry
-- Claudia: Biology
-- Shedrach: Geography and Mathematics
+Private chat:
 
-The bot also supports new people joining the group automatically. It records participants by WhatsApp user ID and display name, so you do not need to hard-code future members.
+```text
+!quiz <subject> [topic]
+!history
+!stats
+!score
+!goal [questions]
+!streak
+!badges
+!review
+!report
+!plan
+!upgrade
+!stop
+```
 
-## Install Dependencies
+Premium private chat:
+
+```text
+!analytics
+!recommend
+```
+
+Community group:
+
+```text
+!help
+!leaderboard
+!attendance
+```
+
+Students can also chat naturally in DM:
+
+```text
+Explain this like I am 10.
+Give another example.
+Give me a mnemonic.
+Test me again.
+Make the questions harder.
+```
+
+## Install
 
 ```bash
-cd study-bot
 npm install
 ```
 
-## Configure Google Sheets With Apps Script
+StudyPal requires Node.js `>=22.5.0 <25.0.0` because it uses Node's built-in `node:sqlite` module. The repo includes `.node-version` set to `22.22.0`.
 
-This is the easiest no-card setup.
+## Configure
 
-1. Open your Google Sheet.
-2. Go to `Extensions > Apps Script`.
-3. Replace your current `Code.gs` with the code in:
-   `docs/apps-script/Code.gs`
-4. Make sure `SPREADSHEET_ID` at the top of `Code.gs` is your Google Sheet ID.
-5. Click Save.
-6. Click `Deploy > New deployment`.
-7. Choose `Web app`.
-8. Set `Execute as` to `Me`.
-9. Set `Who has access` to `Anyone`.
-10. Deploy and authorize it.
-11. Copy the Web App URL.
-12. Put it in `.env`:
+Copy `.env.example` to `.env` and fill in at least:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+BOT_COMMAND_PREFIX=!
+QUIZ_QUESTION_COUNT=20
+QUIZ_TIME_LIMIT_SECONDS=30
+POINTS_PER_CORRECT_ANSWER=10
+WWEBJS_AUTH_DIR=.wwebjs_auth
+STUDYPAL_DB_PATH=data/studypal.db
+FREE_DAILY_QUIZ_LIMIT=3
+FREE_FOLLOWUPS_PER_QUESTION=3
+FREE_REVIEW_LIMIT=5
+```
+
+Optional group reminders:
+
+```env
+STUDY_GROUP_CHAT_ID=your_group_chat_id@g.us
+ADMIN_WHATSAPP_NUMBER=234...
+REMINDER_START_HOUR=14
+```
+
+The same `ADMIN_WHATSAPP_NUMBER` is used for manual subscription activation.
+
+## Subscription System
+
+Every WhatsApp number gets a StudyPal profile with:
+
+- Name
+- Phone number
+- User role
+- Subscription plan
+- Subscription expiry date
+- Quiz history
+- Statistics
+- Study streak
+- Achievements
+
+Free includes up to 2 quiz sessions per day, AI explanations for every answered question, quiz history, personal statistics, study streaks, daily goals, weekly reports, community access, and achievement badges.
+
+Premium adds unlimited quiz sessions, unlimited AI follow-up questions, unlimited review of previous quizzes, personalized recommendations, advanced analytics, priority AI response during busy periods, and early access to new features.
+
+Owner, Admin, and VIP users always receive unrestricted Premium-level access. They are never affected by Free quiz limits, AI follow-up limits, review limits, or future usage restrictions.
+
+Seeded Owner:
+
+```text
+Danny - +2347044438532
+```
+
+Seeded VIP users:
+
+```text
+Shedrach - +2349031103913
+Claudia - +2347060582146
+Vivian - +2348130351163
+```
+
+When a Free student reaches the daily quiz limit, StudyPal asks whether they want to upgrade. If they answer `1` or `Yes`, StudyPal shows subscription plans and payment instructions. If they answer `2` or `No`, StudyPal returns them to the main menu and reminds them they can still review quizzes, read explanations, check statistics, and participate in the community. Free quiz sessions reset automatically the following day.
+
+Students can view their plan with:
+
+```text
+!plan
+```
+
+They can view upgrade instructions with:
+
+```text
+!upgrade
+```
+
+or by replying:
+
+```text
+UPGRADE
+```
+
+After payment confirmation, the admin can activate Premium manually:
+
+```text
+!adminplan 2348012345678 premium 2026-09-06
+```
+
+To return a student to Free:
+
+```text
+!adminplan 2348012345678 free
+```
+
+Admins can be added or removed from the database without changing code. VIP users can also be added or removed this way:
+
+```text
+!adminrole 2348012345678 admin Student Name
+!adminrole 2348012345678 vip Student Name
+!adminrole 2348012345678 student Student Name
+```
+
+The owner role cannot be removed or assigned through chat commands.
+
+Premium payment details shown to students:
+
+```text
+Payment Platform: PalmPay
+Account Name: Daniel Godwin Effiong
+Account Number: 7044438532
+```
+
+After payment, the student should send the payment receipt or transaction reference for verification. Once confirmed, use `!adminplan` to update the account from Free to Premium, set the subscription expiry date, unlock all Premium features immediately, and save the subscription status in SQLite.
+
+Optional Google Sheets via Apps Script:
 
 ```env
 APPS_SCRIPT_WEB_APP_URL=https://script.google.com/macros/s/your-deployment-id/exec
 ```
 
-Run this to check the setup:
+Optional service-account Google Sheets:
+
+```env
+GOOGLE_SPREADSHEET_ID=
+GOOGLE_CLIENT_EMAIL=
+GOOGLE_PRIVATE_KEY=
+```
+
+## Check Setup
 
 ```bash
 npm run setup:check
+npm run check
 ```
 
-The Apps Script creates three tabs automatically if they do not already exist:
+`setup:check` requires Gemini, Node 22.5+, and a local JSON question bank. Google Sheets and internet lookup are optional.
 
-- `Scores`
-- `Attendance`
-- `Questions`
-
-## Optional Service Account Setup
-
-You can skip this if you are using Apps Script.
-
-If you later want the direct Google Sheets API setup, fill in:
-
-```env
-GOOGLE_SPREADSHEET_ID=your_google_sheet_id_here
-GOOGLE_CLIENT_EMAIL=your-service-account@your-project.iam.gserviceaccount.com
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n"
-```
-
-The `Questions` tab can be used as a manual question bank. Use these columns:
-
-```text
-Subject | Topic | Question ID | Question | Option A | Option B | Option C | Option D | Answer | Accepted Answers
-```
-
-Example row:
-
-```text
-biology | respiration | biology-respiration-001 | Which organelle releases energy during respiration? | Nucleus | Mitochondrion | Ribosome | Vacuole | B | mitochondrion, mitochondria
-```
-
-Do not put questions in `config/members.js`; that file is only for student names and subject focus.
-
-## Configure Internet JAMB Question Lookup
-
-For best results, use your own trusted JAMB question API and set:
-
-```env
-JAMB_QUESTION_API_URL=https://your-api.example.com/questions
-```
-
-The API should accept `subject`, `topic`, and `limit` query parameters and return either an array or an object with a `questions` array:
-
-```json
-{
-  "questions": [
-    {
-      "question": "Which instrument measures atmospheric pressure?",
-      "options": ["Thermometer", "Barometer", "Hygrometer", "Anemometer"],
-      "answer": "B"
-    }
-  ]
-}
-```
-
-If you do not have a question API, the bot can use Google Programmable Search as a fallback:
-
-```env
-GOOGLE_SEARCH_API_KEY=your_google_search_api_key
-GOOGLE_SEARCH_ENGINE_ID=your_search_engine_id
-```
-
-The search fallback looks for public JAMB past-question pages and extracts objective questions with answers. Public websites format questions differently, so a dedicated question API is more reliable.
-
-## Start The Bot
+## Run Locally
 
 ```bash
 npm start
 ```
 
-When the QR code appears in the terminal:
+When the QR code appears, open WhatsApp, go to Linked devices, and scan the code.
 
-1. Open WhatsApp on your phone.
-2. Go to Linked devices.
-3. Scan the QR code.
-4. Add the bot account to your study group.
+## Question Bank
 
-Try:
-
-```text
-!help
-!quiz biology
-!quiz physics electricity
-!quiz geography climate
-!quiz math algebra
-!score
-!leaderboard
-!attendance
-```
-
-## Add Or Edit Questions
-
-Each subject file in `data/` is a JSON array. Example:
+Subject files live in `data/` as JSON arrays. Each question should follow this shape:
 
 ```json
 {
@@ -162,41 +237,43 @@ Each subject file in `data/` is a JSON array. Example:
 }
 ```
 
-Users can answer with the option letter or any value in `acceptedAnswers`.
+AI explains questions, but the question bank remains the source of truth.
 
 ## Deploy To Render
 
-WhatsApp Web bots need a persistent browser session. Render can run this as a Background Worker, but free instances may sleep and break the WhatsApp session.
+This repo includes `render.yaml` for a Render Background Worker.
 
-1. Push this project to GitHub.
-2. Create a new Render Background Worker.
-3. Set the build command:
-
-```bash
-npm install
-```
-
-4. Set the start command:
+1. Push `study-bot/` to GitHub as the repo root, or set the Render root directory to `study-bot`.
+2. In Render, create a Blueprint from `render.yaml`, or create a Background Worker manually.
+3. Use:
 
 ```bash
-npm start
+Build command: npm install
+Start command: npm start
 ```
 
-5. Add environment variables from `.env.example` in Render.
-6. Use a persistent disk for the WhatsApp session folder if your Render plan supports it.
-7. Deploy and open the Render logs.
-8. Scan the QR code from the logs.
-
-If Puppeteer has Chromium issues on Render, set:
+4. Set secret environment variables in Render:
 
 ```env
-PUPPETEER_HEADLESS=true
+GEMINI_API_KEY=...
+APPS_SCRIPT_WEB_APP_URL=...
+STUDY_GROUP_CHAT_ID=...
+ADMIN_WHATSAPP_NUMBER=...
 ```
 
-On Windows, you can use your installed Chrome instead of Puppeteer's downloaded browser:
+5. Keep these disk-backed values from `render.yaml`:
 
 ```env
-PUPPETEER_EXECUTABLE_PATH=C:\Program Files\Google\Chrome\Application\chrome.exe
+WWEBJS_AUTH_DIR=/var/data/studypal/.wwebjs_auth
+STUDYPAL_DB_PATH=/var/data/studypal/studypal.db
 ```
 
-For long-running production use, a VPS is often more reliable because WhatsApp Web sessions depend on a stable browser profile.
+6. Deploy and scan the WhatsApp QR code from Render logs.
+
+Render free instances do not support background workers. Use at least the Starter plan and attach the persistent disk so WhatsApp auth and the SQLite learning history survive deploys and restarts.
+
+## Notes
+
+- WhatsApp Web automation depends on a stable linked-device session.
+- For long-running production use, monitor Render logs after deploys and WhatsApp reconnects.
+- If Puppeteer/Chromium fails on Render, keep `PUPPETEER_HEADLESS=true` and check the Render build logs for browser install issues.

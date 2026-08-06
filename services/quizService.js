@@ -2,10 +2,21 @@ const { getQuestions } = require('./questionService');
 const { formatQuestion } = require('../utils/formatters');
 const { logger } = require('../utils/logger');
 
-function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAnswer, maxAttemptsPerQuestion = 2, explanationFlow = null, sendDirectMessage = null, onQuizStarted = null }) {
+function createQuizService({
+  sheetsService,
+  db = null,
+  timeLimitSeconds,
+  pointsPerCorrectAnswer,
+  maxAttemptsPerQuestion = 2,
+  questionLimit = 20,
+  explanationFlow = null,
+  sendDirectMessage = null,
+  subscriptionService = null,
+  onQuizStarted = null,
+}) {
   const activeQuizzes = new Map();
 
-  async function startQuiz({ chatId, subject, topic, reply }) {
+  async function startQuiz({ chatId, userId, username, subject, topic, reply }) {
     if (activeQuizzes.has(chatId)) {
       return {
         started: false,
@@ -13,11 +24,22 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
       };
     }
 
+    if (subscriptionService && userId) {
+      const access = subscriptionService.canStartQuiz(userId);
+      if (!access.allowed) {
+        return {
+          started: false,
+          message: access.message,
+          reason: access.promptType || 'subscription_limit',
+        };
+      }
+    }
+
     const questions = shuffle(await getQuestions({
       chatId,
       subject,
       topic,
-      limit: 50,
+      limit: questionLimit,
       sheetsService,
     }));
 
@@ -30,6 +52,9 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
 
     const state = {
       chatId,
+      db,
+      userId,
+      username,
       subject,
       topic,
       questions,
@@ -38,6 +63,11 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
       timer: null,
       attemptsByUser: new Map(),
       scoredQuestionKeys: new Set(),
+      correctQuestionIds: new Set(),
+      wrongAnswersByQuestion: new Map(),
+      answeredQuestionIds: new Set(),
+      startedAt: new Date(),
+      questionStartedAt: null,
       isActive: true,
     };
 
@@ -51,7 +81,7 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
       onQuizStarted(chatId);
     }
 
-    await safeReply(reply, `Starting a ${questions.length}-question ${subject} quiz${topic ? ` on "${topic}"` : ''}. You have ${timeLimitSeconds} seconds per question.`);
+    await safeReply(reply, `Starting your private ${questions.length}-question ${subject} quiz${topic ? ` on "${topic}"` : ''}. You have ${timeLimitSeconds} seconds per question.`);
     await sendCurrentQuestion(state);
 
     return { started: true };
@@ -61,18 +91,21 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
     const chatId = message.from;
     const state = activeQuizzes.get(chatId);
 
-    if (!state || !state.isActive) return;
+    if (!state || !state.isActive) return false;
 
     const question = state.questions[state.currentIndex];
     const userQuestionKey = `${userId}:${question.id}`;
+    const attemptsUsed = state.attemptsByUser.get(userId) || 0;
+    const attemptNumber = attemptsUsed + 1;
+    const timeTakenSeconds = state.questionStartedAt
+      ? (Date.now() - state.questionStartedAt) / 1000
+      : null;
 
     await sheetsService.recordAttendance({
       userId,
       username,
       subject: state.subject,
     });
-
-    const attemptsUsed = state.attemptsByUser.get(userId) || 0;
 
     if (attemptsUsed >= maxAttemptsPerQuestion) {
       if (explanationFlow) {
@@ -83,28 +116,42 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
           userId,
           userMessage: answerText,
         });
-        if (handled) return;
+        if (handled) return true;
       }
       await safeReply(message.reply.bind(message), `${username}, you've used all ${maxAttemptsPerQuestion} attempts for this question. Wait for the next one.`);
-      return;
+      return true;
     }
 
     const isCorrect = isCorrectAnswer(answerText, question);
+    recordStudentAttempt(state, {
+      userId,
+      username,
+      question,
+      answerText,
+      attemptNumber,
+      isCorrect,
+      timeTakenSeconds,
+    });
 
     if (!isCorrect) {
       const newAttemptsUsed = attemptsUsed + 1;
       state.attemptsByUser.set(userId, newAttemptsUsed);
+      state.wrongAnswersByQuestion.set(question.id, {
+        question,
+        studentAnswer: answerText,
+        createdAt: new Date().toISOString(),
+      });
       const remaining = maxAttemptsPerQuestion - newAttemptsUsed;
 
       logger.info(`${username} answered ${question.id} incorrectly (attempt ${newAttemptsUsed}/${maxAttemptsPerQuestion})`);
 
       if (remaining > 0) {
-        await safeReply(message.reply.bind(message), `Not quite, you are can do better, ${username}. You have ${remaining} attempt${remaining === 1 ? '' : 's'} left.`);
+        await safeReply(message.reply.bind(message), `Not quite, ${username}. You have ${remaining} attempt${remaining === 1 ? '' : 's'} left.`);
       } else {
         await safeReply(message.reply.bind(message), `Not quite, ${username}. You're out of attempts for this question.`);
         await deliverOutcomeExplanation(state, { message, question, outcome: 'wrong', studentAnswer: answerText, userId });
       }
-      return;
+      return true;
     }
 
     // Correct: mark the user as done with this question so any further
@@ -130,10 +177,13 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
     }
 
     state.scoredQuestionKeys.add(userQuestionKey);
+    state.correctQuestionIds.add(question.id);
+    state.answeredQuestionIds.add(question.id);
     logger.info(`${username} scored ${pointsPerCorrectAnswer} points for ${question.id}`);
     await safeReply(message.reply.bind(message), `Correct, ${username}. +${pointsPerCorrectAnswer} points.`);
 
     await deliverOutcomeExplanation(state, { message, question, outcome: 'correct', studentAnswer: answerText, userId });
+    return true;
   }
 
   async function sendCurrentQuestion(state) {
@@ -147,6 +197,7 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
     state.attemptsByUser = new Map();
     const question = state.questions[state.currentIndex];
     const expectedIndex = state.currentIndex;
+    state.questionStartedAt = Date.now();
 
     await safeReply(state.reply, formatQuestion({
       question,
@@ -164,6 +215,22 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
       }
 
       logger.info(`Question ${question.id} timed out in chat ${state.chatId}`);
+      if (state.userId) {
+        recordStudentAttempt(state, {
+          userId: state.userId,
+          username: state.username,
+          question,
+          answerText: '',
+          attemptNumber: 1,
+          isCorrect: false,
+          timeTakenSeconds: timeLimitSeconds,
+        });
+        state.wrongAnswersByQuestion.set(question.id, {
+          question,
+          studentAnswer: null,
+          createdAt: new Date().toISOString(),
+        });
+      }
       await proceedToNext(state, { outcome: 'timeout', studentAnswer: null, userId: null });
     }, timeLimitSeconds * 1000);
   }
@@ -173,7 +240,8 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
     activeQuizzes.delete(state.chatId);
     state.isActive = false;
     logger.info(`Finished ${state.subject} quiz in chat ${state.chatId}`);
-    await safeReply(state.reply, 'Quiz finished. Send -leaderboard to see the current ranking.');
+    const summary = saveQuizSummary(state);
+    await safeReply(state.reply, formatQuizSummary(summary));
   }
 
   async function stopQuiz(chatId) {
@@ -206,7 +274,7 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
 
     return {
       stopped: true,
-      message: '⛔ Quiz stopped successfully. Send -leaderboard to see the current ranking. and take that quiz when your asses are free,you got that? 😎',
+      message: 'Quiz stopped. Send !quiz <subject> when you are ready to continue studying.',
     };
   }
 
@@ -269,6 +337,7 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
   async function proceedToNext(state, { outcome, studentAnswer, userId }) {
     clearExistingTimer(state);
     const question = state.questions[state.currentIndex];
+    state.answeredQuestionIds.add(question.id);
 
     const advance = async () => {
       state.currentIndex += 1;
@@ -276,7 +345,7 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
     };
 
     if (explanationFlow) {
-      await explanationFlow.enter({
+      const explanationResult = await explanationFlow.enter({
         chatId: state.chatId,
         reply: state.reply,
         question,
@@ -286,12 +355,27 @@ function createQuizService({ sheetsService, timeLimitSeconds, pointsPerCorrectAn
         userId,
         advance,
       });
+      recordWrongReviewIfNeeded(state, {
+        question,
+        userId: userId || state.userId,
+        studentAnswer,
+        outcome,
+        explanationResult,
+      });
       return;
     }
 
     if (outcome === 'timeout') {
       await safeReply(state.reply, `Time is up. The answer was: ${question.answer}`);
     }
+
+    recordWrongReviewIfNeeded(state, {
+      question,
+      userId: userId || state.userId,
+      studentAnswer,
+      outcome,
+      explanationResult: null,
+    });
 
     await advance();
   }
@@ -323,6 +407,195 @@ async function safeReply(replyFn, text) {
       return false;
     }
   }
+}
+
+function recordStudentAttempt(state, { userId, username, question, answerText, attemptNumber, isCorrect, timeTakenSeconds }) {
+  if (!state.db && !state.userId && !userId) return;
+  if (!state.db) return;
+
+  try {
+    state.db.upsertUser(userId, username);
+    state.db.recordAttempt({
+      userId,
+      questionId: question.id,
+      subject: state.subject,
+      topic: state.topic || question.topic,
+      attemptNumber,
+      isCorrect,
+      timeTakenSeconds,
+    });
+    state.db.updateStudyStreak(userId);
+  } catch (error) {
+    logger.error('Failed to record local quiz attempt', error);
+  }
+}
+
+function recordWrongReviewIfNeeded(state, { question, userId, studentAnswer, outcome, explanationResult }) {
+  if (!state.db || !userId) return;
+
+  const wrongEntry = state.wrongAnswersByQuestion.get(question.id);
+  if (!wrongEntry && outcome === 'correct') return;
+
+  const answerForReview = wrongEntry?.studentAnswer || studentAnswer || null;
+  if (outcome === 'correct' && !answerForReview) return;
+
+  try {
+    state.db.recordWrongAnswer({
+      userId,
+      question,
+      subject: state.subject,
+      topic: state.topic || question.topic,
+      studentAnswer: answerForReview,
+      explanation: explanationResult?.explanation || null,
+      memoryTip: explanationResult?.memoryTip || null,
+      createdAt: wrongEntry?.createdAt || new Date().toISOString(),
+    });
+  } catch (error) {
+    logger.error('Failed to record wrong-answer review', error);
+  }
+}
+
+function saveQuizSummary(state) {
+  const completedAt = new Date();
+  const totalQuestions = state.questions.length;
+  const correctCount = state.correctQuestionIds.size;
+  const percentage = totalQuestions ? (correctCount / totalQuestions) * 100 : 0;
+  const timeTakenSeconds = Math.max(0, (completedAt.getTime() - state.startedAt.getTime()) / 1000);
+  const previous = state.db && state.userId
+    ? state.db.getPreviousSubjectSession(state.userId, state.subject, completedAt.toISOString())
+    : null;
+  const improvement = previous ? percentage - previous.percentage : null;
+  const aiFeedback = buildFeedback({ percentage, improvement, subject: state.subject });
+  let sessionId = null;
+  let streak = { currentStreak: 0, longestStreak: 0 };
+  let goal = { goalQuestions: 20, answered: 0, percentage: 0 };
+  let unlockedBadges = [];
+
+  if (state.db && state.userId) {
+    try {
+      sessionId = state.db.createQuizSession({
+        userId: state.userId,
+        chatId: state.chatId,
+        subject: state.subject,
+        topic: state.topic,
+        totalQuestions,
+        correctCount,
+        percentage,
+        timeTakenSeconds,
+        aiFeedback,
+        startedAt: state.startedAt.toISOString(),
+        completedAt: completedAt.toISOString(),
+      });
+      streak = state.db.updateStudyStreak(state.userId);
+      goal = state.db.getDailyGoalProgress(state.userId);
+      unlockedBadges = unlockEarnedBadges(state.db, state.userId, { percentage, streak });
+    } catch (error) {
+      logger.error('Failed to save quiz summary', error);
+    }
+  }
+
+  return {
+    sessionId,
+    subject: state.subject,
+    topic: state.topic,
+    totalQuestions,
+    correctCount,
+    percentage,
+    timeTakenSeconds,
+    aiFeedback,
+    improvement,
+    streak,
+    goal,
+    unlockedBadges,
+    recommendation: buildRecommendation({ subject: state.subject, percentage, improvement }),
+  };
+}
+
+function unlockEarnedBadges(db, userId, { percentage, streak }) {
+  const stats = db.getPersonalStats(userId);
+  const badges = [
+    stats.totalQuizzes >= 1 ? ['first_quiz', 'First Quiz'] : null,
+    streak.currentStreak >= 7 ? ['seven_day_streak', '7-Day Streak'] : null,
+    stats.totalQuestions >= 500 ? ['five_hundred_questions', '500 Questions Answered'] : null,
+    percentage >= 90 ? ['ninety_percent_score', '90% Score'] : null,
+    stats.totalQuestions >= 1000 ? ['one_thousand_questions', '1000 Questions Completed'] : null,
+  ].filter(Boolean);
+
+  return badges
+    .map(([key, name]) => db.unlockAchievement(userId, key, name))
+    .filter(Boolean);
+}
+
+function buildFeedback({ percentage, improvement, subject }) {
+  if (improvement !== null && improvement > 0) {
+    return `Good progress. You improved by ${formatPercent(improvement)} since your last ${subject} quiz.`;
+  }
+
+  if (percentage >= 90) return 'Excellent work. You are showing strong exam readiness in this subject.';
+  if (percentage >= 70) return 'Good work. Keep practising the questions you missed to push this into distinction range.';
+  if (percentage >= 50) return 'You are building the foundation. Review the missed questions and try another short quiz soon.';
+  return 'Do not worry. Focus on the explanations, revise the basics, and try again with a smaller topic.';
+}
+
+function buildRecommendation({ subject, percentage, improvement }) {
+  if (percentage < 70) {
+    return `Tomorrow, review your wrong answers and take another ${subject} quiz.`;
+  }
+
+  if (improvement !== null && improvement > 0) {
+    return `Tomorrow, try a harder ${subject} quiz or choose a topic you usually avoid.`;
+  }
+
+  return `Tomorrow, take another ${subject} quiz to keep your study streak alive.`;
+}
+
+function formatQuizSummary(summary) {
+  const lines = [
+    '*Quiz Summary*',
+    `Subject: ${capitalize(summary.subject)}`,
+    summary.topic ? `Topic: ${summary.topic}` : null,
+    `Score: ${summary.correctCount}/${summary.totalQuestions} (${formatPercent(summary.percentage)})`,
+    `Time taken: ${formatDuration(summary.timeTakenSeconds)}`,
+    '',
+    summary.aiFeedback,
+  ].filter((line) => line !== null);
+
+  if (summary.improvement !== null) {
+    const sign = summary.improvement >= 0 ? '+' : '';
+    lines.push(`Improvement: ${sign}${formatPercent(summary.improvement)}`);
+  }
+
+  lines.push('');
+  lines.push(`Study streak: ${summary.streak.currentStreak} day${summary.streak.currentStreak === 1 ? '' : 's'}`);
+  lines.push(`Today's goal: ${summary.goal.answered}/${summary.goal.goalQuestions} questions (${formatPercent(summary.goal.percentage)} complete)`);
+
+  if (summary.unlockedBadges.length) {
+    lines.push('');
+    lines.push(`New achievement${summary.unlockedBadges.length === 1 ? '' : 's'}: ${summary.unlockedBadges.map((badge) => badge.badgeName).join(', ')}`);
+  }
+
+  lines.push('');
+  lines.push(summary.recommendation);
+  lines.push('');
+  lines.push('Send !review to revisit wrong answers or !stats to see your progress.');
+
+  return lines.join('\n');
+}
+
+function formatPercent(value) {
+  return `${Math.round(Number(value || 0))}%`;
+}
+
+function formatDuration(seconds) {
+  const totalSeconds = Math.round(Number(seconds || 0));
+  const minutes = Math.floor(totalSeconds / 60);
+  const remainder = totalSeconds % 60;
+  if (!minutes) return `${remainder}s`;
+  return `${minutes}m ${String(remainder).padStart(2, '0')}s`;
+}
+
+function capitalize(value) {
+  return String(value || '').charAt(0).toUpperCase() + String(value || '').slice(1);
 }
 
 function isCorrectAnswer(answerText, question) {

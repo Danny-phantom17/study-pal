@@ -1,0 +1,44 @@
+services:
+  - type: worker
+    name: studypal-v2
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: studypal-data
+      mountPath: /var/data/studypal
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: APPS_SCRIPT_WEB_APP_URL
+        sync: false
+      - key: BOT_COMMAND_PREFIX
+        value: "!"
+      - key: QUIZ_QUESTION_COUNT
+        value: "20"
+      - key: QUIZ_TIME_LIMIT_SECONDS
+        value: "30"
+      - key: POINTS_PER_CORRECT_ANSWER
+        value: "10"
+      - key: FREE_DAILY_QUIZ_LIMIT
+        value: "2"
+      - key: FREE_FOLLOWUPS_PER_QUESTION
+        value: "3"
+      - key: FREE_REVIEW_LIMIT
+        value: "5"
+      - key: PUPPETEER_HEADLESS
+        value: "true"
+      - key: WWEBJS_AUTH_DIR
+        value: /var/data/studypal/.wwebjs_auth
+      - key: STUDYPAL_DB_PATH
+        value: /var/data/studypal/studypal.db
+      - key: STUDY_GROUP_CHAT_ID
+        sync: false
+      - key: ADMIN_WHATSAPP_NUMBER
+        sync: false

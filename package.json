@@ -1,14 +1,15 @@
 {
   "name": "whatsapp-study-group-bot",
   "version": "1.0.0",
-  "description": "A WhatsApp study group quiz bot with Google Sheets persistence.",
+  "description": "StudyPal AI tutor for WAEC and JAMB students on WhatsApp.",
   "main": "server.js",
   "scripts": {
-  "start": "node server.js",
-  "dev": "nodemon server.js",
-  "check": "node --check server.js",
-  "postinstall": "npx puppeteer browsers install chrome"
-  }, 
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "check": "node --check server.js",
+    "setup:check": "node tools/checkSetup.js",
+    "postinstall": "npx puppeteer browsers install chrome"
+  },
   "keywords": [
     "whatsapp",
     "study",
@@ -28,6 +29,6 @@
     "nodemon": "^3.1.9"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.5.0 <25.0.0"
   }
 }

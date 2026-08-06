@@ -14,7 +14,7 @@ const DEFAULT_AUTO_ADVANCE_MS = {
  * @param {object} deps.logger
  * @param {object} [deps.autoAdvanceMs] - override default timings, e.g. for tests
  */
-function createExplanationFlow({ tutorService, stateStore, logger, autoAdvanceMs = {} }) {
+function createExplanationFlow({ tutorService, stateStore, logger, subscriptionService = null, autoAdvanceMs = {} }) {
   const timings = { ...DEFAULT_AUTO_ADVANCE_MS, ...autoAdvanceMs };
   const activeExplanations = new Map(); // chatId -> { advance, timer, question, subject, followUpCount, userId }
 
@@ -59,6 +59,7 @@ function createExplanationFlow({ tutorService, stateStore, logger, autoAdvanceMs
     }, timings[outcome] || timings.wrong);
 
     activeExplanations.set(chatId, entry);
+    return { explanation, memoryTip };
   }
 
   /**
@@ -83,6 +84,14 @@ function createExplanationFlow({ tutorService, stateStore, logger, autoAdvanceMs
     // follow-up question to the tutor ("explain more", "simplify",
     // free-form questions about the topic).
     entry.followUpCount += 1;
+    if (subscriptionService) {
+      const access = subscriptionService.canAskFollowUp(userId || entry.userId, entry.followUpCount);
+      if (!access.allowed) {
+        await safeReply(reply, access.message);
+        return true;
+      }
+    }
+
     const { reply: followUpReply, limited } = await tutorService.handleFollowUp({
       userId: userId || entry.userId,
       chatId,
@@ -90,6 +99,7 @@ function createExplanationFlow({ tutorService, stateStore, logger, autoAdvanceMs
       subject: entry.subject,
       userMessage: text,
       followUpCount: entry.followUpCount,
+      ignoreLimit: subscriptionService ? subscriptionService.isPremium(userId || entry.userId) : false,
     });
 
     await safeReply(reply, followUpReply);
@@ -156,6 +166,7 @@ function createExplanationFlow({ tutorService, stateStore, logger, autoAdvanceMs
     const replyFns = Array.isArray(replies) ? replies : [replies];
 
     await Promise.all(replyFns.filter(Boolean).map((fn) => safeReply(fn, text)));
+    return { explanation, memoryTip };
   }
 
   /**

@@ -1,13 +1,15 @@
 const { logger } = require('../../utils/logger');
 
-const TUTOR_SYSTEM_PROMPT = `You are a patient, encouraging tutor for Nigerian WAEC and JAMB exam students. Explain concepts simply and clearly, the way a good teacher would for a teenager preparing for these exams. Keep explanations concise (2-4 sentences) unless asked for more detail.
+const TUTOR_SYSTEM_PROMPT = `You are a patient, encouraging tutor for Nigerian WAEC and JAMB exam students. Explain concepts simply and clearly, the way a good teacher would for a teenager preparing for these exams. Keep explanations concise unless asked for more detail.
 
 Respond ONLY with a JSON object of this exact shape, and nothing else — no markdown code fences, no preamble, no extra text:
 {"explanation": "...", "memoryTip": "..."}
 
+"explanation" must say why the correct answer is correct and why each wrong option is wrong. Use short labels like "A:", "B:", "C:", and "D:" when options are present.
 "memoryTip" should be a short mnemonic or memory trick if one genuinely helps for this topic, or an empty string "" if none is useful. Never invent a forced or unhelpful mnemonic just to fill the field.`;
 
 const FOLLOWUP_SYSTEM_PROMPT = `You are a patient, encouraging tutor for Nigerian WAEC and JAMB exam students, continuing a conversation about a quiz question. Keep responses concise (2-4 sentences) and in simple language suitable for a teenager preparing for these exams. Respond with plain text only, no JSON, no markdown formatting.`;
+const GENERAL_TUTOR_SYSTEM_PROMPT = `You are StudyPal, a warm personal AI tutor for Nigerian WAEC and JAMB students. Give clear, practical study help in plain text. Keep answers concise by default, explain like a good teacher, and encourage the student to practise privately with quiz commands when useful.`;
 
 const MAX_FOLLOWUPS_PER_QUESTION = 5;
 
@@ -47,8 +49,8 @@ function createTutorService({ aiProvider, db }) {
     return { ...parsed, fromCache: false };
   }
 
-  async function handleFollowUp({ userId, chatId, question, subject, userMessage, followUpCount }) {
-    if (followUpCount >= MAX_FOLLOWUPS_PER_QUESTION) {
+  async function handleFollowUp({ userId, chatId, question, subject, userMessage, followUpCount, ignoreLimit = false }) {
+    if (!ignoreLimit && followUpCount >= MAX_FOLLOWUPS_PER_QUESTION) {
       return {
         reply: "Let's keep moving — you can ask more questions once we get to the next one!",
         limited: true,
@@ -76,7 +78,28 @@ function createTutorService({ aiProvider, db }) {
     return { reply, limited: false };
   }
 
-  return { getExplanation, handleFollowUp };
+  async function handleGeneralChat({ userId, chatId, userMessage }) {
+    db.recordConversationTurn({ userId, chatId, role: 'user', message: userMessage });
+    const history = db.getRecentConversation(chatId, 8);
+    const contextLines = history.map((turn) => `${turn.role}: ${turn.message}`).join('\n');
+    const userPrompt = `Conversation so far:\n${contextLines}\n\nRespond to the student's latest message.`;
+
+    let reply;
+    try {
+      reply = await aiProvider.generateCompletion({
+        systemPrompt: GENERAL_TUTOR_SYSTEM_PROMPT,
+        userPrompt,
+      });
+    } catch (error) {
+      logger.error('handleGeneralChat failed', error);
+      reply = 'I could not reach the AI tutor just now. Try again in a moment, or send !quiz biology to practise.';
+    }
+
+    db.recordConversationTurn({ userId, chatId, role: 'assistant', message: reply });
+    return reply;
+  }
+
+  return { getExplanation, handleFollowUp, handleGeneralChat };
 }
 
 function buildExplanationPrompt({ question, subject, outcome, studentAnswer }) {
@@ -90,7 +113,7 @@ function buildExplanationPrompt({ question, subject, outcome, studentAnswer }) {
     timeout: 'The student ran out of time and did not answer.',
   }[outcome] || '';
 
-  return `Subject: ${subject}\nQuestion: ${question.question}\nOptions:\n${optionsList}\nCorrect answer: ${question.answer}\n\n${outcomeContext}\n\nExplain why the correct answer is right, in simple language for a WAEC/JAMB student.`;
+  return `Subject: ${subject}\nQuestion: ${question.question}\nOptions:\n${optionsList}\nCorrect answer: ${question.answer}\n\n${outcomeContext}\n\nExplain why the correct option is right and why every wrong option is wrong, in simple language for a WAEC/JAMB student.`;
 }
 
 function parseExplanationResponse(raw) {

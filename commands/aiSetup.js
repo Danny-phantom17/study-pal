@@ -7,6 +7,7 @@ const { createExplanationFlow } = require('../explanation/explanationFlow');
 const { createQuizService } = require('../services/quizService');
 const { createReminderService } = require('../reminders/reminderService');
 const { createCommandRouter } = require('./commandRouter');
+const { createSubscriptionService } = require('../services/subscriptionService');
 const { logger } = require('../utils/logger');
 
 /**
@@ -25,12 +26,14 @@ const { logger } = require('../utils/logger');
  * @param {object} params.client - your whatsapp-web.js Client instance
  */
 function createAiSetup({ sheetsService, prefix, client }) {
-  const db = createDb(path.join(__dirname, '..', 'data', 'studypal.db'));
+  const dbPath = process.env.STUDYPAL_DB_PATH || path.join(__dirname, '..', 'data', 'studypal.db');
+  const db = createDb(dbPath);
 
   const aiProvider = createGeminiProvider({
     apiKey: process.env.GEMINI_API_KEY,
   });
 
+  const subscriptionService = createSubscriptionService({ db });
   const tutorService = createTutorService({ aiProvider, db });
   const stateStore = createConversationStateStore();
 
@@ -38,6 +41,7 @@ function createAiSetup({ sheetsService, prefix, client }) {
     tutorService,
     stateStore,
     logger,
+    subscriptionService,
   });
 
   // Sends a direct message to a user's own chat (their WhatsApp ID, e.g.
@@ -67,11 +71,14 @@ function createAiSetup({ sheetsService, prefix, client }) {
 
   const quizService = createQuizService({
     sheetsService,
-    timeLimitSeconds: 30,
-    pointsPerCorrectAnswer: 10,
+    db,
+    timeLimitSeconds: Number(process.env.QUIZ_TIME_LIMIT_SECONDS || 30),
+    pointsPerCorrectAnswer: Number(process.env.POINTS_PER_CORRECT_ANSWER || 10),
     maxAttemptsPerQuestion: 2,
+    questionLimit: Number(process.env.QUIZ_QUESTION_COUNT || 20),
     explanationFlow,
     sendDirectMessage,
+    subscriptionService,
     onQuizStarted: reminderService.markQuizStarted,
   });
 
@@ -79,8 +86,11 @@ function createAiSetup({ sheetsService, prefix, client }) {
     prefix,
     quizService,
     sheetsService,
+    db,
     stateStore,
     explanationFlow,
+    tutorService,
+    subscriptionService,
   });
 
   return { db, quizService, router };

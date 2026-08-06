@@ -16,7 +16,10 @@ async function bootstrap() {
   await sheetsService.initialize();
 
   const client = new Client({
-    authStrategy: new LocalAuth({ clientId: 'study-group-bot' }),
+    authStrategy: new LocalAuth({
+      clientId: 'study-group-bot',
+      dataPath: process.env.WWEBJS_AUTH_DIR || undefined,
+    }),
     puppeteer: {
       headless: process.env.PUPPETEER_HEADLESS !== 'false',
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
@@ -46,6 +49,21 @@ async function bootstrap() {
 
   client.on('ready', () => {
     logger.info('Study bot is ready and listening for messages.');
+  });
+
+  client.on('group_join', async (notification) => {
+    try {
+      await notification.reply([
+        '*Welcome to StudyPal Community*',
+        'This group is for WAEC/JAMB questions, discussions, announcements, study tips, motivation, and optional challenges.',
+        '',
+        'Quizzes, scores, progress tracking, achievements, streaks, and AI explanations happen privately in your DM with StudyPal.',
+        '',
+        `Send me a private message with: ${commandPrefix}quiz biology`,
+      ].join('\n'));
+    } catch (error) {
+      logger.error('Failed to send group welcome message', error);
+    }
   });
 
   client.on('message', async (message) => {

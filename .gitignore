@@ -5,3 +5,9 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+bot.log
+bot.err
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/rotation-state.json
