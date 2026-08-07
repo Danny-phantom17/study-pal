@@ -55,11 +55,49 @@ async function bootstrap() {
     try {
       await notification.reply([
         '*Welcome to StudyPal Community*',
-        'This group is for WAEC/JAMB questions, discussions, announcements, study tips, motivation, and optional challenges.',
-        '',
-        'Quizzes, scores, progress tracking, achievements, streaks, and AI explanations happen privately in your DM with StudyPal.',
-        '',
-        `Send me a private message with: ${commandPrefix}quiz biology`,
+        `👋 Welcome, @user!
+
+We're glad to have you in the StudyPal Community! 🎉
+
+📚 This group is for educational discussions, asking academic questions, sharing study tips, and helping one another prepare for  JAMB and Post-UTME.
+
+🤖 To access your personal StudyPal assistant, chat with @StudyPal in your private messages.
+
+📖 Type:
+-help
+
+to view all StudyPal features and commands.
+
+🧠 Type:
+whatsoever subject you want to study or interaction u want to have with the AI Tutor
+
+to interact with the AI Tutor for explanations, learning assistance, and AI-powered quizzes.
+
+🆓 New User Trial:
+• 20 questions per day for 7 days.
+• 2 subjects per day.
+• AI explanations enabled.
+
+Free Plan After Trial:
+• 5 questions per day.
+• Access to all subjects.
+• Limited AI tutor access.
+
+👑 Want unlimited AI tutoring and quizzes?
+
+Type:
+-subscribe
+
+to view the Premium plan and upgrade.
+
+After payment, type:
+payment
+
+and answer the text verification questions. No screenshot upload is required.
+
+Please keep discussions respectful, educational, and free from spam.
+
+Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
       ].join('\n'));
     } catch (error) {
       logger.error('Failed to send group welcome message', error);

@@ -43,6 +43,8 @@ Private chat:
 !report
 !plan
 !upgrade
+subscribe
+payment
 !stop
 ```
 
@@ -51,6 +53,16 @@ Premium private chat:
 ```text
 !analytics
 !recommend
+```
+
+Admin / owner:
+
+```text
+!dashboard
+!approvepremium <requestId> [days]
+!rejectpayment <requestId> [reason]
+!adminplan <phone> <free|premium> [YYYY-MM-DD]
+!adminrole <phone> <student|admin|vip> [name]
 ```
 
 Community group:
@@ -91,9 +103,14 @@ QUIZ_TIME_LIMIT_SECONDS=30
 POINTS_PER_CORRECT_ANSWER=10
 WWEBJS_AUTH_DIR=.wwebjs_auth
 STUDYPAL_DB_PATH=data/studypal.db
-FREE_DAILY_QUIZ_LIMIT=3
+FREE_DAILY_QUESTION_LIMIT=5
 FREE_FOLLOWUPS_PER_QUESTION=3
 FREE_REVIEW_LIMIT=5
+FREE_DAILY_AI_LIMIT=10
+TRIAL_DAYS=7
+TRIAL_DAILY_QUESTION_LIMIT=20
+TRIAL_DAILY_SUBJECT_LIMIT=2
+TRIAL_DAILY_AI_LIMIT=20
 ```
 
 Optional group reminders:
@@ -120,11 +137,13 @@ Every WhatsApp number gets a StudyPal profile with:
 - Study streak
 - Achievements
 
-Free includes up to 2 quiz sessions per day, AI explanations for every answered question, quiz history, personal statistics, study streaks, daily goals, weekly reports, community access, and achievement badges.
+New users receive a 7-day free trial with 20 questions per day, up to 2 subjects per day, and AI explanations enabled.
 
-Premium adds unlimited quiz sessions, unlimited AI follow-up questions, unlimited review of previous quizzes, personalized recommendations, advanced analytics, priority AI response during busy periods, and early access to new features.
+After the trial, Free includes 5 questions per day, access to all subjects, limited AI tutor access, quiz history, personal statistics, study streaks, daily goals, weekly reports, community access, and achievement badges.
 
-Owner, Admin, and VIP users always receive unrestricted Premium-level access. They are never affected by Free quiz limits, AI follow-up limits, review limits, or future usage restrictions.
+Premium adds unlimited questions, unlimited subjects, unlimited AI tutor messages and explanations, unlimited follow-up questions, personalized recommendations, and advanced analytics.
+
+Owner, Admin, VIP, and Premium users always receive unrestricted access. They are never affected by Free or Trial question limits, subject limits, AI limits, or future usage restrictions.
 
 Seeded Owner:
 
@@ -140,7 +159,7 @@ Claudia - +2347060582146
 Vivian - +2348130351163
 ```
 
-When a Free student reaches the daily quiz limit, StudyPal asks whether they want to upgrade. If they answer `1` or `Yes`, StudyPal shows subscription plans and payment instructions. If they answer `2` or `No`, StudyPal returns them to the main menu and reminds them they can still review quizzes, read explanations, check statistics, and participate in the community. Free quiz sessions reset automatically the following day.
+When a student reaches a daily question or subject limit, StudyPal explains the limit and shows how to upgrade. If they answer `1` or `Yes` to an upgrade prompt, StudyPal shows subscription plans and payment instructions. If they answer `2` or `No`, StudyPal returns them to the main menu and reminds them they can still review quizzes, read explanations, check statistics, and participate in the community. Free and Trial limits reset automatically the following day.
 
 Students can view their plan with:
 
@@ -185,12 +204,33 @@ The owner role cannot be removed or assigned through chat commands.
 Premium payment details shown to students:
 
 ```text
-Payment Platform: PalmPay
+Bank Name: PalmPay
 Account Name: Daniel Godwin Effiong
 Account Number: 7044438532
 ```
 
-After payment, the student should send the payment receipt or transaction reference for verification. Once confirmed, use `!adminplan` to update the account from Free to Premium, set the subscription expiry date, unlock all Premium features immediately, and save the subscription status in SQLite.
+Students type `subscribe` to view the payment details. After payment, they type `payment` and answer:
+
+```text
+Bank name
+Amount paid
+Last 4 digits of the account used for payment
+```
+
+No screenshot or receipt upload is required. The request appears in the Admin Dashboard as Pending:
+
+```text
+!dashboard
+```
+
+Approve or reject from the dashboard:
+
+```text
+!approvepremium <requestId> [days]
+!rejectpayment <requestId> [reason]
+```
+
+When approved, StudyPal activates Premium immediately, calculates and stores the expiry date, unlocks unlimited questions, unlimited subjects, and unlimited AI access, and saves the subscription status in SQLite.
 
 Optional Google Sheets via Apps Script:
 

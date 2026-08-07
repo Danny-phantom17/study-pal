@@ -7,10 +7,12 @@ const OWNER_PROFILE = {
   name: 'Danny',
   phone: '+2347044438532',
 };
+const OWNER_PHONE_ALIASES = [OWNER_PROFILE.phone, '07044438532'];
 const VIP_PROFILES = [
   { name: 'Shedrach', phone: '+2349031103913' },
   { name: 'Claudia', phone: '+2347060582146' },
   { name: 'Vivian', phone: '+2348130351163' },
+  { name: 'Redrose', phone: '+2349076125785' },
 ];
 
 /**
@@ -40,7 +42,11 @@ function createDb(dbPath) {
   ensureColumn(db, 'users', 'phone_number', 'TEXT');
   ensureColumn(db, 'users', 'user_role', "TEXT NOT NULL DEFAULT 'student'");
   ensureColumn(db, 'users', 'subscription_plan', "TEXT NOT NULL DEFAULT 'free'");
+  ensureColumn(db, 'users', 'subscription_activated_at', 'TEXT');
   ensureColumn(db, 'users', 'subscription_expires_at', 'TEXT');
+  ensureColumn(db, 'payment_requests', 'bank_name', 'TEXT');
+  ensureColumn(db, 'payment_requests', 'amount_paid', 'REAL');
+  ensureColumn(db, 'payment_requests', 'account_last4', 'TEXT');
 
   // --- Explanation cache (the cost-saving piece) ---
 
@@ -71,27 +77,29 @@ function createDb(dbPath) {
   // --- Users ---
 
   function upsertUser(userId, username) {
+    const normalizedUserId = normalizeUserId(userId);
     db.prepare(
       `INSERT INTO users (user_id, username, phone_number, first_seen)
        VALUES (?, ?, ?, ?)
        ON CONFLICT(user_id) DO UPDATE SET
          username = COALESCE(excluded.username, users.username),
          phone_number = COALESCE(excluded.phone_number, users.phone_number)`
-    ).run(userId, username || null, phoneFromUserId(userId), new Date().toISOString());
+    ).run(normalizedUserId, username || null, phoneFromUserId(normalizedUserId), new Date().toISOString());
   }
 
   function getUserProfile(userId) {
+    const normalizedUserId = normalizeUserId(userId);
     const row = db
       .prepare(
-        `SELECT user_id, username, phone_number, user_role, subscription_plan, subscription_expires_at, first_seen
+        `SELECT user_id, username, phone_number, user_role, subscription_plan, subscription_activated_at, subscription_expires_at, first_seen
          FROM users
          WHERE user_id = ?`
       )
-      .get(userId);
+      .get(normalizedUserId);
 
     if (!row) {
-      upsertUser(userId, null);
-      return getUserProfile(userId);
+      upsertUser(normalizedUserId, null);
+      return getUserProfile(normalizedUserId);
     }
 
     return {
@@ -100,25 +108,33 @@ function createDb(dbPath) {
       phoneNumber: row.phone_number || phoneFromUserId(row.user_id),
       role: normalizeRole(row.user_role),
       subscriptionPlan: row.subscription_plan || 'free',
+      subscriptionActivatedAt: row.subscription_activated_at || null,
       subscriptionExpiresAt: row.subscription_expires_at || null,
       firstSeen: row.first_seen,
     };
   }
 
-  function updateSubscription({ userId, plan, expiresAt }) {
-    upsertUser(userId, null);
+  function updateSubscription({ userId, plan, expiresAt, activatedAt }) {
+    const normalizedUserId = normalizeUserId(userId);
+    upsertUser(normalizedUserId, null);
+    const normalizedPlan = normalizePlan(plan);
+    const activationValue = normalizedPlan === 'premium'
+      ? activatedAt || new Date().toISOString()
+      : null;
+
     db.prepare(
       `UPDATE users
-       SET subscription_plan = ?, subscription_expires_at = ?
+       SET subscription_plan = ?, subscription_activated_at = ?, subscription_expires_at = ?
        WHERE user_id = ?`
-    ).run(normalizePlan(plan), expiresAt || null, userId);
+    ).run(normalizedPlan, activationValue, expiresAt || null, normalizedUserId);
   }
 
   function updateUserRole({ userId, role, username }) {
-    upsertUser(userId, username || null);
+    const normalizedUserId = normalizeUserId(userId);
+    upsertUser(normalizedUserId, username || null);
     const normalizedRole = normalizeRole(role);
 
-    if (isOwnerUserId(userId) && normalizedRole !== 'owner') {
+    if (isOwnerUserId(normalizedUserId) && normalizedRole !== 'owner') {
       throw new Error('The StudyPal owner role cannot be removed.');
     }
 
@@ -126,11 +142,11 @@ function createDb(dbPath) {
       `UPDATE users
        SET user_role = ?, username = COALESCE(?, username)
        WHERE user_id = ?`
-    ).run(normalizedRole, username || null, userId);
+    ).run(normalizedRole, username || null, normalizedUserId);
   }
 
   function getSubscriptionStatus(userId, now = new Date()) {
-    const profile = getUserProfile(userId);
+    const profile = getUserProfile(normalizeUserId(userId));
     const plan = normalizePlan(profile.subscriptionPlan);
     const expiresAt = profile.subscriptionExpiresAt;
     const role = normalizeRole(profile.role);
@@ -154,15 +170,20 @@ function createDb(dbPath) {
     return getSubscriptionStatus(userId).hasManagementAccess;
   }
 
+  function hasOwnerAccess(userId) {
+    return isOwnerUserId(userId);
+  }
+
   // --- Attempts ---
 
   function recordAttempt({ userId, questionId, subject, topic, attemptNumber, isCorrect, timeTakenSeconds }) {
-    upsertUser(userId, null);
+    const normalizedUserId = normalizeUserId(userId);
+    upsertUser(normalizedUserId, null);
     db.prepare(
       `INSERT INTO attempts (user_id, question_id, subject, topic, attempt_number, is_correct, time_taken_seconds, created_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
     ).run(
-      userId,
+      normalizedUserId,
       questionId,
       subject,
       topic || null,
@@ -174,17 +195,18 @@ function createDb(dbPath) {
   }
 
   function updateStudyStreak(userId, date = localDateString()) {
-    upsertUser(userId, null);
+    const normalizedUserId = normalizeUserId(userId);
+    upsertUser(normalizedUserId, null);
 
     const row = db
       .prepare('SELECT current_streak, longest_streak, last_active_date FROM streaks WHERE user_id = ?')
-      .get(userId);
+      .get(normalizedUserId);
 
     if (!row) {
       db.prepare(
         `INSERT INTO streaks (user_id, current_streak, longest_streak, last_active_date)
          VALUES (?, 1, 1, ?)`
-      ).run(userId, date);
+      ).run(normalizedUserId, date);
       return { currentStreak: 1, longestStreak: 1, lastActiveDate: date };
     }
 
@@ -204,15 +226,16 @@ function createDb(dbPath) {
       `UPDATE streaks
        SET current_streak = ?, longest_streak = ?, last_active_date = ?
        WHERE user_id = ?`
-    ).run(currentStreak, longestStreak, date, userId);
+    ).run(currentStreak, longestStreak, date, normalizedUserId);
 
     return { currentStreak, longestStreak, lastActiveDate: date };
   }
 
   function getStreak(userId) {
+    const normalizedUserId = normalizeUserId(userId);
     const row = db
       .prepare('SELECT current_streak, longest_streak, last_active_date FROM streaks WHERE user_id = ?')
-      .get(userId);
+      .get(normalizedUserId);
 
     return {
       currentStreak: row?.current_streak || 0,
@@ -234,14 +257,15 @@ function createDb(dbPath) {
     startedAt,
     completedAt,
   }) {
-    upsertUser(userId, null);
+    const normalizedUserId = normalizeUserId(userId);
+    upsertUser(normalizedUserId, null);
 
     const result = db.prepare(
       `INSERT INTO quiz_sessions
         (user_id, chat_id, subject, topic, total_questions, correct_count, percentage, time_taken_seconds, ai_feedback, started_at, completed_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).run(
-      userId,
+      normalizedUserId,
       chatId,
       subject,
       topic || null,
@@ -268,7 +292,8 @@ function createDb(dbPath) {
     memoryTip,
     createdAt = new Date().toISOString(),
   }) {
-    upsertUser(userId, null);
+    const normalizedUserId = normalizeUserId(userId);
+    upsertUser(normalizedUserId, null);
 
     db.prepare(
       `INSERT INTO wrong_answers
@@ -276,7 +301,7 @@ function createDb(dbPath) {
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).run(
       sessionId || null,
-      userId,
+      normalizedUserId,
       question.id,
       subject,
       topic || question.topic || null,
@@ -388,6 +413,7 @@ function createDb(dbPath) {
   }
 
   function countQuizSessionsForDate(userId, date = localDateString()) {
+    const normalizedUserId = normalizeUserId(userId);
     const { start, end } = utcWindowForLocalDate(date);
     const row = db
       .prepare(
@@ -395,9 +421,38 @@ function createDb(dbPath) {
          FROM quiz_sessions
          WHERE user_id = ? AND completed_at >= ? AND completed_at < ?`
       )
-      .get(userId, start, end);
+      .get(normalizedUserId, start, end);
 
     return row?.count || 0;
+  }
+
+  function countQuestionsAnsweredForDate(userId, date = localDateString()) {
+    const normalizedUserId = normalizeUserId(userId);
+    const { start, end } = utcWindowForLocalDate(date);
+    const row = db
+      .prepare(
+        `SELECT COUNT(DISTINCT question_id) AS count
+         FROM attempts
+         WHERE user_id = ? AND created_at >= ? AND created_at < ?`
+      )
+      .get(normalizedUserId, start, end);
+
+    return row?.count || 0;
+  }
+
+  function listSubjectsAnsweredForDate(userId, date = localDateString()) {
+    const normalizedUserId = normalizeUserId(userId);
+    const { start, end } = utcWindowForLocalDate(date);
+    return db
+      .prepare(
+        `SELECT DISTINCT subject
+         FROM attempts
+         WHERE user_id = ? AND created_at >= ? AND created_at < ?
+         ORDER BY subject ASC`
+      )
+      .all(normalizedUserId, start, end)
+      .map((row) => row.subject)
+      .filter(Boolean);
   }
 
   function getRecentWrongAnswers(userId, limit = 10) {
@@ -560,6 +615,151 @@ function createDb(dbPath) {
       .reverse();
   }
 
+  // --- Daily AI usage ---
+
+  function getAiUsageForDate(userId, date = localDateString()) {
+    upsertUser(userId, null);
+    const row = db
+      .prepare('SELECT message_count FROM ai_daily_usage WHERE user_id = ? AND usage_date = ?')
+      .get(userId, date);
+
+    return row?.message_count || 0;
+  }
+
+  function incrementAiUsageForDate(userId, date = localDateString()) {
+    upsertUser(userId, null);
+    db.prepare(
+      `INSERT INTO ai_daily_usage (user_id, usage_date, message_count, updated_at)
+       VALUES (?, ?, 1, ?)
+       ON CONFLICT(user_id, usage_date) DO UPDATE SET
+         message_count = ai_daily_usage.message_count + 1,
+         updated_at = excluded.updated_at`
+    ).run(userId, date, new Date().toISOString());
+
+    return getAiUsageForDate(userId, date);
+  }
+
+  // --- Premium payment requests ---
+
+  function createPaymentRequest({
+    userId,
+    username,
+    selectedPlan,
+    durationDays,
+    receiptText,
+    currentPlan,
+    bankName,
+    amountPaid,
+    accountLast4,
+  }) {
+    const normalizedUserId = normalizeUserId(userId);
+    upsertUser(normalizedUserId, username || null);
+    const profile = getUserProfile(normalizedUserId);
+    const result = db.prepare(
+      `INSERT INTO payment_requests
+        (user_id, username, phone_number, selected_plan, duration_days, receipt_text,
+         bank_name, amount_paid, account_last4, current_plan, payment_status, submitted_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)`
+    ).run(
+      normalizedUserId,
+      username || profile.name || null,
+      profile.phoneNumber || phoneFromUserId(normalizedUserId),
+      selectedPlan || 'monthly',
+      Number(durationDays || 30),
+      receiptText || null,
+      bankName || null,
+      amountPaid === null || amountPaid === undefined ? null : Number(amountPaid),
+      accountLast4 || null,
+      currentPlan || getSubscriptionStatus(normalizedUserId).plan,
+      new Date().toISOString()
+    );
+
+    return Number(result.lastInsertRowid);
+  }
+
+  function updatePaymentRequestReceipt({ requestId, filePath, mimetype, filename }) {
+    db.prepare(
+      `UPDATE payment_requests
+       SET receipt_file_path = ?, receipt_mimetype = ?, receipt_filename = ?
+       WHERE id = ?`
+    ).run(filePath || null, mimetype || null, filename || null, requestId);
+  }
+
+  function getPaymentRequest(requestId) {
+    return db
+      .prepare(
+        `SELECT id, user_id, username, phone_number, selected_plan, duration_days, receipt_text,
+                bank_name, amount_paid, account_last4,
+                receipt_file_path, receipt_mimetype, receipt_filename, current_plan,
+                payment_status, submitted_at, reviewed_at, reviewed_by, rejection_reason
+         FROM payment_requests
+         WHERE id = ?`
+      )
+      .get(requestId);
+  }
+
+  function listPendingPaymentRequests(limit = 10) {
+    return db
+      .prepare(
+        `SELECT id, user_id, username, phone_number, selected_plan, duration_days, receipt_text,
+                bank_name, amount_paid, account_last4,
+                receipt_file_path, receipt_mimetype, receipt_filename, current_plan,
+                payment_status, submitted_at
+         FROM payment_requests
+         WHERE payment_status = 'pending'
+         ORDER BY submitted_at ASC
+         LIMIT ?`
+      )
+      .all(limit);
+  }
+
+  function updatePaymentRequestStatus({ requestId, status, reviewedBy, rejectionReason }) {
+    db.prepare(
+      `UPDATE payment_requests
+       SET payment_status = ?, reviewed_at = ?, reviewed_by = ?, rejection_reason = ?
+       WHERE id = ?`
+    ).run(status, new Date().toISOString(), reviewedBy || null, rejectionReason || null, requestId);
+
+    return getPaymentRequest(requestId);
+  }
+
+  function getSubscriptionDashboardStats(now = new Date()) {
+    const rows = db
+      .prepare(
+        `SELECT user_id, user_role, subscription_plan, subscription_expires_at
+         FROM users`
+      )
+      .all();
+    const nowTime = now.getTime();
+    const pendingPaymentRequests = db
+      .prepare("SELECT COUNT(*) AS count FROM payment_requests WHERE payment_status = 'pending'")
+      .get()?.count || 0;
+
+    return rows.reduce((stats, row) => {
+      const role = normalizeRole(row.user_role);
+      const plan = normalizePlan(row.subscription_plan);
+      const expiresAt = row.subscription_expires_at;
+      const isExpired = plan === 'premium' && Boolean(expiresAt) && new Date(expiresAt).getTime() <= nowTime;
+      const hasRoleAccess = ['owner', 'admin', 'vip'].includes(role);
+      const hasActivePremiumPlan = plan === 'premium' && !isExpired;
+
+      stats.totalUsers += 1;
+      if (role === 'vip') stats.vipUsers += 1;
+      if (isExpired) stats.expiredPremiumUsers += 1;
+      if (!hasRoleAccess && hasActivePremiumPlan) stats.premiumUsers += 1;
+      if (!hasRoleAccess && !hasActivePremiumPlan) stats.freeUsers += 1;
+
+      return stats;
+    }, {
+      totalUsers: 0,
+      freeUsers: 0,
+      premiumUsers: 0,
+      vipUsers: 0,
+      expiredPremiumUsers: 0,
+      pendingPaymentRequests,
+    });
+  }
+
   seedSystemRoles();
 
   return {
@@ -579,6 +779,8 @@ function createDb(dbPath) {
     getDailyGoal,
     getDailyGoalProgress,
     countQuizSessionsForDate,
+    countQuestionsAnsweredForDate,
+    listSubjectsAnsweredForDate,
     getRecentWrongAnswers,
     getWeeklyReport,
     getAdvancedAnalytics,
@@ -589,8 +791,18 @@ function createDb(dbPath) {
     updateUserRole,
     getSubscriptionStatus,
     hasManagementAccess,
+    hasOwnerAccess,
     recordConversationTurn,
     getRecentConversation,
+    getAiUsageForDate,
+    incrementAiUsageForDate,
+    createPaymentRequest,
+    updatePaymentRequestReceipt,
+    getPaymentRequest,
+    listPendingPaymentRequests,
+    updatePaymentRequestStatus,
+    getSubscriptionDashboardStats,
+    normalizeUserId,
     close: () => db.close(),
   };
 
@@ -630,9 +842,13 @@ function addDays(dateString, days) {
 }
 
 function utcWindowForLocalDate(dateString) {
+  const [year, month, day] = String(dateString || localDateString()).split('-').map(Number);
+  const startDate = new Date(year, month - 1, day);
+  const endDate = new Date(year, month - 1, day + 1);
+
   return {
-    start: `${dateString}T00:00:00.000Z`,
-    end: `${addDays(dateString, 1)}T00:00:00.000Z`,
+    start: startDate.toISOString(),
+    end: endDate.toISOString(),
   };
 }
 
@@ -645,8 +861,7 @@ function safeParseJson(value, fallback) {
 }
 
 function phoneFromUserId(userId) {
-  const digits = String(userId || '').split('@')[0].replace(/\D/g, '');
-  return digits || null;
+  return normalizePhoneDigits(userId);
 }
 
 function normalizePlan(plan) {
@@ -659,15 +874,42 @@ function normalizeRole(role) {
 }
 
 function userIdFromPhone(phone) {
-  return `${String(phone || '').replace(/\D/g, '')}@c.us`;
+  const digits = normalizePhoneDigits(phone);
+  return digits ? `${digits}@c.us` : String(phone || '');
 }
 
 function isOwnerUserId(userId) {
-  return userIdFromPhone(OWNER_PROFILE.phone) === userId;
+  const ownerDigits = normalizePhoneDigits(userId);
+  return OWNER_PHONE_ALIASES.some((phone) => normalizePhoneDigits(phone) === ownerDigits);
+}
+
+function normalizeUserId(userId) {
+  const digits = normalizePhoneDigits(userId);
+  return digits ? `${digits}@c.us` : String(userId || '');
+}
+
+function normalizePhoneDigits(value) {
+  const beforeDomain = String(value || '').split('@')[0];
+  const beforeDevice = beforeDomain.split(':')[0];
+  let digits = beforeDevice.replace(/\D/g, '');
+
+  if (digits.startsWith('00')) {
+    digits = digits.slice(2);
+  }
+
+  if (digits.startsWith('2340')) {
+    digits = `234${digits.slice(4)}`;
+  } else if (digits.length === 11 && digits.startsWith('0')) {
+    digits = `234${digits.slice(1)}`;
+  } else if (digits.length === 10 && /^[789]/.test(digits)) {
+    digits = `234${digits}`;
+  }
+
+  return digits || null;
 }
 
 function ensureColumn(db, tableName, columnName, definition) {
-  if (!/^[a-z_]+$/i.test(tableName) || !/^[a-z_]+$/i.test(columnName)) {
+  if (!/^[a-z_][a-z0-9_]*$/i.test(tableName) || !/^[a-z_][a-z0-9_]*$/i.test(columnName)) {
     throw new Error(`Unsafe migration identifier: ${tableName}.${columnName}`);
   }
 

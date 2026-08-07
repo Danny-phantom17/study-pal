@@ -6,10 +6,10 @@ const REMINDER_MESSAGES = [
   '*Last reminder for today* Open your private chat with StudyPal and complete one quiz before the day ends.',
 ];
 
-const INTERVAL_MS = 3 * 60 * 1000;
+const INTERVAL_MS = 30 * 60 * 1000;
 const CHECK_INTERVAL_MS = 60 * 1000;
 
-function createReminderService({ client, groupChatId, adminNumber, startHour = 14 }) {
+function createReminderService({ client, groupChatId, adminNumber, startHour = 19 }) {
   const lastQuizStartDate = new Map();
   let lastCycleDate = null;
   let activeCycleTimer = null;

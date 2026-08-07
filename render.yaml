@@ -26,12 +26,22 @@ services:
         value: "30"
       - key: POINTS_PER_CORRECT_ANSWER
         value: "10"
-      - key: FREE_DAILY_QUIZ_LIMIT
-        value: "2"
+      - key: FREE_DAILY_QUESTION_LIMIT
+        value: "5"
       - key: FREE_FOLLOWUPS_PER_QUESTION
         value: "3"
       - key: FREE_REVIEW_LIMIT
         value: "5"
+      - key: FREE_DAILY_AI_LIMIT
+        value: "10"
+      - key: TRIAL_DAYS
+        value: "7"
+      - key: TRIAL_DAILY_QUESTION_LIMIT
+        value: "20"
+      - key: TRIAL_DAILY_SUBJECT_LIMIT
+        value: "2"
+      - key: TRIAL_DAILY_AI_LIMIT
+        value: "20"
       - key: PUPPETEER_HEADLESS
         value: "true"
       - key: WWEBJS_AUTH_DIR

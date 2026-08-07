@@ -33,6 +33,15 @@ function createExplanationFlow({ tutorService, stateStore, logger, subscriptionS
    * @param {Function} params.advance - callback that resumes the quiz engine's normal flow
    */
   async function enter({ chatId, reply, question, subject, outcome, studentAnswer, userId, advance }) {
+    if (subscriptionService && userId) {
+      const aiAccess = subscriptionService.tryConsumeAiMessage(userId);
+      if (!aiAccess.allowed) {
+        await safeReply(reply, aiAccess.message);
+        await advance();
+        return { limited: true };
+      }
+    }
+
     stateStore.setPhase(chatId, 'explanation');
 
     const { explanation, memoryTip } = await tutorService.getExplanation({
@@ -88,6 +97,12 @@ function createExplanationFlow({ tutorService, stateStore, logger, subscriptionS
       const access = subscriptionService.canAskFollowUp(userId || entry.userId, entry.followUpCount);
       if (!access.allowed) {
         await safeReply(reply, access.message);
+        return true;
+      }
+
+      const aiAccess = subscriptionService.tryConsumeAiMessage(userId || entry.userId);
+      if (!aiAccess.allowed) {
+        await safeReply(reply, aiAccess.message);
         return true;
       }
     }
@@ -154,7 +169,17 @@ function createExplanationFlow({ tutorService, stateStore, logger, subscriptionS
    * functions (e.g. a group reply AND a DM) so multi-destination sends only
    * cost one cache/AI lookup, not one per destination.
    */
-  async function sendPersonalExplanation({ replies, question, subject, outcome, studentAnswer }) {
+  async function sendPersonalExplanation({ replies, question, subject, outcome, studentAnswer, userId }) {
+    const replyFns = Array.isArray(replies) ? replies : [replies];
+
+    if (subscriptionService && userId) {
+      const aiAccess = subscriptionService.tryConsumeAiMessage(userId);
+      if (!aiAccess.allowed) {
+        await Promise.all(replyFns.filter(Boolean).map((fn) => safeReply(fn, aiAccess.message)));
+        return { limited: true };
+      }
+    }
+
     const { explanation, memoryTip } = await tutorService.getExplanation({
       question,
       subject,
@@ -163,7 +188,6 @@ function createExplanationFlow({ tutorService, stateStore, logger, subscriptionS
     });
 
     const text = formatPersonalExplanation({ outcome, question, explanation, memoryTip });
-    const replyFns = Array.isArray(replies) ? replies : [replies];
 
     await Promise.all(replyFns.filter(Boolean).map((fn) => safeReply(fn, text)));
     return { explanation, memoryTip };
@@ -177,6 +201,14 @@ function createExplanationFlow({ tutorService, stateStore, logger, subscriptionS
    * since tutorService.handleFollowUp degrades gracefully on its own.
    */
   async function handlePersonalFollowUp({ reply, question, subject, userId, userMessage }) {
+    if (subscriptionService) {
+      const aiAccess = subscriptionService.tryConsumeAiMessage(userId);
+      if (!aiAccess.allowed) {
+        await safeReply(reply, aiAccess.message);
+        return true;
+      }
+    }
+
     const { reply: followUpReply } = await tutorService.handleFollowUp({
       userId,
       chatId: `${userId}:personal`, // separate conversation thread from the shared explanation phase

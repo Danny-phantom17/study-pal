@@ -91,6 +91,8 @@ function createAiSetup({ sheetsService, prefix, client }) {
     explanationFlow,
     tutorService,
     subscriptionService,
+    sendDirectMessage,
+    client,
   });
 
   return { db, quizService, router };

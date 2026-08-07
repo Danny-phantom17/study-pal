@@ -25,7 +25,7 @@ function createQuizService({
     }
 
     if (subscriptionService && userId) {
-      const access = subscriptionService.canStartQuiz(userId);
+      const access = subscriptionService.canStartQuiz(userId, { subject });
       if (!access.allowed) {
         return {
           started: false,
@@ -35,11 +35,23 @@ function createQuizService({
       }
     }
 
+    const effectiveQuestionLimit = subscriptionService && userId
+      ? subscriptionService.quizQuestionLimitFor(userId, questionLimit)
+      : questionLimit;
+
+    if (effectiveQuestionLimit <= 0) {
+      return {
+        started: false,
+        message: 'You have used today\'s question limit. Type subscribe to upgrade to unlimited access.',
+        reason: 'daily_quiz_limit',
+      };
+    }
+
     const questions = shuffle(await getQuestions({
       chatId,
       subject,
       topic,
-      limit: questionLimit,
+      limit: effectiveQuestionLimit,
       sheetsService,
     }));
 
@@ -317,6 +329,7 @@ function createQuizService({
       subject: state.subject,
       outcome,
       studentAnswer,
+      userId,
     });
   }
 
@@ -352,7 +365,7 @@ function createQuizService({
         subject: state.subject,
         outcome,
         studentAnswer,
-        userId,
+        userId: userId || state.userId,
         advance,
       });
       recordWrongReviewIfNeeded(state, {

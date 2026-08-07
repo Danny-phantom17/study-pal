@@ -8,9 +8,46 @@ CREATE TABLE IF NOT EXISTS users (
   phone_number TEXT,
   user_role TEXT NOT NULL DEFAULT 'student',
   subscription_plan TEXT NOT NULL DEFAULT 'free',
+  subscription_activated_at TEXT,
   subscription_expires_at TEXT,
   first_seen TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS ai_daily_usage (
+  user_id TEXT NOT NULL,
+  usage_date TEXT NOT NULL,
+  message_count INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, usage_date),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS payment_requests (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL,
+  username TEXT,
+  phone_number TEXT,
+  selected_plan TEXT NOT NULL DEFAULT 'monthly',
+  duration_days INTEGER NOT NULL DEFAULT 30,
+  receipt_text TEXT,
+  bank_name TEXT,
+  amount_paid REAL,
+  account_last4 TEXT,
+  receipt_file_path TEXT,
+  receipt_mimetype TEXT,
+  receipt_filename TEXT,
+  current_plan TEXT NOT NULL DEFAULT 'free',
+  payment_status TEXT NOT NULL DEFAULT 'pending',
+  submitted_at TEXT NOT NULL,
+  reviewed_at TEXT,
+  reviewed_by TEXT,
+  rejection_reason TEXT,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+CREATE INDEX IF NOT EXISTS idx_payment_requests_status_submitted
+  ON payment_requests(payment_status, submitted_at);
+CREATE INDEX IF NOT EXISTS idx_payment_requests_user_submitted
+  ON payment_requests(user_id, submitted_at);
 
 CREATE TABLE IF NOT EXISTS attempts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

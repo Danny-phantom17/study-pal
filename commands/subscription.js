@@ -1,30 +1,37 @@
+const { formatSubscriptionPaymentDetails } = require('./payment');
+
 function createPlanCommand(subscriptionService) {
   return async function handlePlanCommand({ message, userId }) {
     const summary = subscriptionService.planSummary(userId);
     const lines = [
-      '*StudyPal Profile*',
+      '*StudyPal Plan Status*',
       `Name: ${summary.name}`,
       `Phone: ${summary.phoneNumber || 'Unknown'}`,
       `Role: ${capitalize(summary.role)}`,
-      `Plan: ${summary.activePlan === 'premium' ? 'Premium' : 'Free'}`,
-      summary.subscriptionExpiresAt ? `Expiry: ${summary.subscriptionExpiresAt.slice(0, 10)}` : null,
-      summary.isExpired ? 'Status: Premium expired, currently using Free' : null,
+      `Current Plan: ${summary.planLabel}`,
+      `Status: ${summary.statusLabel}`,
+      summary.subscriptionActivatedAt ? `Activated: ${summary.subscriptionActivatedAt.slice(0, 10)}` : null,
+      summary.subscriptionExpiresAt ? `Expiry Date: ${summary.subscriptionExpiresAt.slice(0, 10)}` : null,
+      summary.trialEndsAt && summary.activePlan === 'trial' ? `Trial Ends: ${summary.trialEndsAt.slice(0, 10)}` : null,
       '',
-      '*Free includes*',
-      `- Up to ${summary.freeDailyQuizLimit} quiz sessions per day`,
-      '- AI explanations for every answered question',
-      '- Quiz history, stats, streaks, goals, weekly reports, badges',
+      '*Access Today*',
+      summary.isPremium
+        ? 'Questions Remaining: Unlimited'
+        : `Questions Remaining: ${summary.remainingQuestionsToday}/${summary.dailyQuestionLimit}`,
+      summary.activePlan === 'trial'
+        ? `Trial Subjects Remaining: ${summary.remainingSubjectsToday}/${summary.trialDailySubjectLimit}`
+        : null,
+      `AI Access: ${summary.aiAccess}`,
+      summary.isPremium
+        ? 'AI Remaining: Unlimited'
+        : `AI Messages Remaining: ${summary.remainingAiToday}/${summary.dailyAiLimit}`,
       '',
-      '*Premium adds*',
-      '- Unlimited AI follow-up questions',
-      '- Unlimited quiz sessions',
-      '- Unlimited review of previous quizzes',
-      '- Personalized study recommendations',
-      '- Advanced performance analytics',
-      '- Priority AI responses during busy periods',
-      '- Early access to new features',
+      '*Plan Rules*',
+      `New users: ${summary.trialDailyQuestionLimit} questions/day, ${summary.trialDailySubjectLimit} subjects/day for ${summary.trialDays} days, AI enabled`,
+      `Free users: ${summary.freeDailyQuestionLimit} questions/day, all subjects, limited AI`,
+      'Premium, VIP, Admin, Owner: unlimited questions, subjects, and AI',
       '',
-      'Reply UPGRADE to view subscription options.',
+      summary.isPremium ? null : 'Upgrade: type subscribe to view payment details.',
     ].filter(Boolean);
 
     await message.reply(lines.join('\n'));
@@ -171,26 +178,7 @@ function createAdminRoleCommand(db) {
 }
 
 function formatUpgradePlans() {
-  return [
-    '*StudyPal Premium*',
-    '',
-    'Premium gives you:',
-    '- Unlimited AI tutoring',
-    '- Unlimited quizzes',
-    '- Unlimited review of previous quizzes',
-    '- Personalized study recommendations',
-    '- Advanced progress insights',
-    '- Priority AI response during busy periods',
-    '- Early access to new features',
-    '',
-    '*Payment Information*',
-    'Payment Platform: PalmPay',
-    'Account Name: Daniel Godwin Effiong',
-    'Account Number: 7044438532',
-    '',
-    'After payment, send your payment receipt or transaction reference for verification.',
-    'Once payment is confirmed, your account will be updated from Free to Premium, an expiry date will be set, and all Premium features will unlock immediately.',
-  ].join('\n');
+  return formatSubscriptionPaymentDetails();
 }
 
 function normalizeExpiry(value) {

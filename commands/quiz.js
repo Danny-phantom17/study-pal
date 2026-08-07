@@ -23,7 +23,7 @@ async function handleQuizCommand({ message, args, quizService, prefix, userId, u
   }
 
   if (topic) {
-    await message.reply(`Searching for 50 JAMB ${subject} questions on "${topic}". Give me a moment...`);
+    await message.reply(`Searching for JAMB ${subject} questions on "${topic}". Give me a moment...`);
   }
 
   const result = await quizService.startQuiz({
