@@ -299,6 +299,17 @@ function createQuizService({
   }
 
   /**
+   * Lets commands/quiz.js check for an already-running quiz in this chat
+   * BEFORE showing the subject-selection menu, so a bare "quiz" sent while
+   * a quiz is in progress gets the same "already running" message it
+   * always got — instead of confusingly showing a subject menu on top of
+   * an active quiz.
+   */
+  function hasActiveQuiz(chatId) {
+    return activeQuizzes.has(chatId);
+  }
+
+  /**
    * Decides how to deliver an individual outcome's explanation:
    * - Solo chat (DM with the bot, chatId ends in @c.us): there's no group
    *   to keep running for, so give the full paused experience — same
@@ -398,6 +409,7 @@ function createQuizService({
     handleAnswer,
     stopAll,
     stopQuiz,
+    hasActiveQuiz,
   };
 }
 

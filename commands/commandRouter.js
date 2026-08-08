@@ -1,5 +1,5 @@
 const { handleHelpCommand } = require('./help');
-const { handleQuizCommand } = require('./quiz');
+const { handleQuizCommand, startQuizForSubject, capitalizeSubject } = require('./quiz');
 const { handleLeaderboardCommand } = require('./leaderboard');
 const { handleAttendanceCommand } = require('./attendance');
 const { handleScoreCommand } = require('./score');
@@ -33,6 +33,13 @@ const { logger } = require('../utils/logger');
 
 function createCommandRouter({ prefix, quizService, sheetsService, db, stateStore, explanationFlow, tutorService, subscriptionService, sendDirectMessage, client }) {
   const pendingUpgradePrompts = new Map();
+  // Per-user (DM only) state: while a user is choosing a quiz subject from
+  // the numbered menu, this maps their userId -> the exact subject list
+  // that menu was built from, so a later plain-number reply can be
+  // resolved back to the right subject. Cleared as soon as a valid
+  // selection is made, an invalid one triggers a re-prompt (map entry
+  // stays), or the user sends "stop".
+  const pendingSubjectSelections = new Map();
   const paymentFlows = createPaymentFlowState();
   const handlePaymentFlowMessage = createPaymentFlowMessageHandler(db, paymentFlows);
   const commands = new Map([
@@ -129,8 +136,28 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
         stateStore,
         explanationFlow,
         pendingUpgradePrompts,
+        pendingSubjectSelections,
       });
       return;
+    }
+
+    // If this user is currently choosing a quiz subject from the numbered
+    // menu (see commands/quiz.js), a plain number reply belongs here, not
+    // to the quiz-answer handler, the explanation flow, or the AI tutor.
+    // Only ever active in DMs, and only while pendingSubjectSelections has
+    // this userId — a bare "3" sent at any other time is NOT treated as a
+    // subject selection or any other kind of command.
+    if (!chatId.endsWith('@g.us') && pendingSubjectSelections.has(userId)) {
+      const handled = await handleSubjectSelectionReply({
+        text,
+        message,
+        userId,
+        username,
+        quizService,
+        pendingSubjectSelections,
+        pendingUpgradePrompts,
+      });
+      if (handled) return;
     }
 
     // If this chat is currently in the shared post-answer Explanation phase
@@ -224,7 +251,7 @@ async function resolveUserId(rawUserId, contact, db, client) {
 }
 
 /**
- * Diagnostic command — send "!whoami" to see exactly what id WhatsApp is
+ * Diagnostic command — send "whoami" to see exactly what id WhatsApp is
  * handing you and what it normalizes to, so you can confirm whether lid
  * resolution is kicking in correctly. Safe to remove once confirmed.
  */
@@ -246,14 +273,73 @@ function createWhoAmICommand(db, client) {
   };
 }
 
+/**
+ * Handles a plain-number reply from a user who is currently choosing a
+ * quiz subject from the menu (commands/quiz.js). Only ever called when
+ * pendingSubjectSelections.has(userId) is already true, so a lone number
+ * sent at any other time never reaches this function — it just falls
+ * through to normal quiz-answer / AI-tutor handling as before.
+ */
+async function handleSubjectSelectionReply({ text, message, userId, username, quizService, pendingSubjectSelections, pendingUpgradePrompts }) {
+  const subjects = pendingSubjectSelections.get(userId);
+  if (!subjects) return false;
+
+  const trimmed = String(text || '').trim();
+  const choice = Number(trimmed);
+  const isValidChoice = Number.isInteger(choice) && choice >= 1 && choice <= subjects.length;
+
+  if (!isValidChoice) {
+    await message.reply('\u274c Invalid choice.\n\nPlease reply with one of the numbers shown above.');
+    return true;
+  }
+
+  const subject = subjects[choice - 1];
+  pendingSubjectSelections.delete(userId);
+
+  await message.reply(`\u2705 ${capitalizeSubject(subject)} selected.`);
+
+  await startQuizForSubject({
+    message,
+    quizService,
+    userId,
+    username,
+    subject,
+    topic: '',
+    pendingUpgradePrompts,
+  });
+
+  return true;
+}
+
+/**
+ * Parses a raw message into { command, args, commandPrefix } or null.
+ *
+ * Two ways a message can be recognized as a command:
+ *  1. Prefixed — starts with the configured prefix (e.g. "!") or the "-"
+ *     alternate, exactly as before.
+ *  2. Bare — no prefix at all, but the FIRST word of the (trimmed,
+ *     case-insensitive) message exactly matches a known command name.
+ *     Only the first word is checked, so ordinary sentences that merely
+ *     mention a command word ("I need help with physics" — first word is
+ *     "I", not "help") are never mistaken for a command. A message that
+ *     genuinely starts with a command word as its first word ("help me
+ *     with physics") will still be read as the help command, the same way
+ *     it always would if prefixed — that tradeoff is inherent to removing
+ *     the prefix requirement, not something a command parser can fully
+ *     avoid, so keep the "!" prefix for a message that happens to start
+ *     with a command word if you want to be unambiguous.
+ */
 function parseCommandText(text, prefix, commands) {
+  const cleaned = String(text || '').trim();
+  if (!cleaned) return null;
+
   const candidates = [prefix];
   if (prefix !== '-') candidates.push('-');
 
   for (const candidate of candidates) {
-    if (!candidate || !text.startsWith(candidate)) continue;
+    if (!candidate || !cleaned.startsWith(candidate)) continue;
 
-    const [rawCommand, ...args] = text.slice(candidate.length).trim().split(/\s+/);
+    const [rawCommand, ...args] = cleaned.slice(candidate.length).trim().split(/\s+/);
     const command = (rawCommand || '').toLowerCase();
 
     if (candidate === '-' && !commands.has(command)) {
@@ -263,9 +349,12 @@ function parseCommandText(text, prefix, commands) {
     return { command, args, commandPrefix: candidate };
   }
 
-  const bareCommand = String(text || '').trim().toLowerCase();
-  if (['subscribe', 'payment', 'plan', 'help', 'dashboard'].includes(bareCommand) && commands.has(bareCommand)) {
-    return { command: bareCommand, args: [], commandPrefix: prefix };
+  // Bare command: no prefix present at all.
+  const [rawCommand, ...args] = cleaned.split(/\s+/);
+  const command = (rawCommand || '').toLowerCase();
+
+  if (commands.has(command)) {
+    return { command, args, commandPrefix: prefix };
   }
 
   return null;

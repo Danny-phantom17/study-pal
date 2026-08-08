@@ -25,7 +25,7 @@ services:
       - key: QUIZ_TIME_LIMIT_SECONDS
         value: "30"
       - key: POINTS_PER_CORRECT_ANSWER
-        value: "10"
+        value: "1.67"
       - key: FREE_DAILY_QUESTION_LIMIT
         value: "5"
       - key: FREE_FOLLOWUPS_PER_QUESTION

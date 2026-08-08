@@ -65,7 +65,7 @@ function createAiSetup({ sheetsService, prefix, client }) {
     client,
     groupChatId: process.env.STUDY_GROUP_CHAT_ID,
     adminNumber: process.env.ADMIN_WHATSAPP_NUMBER,
-    startHour: Number(process.env.REMINDER_START_HOUR || 14),
+    startHour: Number(process.env.REMINDER_START_HOUR || 21),
   });
   reminderService.start();
 
@@ -73,7 +73,7 @@ function createAiSetup({ sheetsService, prefix, client }) {
     sheetsService,
     db,
     timeLimitSeconds: Number(process.env.QUIZ_TIME_LIMIT_SECONDS || 30),
-    pointsPerCorrectAnswer: Number(process.env.POINTS_PER_CORRECT_ANSWER || 10),
+    pointsPerCorrectAnswer: Number(process.env.POINTS_PER_CORRECT_ANSWER || 1.67),
     maxAttemptsPerQuestion: 2,
     questionLimit: Number(process.env.QUIZ_QUESTION_COUNT || 20),
     explanationFlow,

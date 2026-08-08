@@ -64,7 +64,7 @@ We're glad to have you in the StudyPal Community! 🎉
 🤖 To access your personal StudyPal assistant, chat with @StudyPal in your private messages.
 
 📖 Type:
--help
+help
 
 to view all StudyPal features and commands.
 
@@ -86,7 +86,7 @@ Free Plan After Trial:
 👑 Want unlimited AI tutoring and quizzes?
 
 Type:
--subscribe
+subscribe
 
 to view the Premium plan and upgrade.
 
