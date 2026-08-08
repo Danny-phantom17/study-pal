@@ -9,6 +9,17 @@ const { createAiSetup } = require('./commands/aiSetup');
 const { createGoogleSheetsService } = require('./services/googleSheetsService');
 const { logger } = require('./utils/logger');
 
+// Without this handler, an unhandled rejection thrown from inside a
+// dependency (e.g. whatsapp-web.js's internal requestPairingCode call)
+// crashes the process with Node's generic, hard-to-read default dump.
+// This replaces that with one clear, greppable log line through the
+// existing logger, then exits — preserving Render's current
+// restart-on-crash behavior, just with a readable cause.
+process.on('unhandledRejection', (reason) => {
+  logger.error('Unhandled promise rejection (likely from inside whatsapp-web.js or Puppeteer, not application code):', reason);
+  process.exit(1);
+});
+
 const commandPrefix = process.env.BOT_COMMAND_PREFIX || '!';
 const webjsClientId = process.env.WEBJS_CLIENT_ID || 'study-group-bot';
 const webjsAuthDir = process.env.WEBJS_AUTH_DIR || process.env.WWEBJS_AUTH_DIR || undefined;
