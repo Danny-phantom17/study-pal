@@ -3,7 +3,7 @@ services:
     name: studypal-v2
     runtime: node
     plan: starter
-    buildCommand: npm install && npx puppeteer browsers install chrome
+    buildCommand: npm ci && npm run install:browser
     startCommand: npm start
     disk:
       name: studypal-data
@@ -44,8 +44,8 @@ services:
         value: "20"
       - key: PUPPETEER_HEADLESS
         value: "true"
-      - key: WWEBJS_AUTH_DIR
-        value: /var/data/studypal/.wwebjs_auth
+      - key: WEBJS_AUTH_DIR
+        value: /var/data/studypal/.webjs_auth
       - key: STUDYPAL_DB_PATH
         value: /var/data/studypal/studypal.db
       - key: STUDY_GROUP_CHAT_ID

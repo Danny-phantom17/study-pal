@@ -44,7 +44,7 @@ reportGroup('Required AI Tutor', ['GEMINI_API_KEY']);
 reportGroup('Google Sheets - Apps Script (optional)', appsScriptGoogleSheets);
 reportGroup('Google Sheets - Service Account (optional)', serviceAccountGoogleSheets);
 reportGroup('Internet Question Lookup (optional)', optionalInternetLookup);
-reportGroup('WhatsApp / Render Persistence', ['WWEBJS_AUTH_DIR', 'STUDYPAL_DB_PATH']);
+reportGroup('WhatsApp / Render Persistence', ['WEBJS_AUTH_DIR', 'STUDYPAL_DB_PATH']);
 reportGroup('Subscription Limits', ['FREE_DAILY_QUIZ_LIMIT', 'FREE_FOLLOWUPS_PER_QUESTION', 'FREE_REVIEW_LIMIT']);
 
 const sheetsReady = appsScriptGoogleSheets.every(hasValue) || serviceAccountGoogleSheets.every(hasValue);
