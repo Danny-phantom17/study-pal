@@ -42,7 +42,26 @@ async function bootstrap() {
     puppeteer: {
       headless: process.env.PUPPETEER_HEADLESS !== 'false',
       executablePath: puppeteerExecutablePath,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        // Everything below this line is new — these trim Chrome's baseline
+        // RAM footprint on a memory-constrained host. None of them change
+        // behavior; they just turn off subsystems whatsapp-web.js never
+        // uses in headless mode (GPU compositing, extensions, background
+        // network/sync services, etc.), so Chrome starts smaller and stays
+        // smaller. Safe to keep permanently regardless of RAM tier.
+        '--disable-gpu',
+        '--disable-extensions',
+        '--disable-background-networking',
+        '--disable-default-apps',
+        '--disable-sync',
+        '--disable-translate',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+      ],
     },
   };
 
