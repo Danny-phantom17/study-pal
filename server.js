@@ -230,10 +230,6 @@ function clearChromiumProfileLocks(sessionDir) {
     const lockPath = path.join(sessionDir, lockFile);
 
     try {
-      if (!fs.existsSync(lockPath)) {
-        continue;
-      }
-
       fs.rmSync(lockPath, { force: true });
       removed.push(lockFile);
     } catch (error) {
@@ -242,7 +238,7 @@ function clearChromiumProfileLocks(sessionDir) {
   }
 
   if (removed.length > 0) {
-    logger.warn(`Removed stale Chromium profile lock file(s) from ${sessionDir}: ${removed.join(', ')}`);
+    logger.info(`Cleared Chromium profile lock path(s) from ${sessionDir}: ${removed.join(', ')}`);
   }
 }
 
