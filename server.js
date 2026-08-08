@@ -11,14 +11,23 @@ const { logger } = require('./utils/logger');
 const commandPrefix = process.env.BOT_COMMAND_PREFIX || '!';
 const webjsAuthDir = process.env.WEBJS_AUTH_DIR || process.env.WWEBJS_AUTH_DIR || undefined;
 const puppeteerExecutablePath = getPuppeteerExecutablePath();
+const pairingPhoneNumber = normalizePairingPhoneNumber(
+  process.env.WEBJS_PAIRING_PHONE_NUMBER || process.env.WHATSAPP_PAIRING_PHONE_NUMBER
+);
+const pairingCodeIntervalMs = normalizePositiveInteger(process.env.WEBJS_PAIRING_CODE_INTERVAL_MS, 180000);
 
 async function bootstrap() {
   logger.info('Starting WhatsApp Study Group Bot...');
+  logger.info(`WhatsApp auth directory: ${webjsAuthDir || 'default .wwebjs_auth'}`);
+  logger.info(`Puppeteer executable: ${puppeteerExecutablePath || 'managed by Puppeteer'}`);
+  if (pairingPhoneNumber) {
+    logger.info(`WhatsApp pairing code login enabled for phone number ending in ${pairingPhoneNumber.slice(-4)}.`);
+  }
 
   const sheetsService = createGoogleSheetsService();
   await sheetsService.initialize();
 
-  const client = new Client({
+  const clientOptions = {
     authStrategy: new LocalAuth({
       clientId: 'study-group-bot',
       dataPath: webjsAuthDir,
@@ -28,7 +37,17 @@ async function bootstrap() {
       executablePath: puppeteerExecutablePath,
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     },
-  });
+  };
+
+  if (pairingPhoneNumber) {
+    clientOptions.pairWithPhoneNumber = {
+      phoneNumber: pairingPhoneNumber,
+      showNotification: true,
+      intervalMs: pairingCodeIntervalMs,
+    };
+  }
+
+  const client = new Client(clientOptions);
 
   // createAiSetup wires up everything the AI explanation feature needs —
   // SQLite db, Gemini provider, tutor service, conversation state store,
@@ -43,7 +62,28 @@ async function bootstrap() {
 
   client.on('qr', (qr) => {
     logger.info('Scan this QR code with WhatsApp to authenticate:');
-    qrcode.generate(qr, { small: true });
+    qrcode.generate(qr, { small: false }, (qrText) => {
+      logger.info(`\n${qrText}`);
+    });
+    logger.info('Open WhatsApp > Linked devices > Link a device, then scan the QR block above.');
+    logger.info('If the QR is hard to scan in Render logs, set WEBJS_PAIRING_PHONE_NUMBER to your WhatsApp number in international format without +.');
+  });
+
+  client.on('code', (code) => {
+    logger.info(`WhatsApp pairing code: ${code}`);
+    logger.info('Open WhatsApp > Linked devices > Link with phone number instead, then enter this code.');
+  });
+
+  client.on('loading_screen', (percent, message) => {
+    logger.info(`WhatsApp loading screen: ${percent}% ${message}`);
+  });
+
+  client.on('change_state', (state) => {
+    logger.info(`WhatsApp connection state changed: ${state}`);
+  });
+
+  client.on('auth_failure', (message) => {
+    logger.error(`WhatsApp authentication failed: ${message}`);
   });
 
   client.on('authenticated', () => {
@@ -120,17 +160,33 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
     logger.warn(`WhatsApp client disconnected: ${reason}`);
   });
 
-  process.on('SIGINT', async () => {
-    logger.info('Shutting down bot...');
+  async function shutdown(signal) {
+    logger.info(`Shutting down bot after ${signal}...`);
     await quizService.stopAll();
     if (db && typeof db.close === 'function') {
       db.close();
     }
     await client.destroy();
     process.exit(0);
+  }
+
+  process.on('SIGINT', () => {
+    shutdown('SIGINT').catch((error) => {
+      logger.error('Failed during SIGINT shutdown', error);
+      process.exit(1);
+    });
   });
 
+  process.on('SIGTERM', () => {
+    shutdown('SIGTERM').catch((error) => {
+      logger.error('Failed during SIGTERM shutdown', error);
+      process.exit(1);
+    });
+  });
+
+  logger.info('Initializing WhatsApp client...');
   await client.initialize();
+  logger.info('WhatsApp client initialization finished.');
 }
 
 bootstrap().catch((error) => {
@@ -151,4 +207,14 @@ function getPuppeteerExecutablePath() {
 
   logger.warn(`Ignoring PUPPETEER_EXECUTABLE_PATH because it does not exist: ${configuredPath}`);
   return undefined;
+}
+
+function normalizePairingPhoneNumber(value) {
+  const digits = String(value || '').replace(/\D/g, '');
+  return digits || '';
+}
+
+function normalizePositiveInteger(value, fallback) {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
