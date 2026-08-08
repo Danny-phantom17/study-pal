@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const fs = require('fs');
+const path = require('path');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 
@@ -9,8 +10,11 @@ const { createGoogleSheetsService } = require('./services/googleSheetsService');
 const { logger } = require('./utils/logger');
 
 const commandPrefix = process.env.BOT_COMMAND_PREFIX || '!';
+const webjsClientId = process.env.WEBJS_CLIENT_ID || 'study-group-bot';
 const webjsAuthDir = process.env.WEBJS_AUTH_DIR || process.env.WWEBJS_AUTH_DIR || undefined;
 const puppeteerExecutablePath = getPuppeteerExecutablePath();
+const webjsSessionDir = getWebjsSessionDir(webjsAuthDir, webjsClientId);
+const shouldClearChromiumLocks = process.env.WEBJS_CLEAR_CHROMIUM_LOCKS !== 'false';
 const pairingPhoneNumber = normalizePairingPhoneNumber(
   process.env.WEBJS_PAIRING_PHONE_NUMBER || process.env.WHATSAPP_PAIRING_PHONE_NUMBER
 );
@@ -23,13 +27,16 @@ async function bootstrap() {
   if (pairingPhoneNumber) {
     logger.info(`WhatsApp pairing code login enabled for phone number ending in ${pairingPhoneNumber.slice(-4)}.`);
   }
+  if (shouldClearChromiumLocks) {
+    clearChromiumProfileLocks(webjsSessionDir);
+  }
 
   const sheetsService = createGoogleSheetsService();
   await sheetsService.initialize();
 
   const clientOptions = {
     authStrategy: new LocalAuth({
-      clientId: 'study-group-bot',
+      clientId: webjsClientId,
       dataPath: webjsAuthDir,
     }),
     puppeteer: {
@@ -207,6 +214,36 @@ function getPuppeteerExecutablePath() {
 
   logger.warn(`Ignoring PUPPETEER_EXECUTABLE_PATH because it does not exist: ${configuredPath}`);
   return undefined;
+}
+
+function getWebjsSessionDir(authDir, clientId) {
+  const baseAuthDir = path.resolve(authDir || './.wwebjs_auth');
+  const sessionDirName = clientId ? `session-${clientId}` : 'session';
+  return path.join(baseAuthDir, sessionDirName);
+}
+
+function clearChromiumProfileLocks(sessionDir) {
+  const lockFiles = ['SingletonLock', 'SingletonSocket', 'SingletonCookie'];
+  const removed = [];
+
+  for (const lockFile of lockFiles) {
+    const lockPath = path.join(sessionDir, lockFile);
+
+    try {
+      if (!fs.existsSync(lockPath)) {
+        continue;
+      }
+
+      fs.rmSync(lockPath, { force: true });
+      removed.push(lockFile);
+    } catch (error) {
+      logger.warn(`Could not remove Chromium profile lock ${lockFile}`, error);
+    }
+  }
+
+  if (removed.length > 0) {
+    logger.warn(`Removed stale Chromium profile lock file(s) from ${sessionDir}: ${removed.join(', ')}`);
+  }
 }
 
 function normalizePairingPhoneNumber(value) {

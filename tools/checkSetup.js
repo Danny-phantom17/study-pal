@@ -45,6 +45,7 @@ reportGroup('Google Sheets - Apps Script (optional)', appsScriptGoogleSheets);
 reportGroup('Google Sheets - Service Account (optional)', serviceAccountGoogleSheets);
 reportGroup('Internet Question Lookup (optional)', optionalInternetLookup);
 reportGroup('WhatsApp / Render Persistence', ['WEBJS_AUTH_DIR', 'STUDYPAL_DB_PATH']);
+reportGroup('WhatsApp Chromium Lock Cleanup', ['WEBJS_CLEAR_CHROMIUM_LOCKS']);
 reportGroup('WhatsApp Pairing Code (optional)', ['WEBJS_PAIRING_PHONE_NUMBER']);
 reportGroup('Subscription Limits', ['FREE_DAILY_QUIZ_LIMIT', 'FREE_FOLLOWUPS_PER_QUESTION', 'FREE_REVIEW_LIMIT']);
 
