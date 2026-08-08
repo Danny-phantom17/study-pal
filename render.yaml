@@ -3,7 +3,7 @@ services:
     name: studypal-v2
     runtime: node
     plan: starter
-    buildCommand: npm install
+    buildCommand: npm install && npx puppeteer browsers install chrome
     startCommand: npm start
     disk:
       name: studypal-data
@@ -23,7 +23,7 @@ services:
       - key: QUIZ_QUESTION_COUNT
         value: "20"
       - key: QUIZ_TIME_LIMIT_SECONDS
-        value: "30"
+        value: "40"
       - key: POINTS_PER_CORRECT_ANSWER
         value: "1.67"
       - key: FREE_DAILY_QUESTION_LIMIT
