@@ -1,11 +1,17 @@
 const path = require('path');
 const { MessageMedia } = require('whatsapp-web.js');
 const { getAvailableSubjects } = require('../services/questionService');
+const { getConfig } = require('../config/env');
 
 const LOGO_PATH = path.join(__dirname, '..', 'assets', 'studypal-logo.jpeg');
 
 async function handleHelpCommand({ message, prefix }) {
   const subjects = getAvailableSubjects().join(', ');
+  const { payment } = getConfig();
+  const premiumPrice = `₦${Number(payment.premiumPrice).toLocaleString('en-NG')}`;
+  const bankName = payment.bankName || 'Not configured';
+  const accountName = payment.accountName || 'Not configured';
+  const accountNumber = payment.accountNumber || 'Not configured';
 
   const helpText = [
     '*StudyPal* - _Study. Practice. Improve._',
@@ -24,16 +30,16 @@ async function handleHelpCommand({ message, prefix }) {
     '- StudyPal Community access',
     '',
     '*Premium / VIP / Admin / Owner Access*',
-    'Price: \u20A63,000',
+    `Price: ${premiumPrice}`,
     '- Unlimited questions',
     '- Unlimited subjects',
     '- Unlimited AI Tutor messages and explanations',
     '- Unlimited follow-up questions',
     '',
     '*Upgrade Payment*',
-    'Bank Name: PalmPay',
-    'Account Name: Daniel Godwin Effiong',
-    'Account Number: 7044438532',
+    `Bank Name: ${bankName}`,
+    `Account Name: ${accountName}`,
+    `Account Number: ${accountNumber}`,
     'Type subscribe to view payment instructions.',
     'After payment, type payment and answer the text verification questions.',
     'No screenshot or receipt upload is required.',
@@ -42,37 +48,37 @@ async function handleHelpCommand({ message, prefix }) {
     '',
     '*Student Commands*',
     `quiz - Choose a subject from a menu and start a private quiz. Subjects: ${subjects}`,
-    `quiz <subject> [topic] - Jump straight into a quiz, skipping the menu`,
-    `history - Review completed quizzes`,
-    `stats - View personal statistics`,
-    `score - View your score summary`,
-    `goal [questions] - View or set your daily goal`,
-    `streak - View your study streak`,
-    `badges - View achievements`,
-    `review - Review recent wrong answers`,
-    `report - View your weekly report`,
-    `plan - View current plan, expiry, remaining questions, and AI access`,
+    'quiz <subject> [topic] - Jump straight into a quiz, skipping the menu',
+    'history - Review completed quizzes',
+    'stats - View personal statistics',
+    'score - View your score summary',
+    'goal [questions] - View or set your daily goal',
+    'streak - View your study streak',
+    'badges - View achievements',
+    'review - Review recent wrong answers',
+    'report - View your weekly report',
+    'plan - View current plan, expiry, remaining questions, and AI access',
     'subscribe - View Premium price and bank details',
     'payment - Submit bank name, amount paid, and account last 4 digits',
-    `analytics - Premium advanced performance analytics`,
-    `recommend - Premium personalized study recommendation`,
-    `stop - Stop the current quiz`,
+    'analytics - Premium advanced performance analytics',
+    'recommend - Premium personalized study recommendation',
+    'stop - Stop the current quiz',
     '',
     '*AI Tutor*',
     'After each question, StudyPal explains why the correct option is right, why the wrong options are wrong, and gives a memory tip.',
     'In DM, you can also say: explain this like I am 10, give another example, give me a mnemonic, test me again, or make it harder.',
     '',
     '*Community Commands*',
-    `help - Show this guide`,
-    `leaderboard - Show optional community points`,
-    `attendance - Show recent participation`,
+    'help - Show this guide',
+    'leaderboard - Show optional community points',
+    'attendance - Show recent participation',
     '',
     '*Admin / Owner Commands*',
-    `dashboard - View pending subscription requests`,
-    `approvepremium <requestId> [days] - Approve a pending subscription`,
-    `rejectpayment <requestId> [reason] - Reject a pending subscription`,
-    `adminplan <phone> <free|premium> [YYYY-MM-DD] - Manually update a plan`,
-    `adminrole <phone> <student|admin|vip> [name] - Update a role`,
+    'dashboard - View pending subscription requests',
+    'approvepremium <requestId> [days] - Approve a pending subscription',
+    'rejectpayment <requestId> [reason] - Reject a pending subscription',
+    'adminplan <phone> <free|premium> [YYYY-MM-DD] - Manually update a plan',
+    'adminrole <phone> <student|admin|vip> [name] - Update a role',
     '',
     '*Examples*',
     'quiz',

@@ -16,12 +16,12 @@ function createGeminiProvider({ apiKey, model = DEFAULT_MODEL } = {}) {
     throw new Error('GEMINI_API_KEY is required to create the AI provider.');
   }
 
-  async function generateCompletion({ systemPrompt, userPrompt }) {
+  async function generateCompletion({ systemPrompt, userPrompt, media = [] }) {
     let lastError;
 
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
       try {
-        return await callGemini({ apiKey, model, systemPrompt, userPrompt });
+        return await callGemini({ apiKey, model, systemPrompt, userPrompt, media });
       } catch (error) {
         lastError = error;
 
@@ -42,7 +42,7 @@ function createGeminiProvider({ apiKey, model = DEFAULT_MODEL } = {}) {
   return { generateCompletion };
 }
 
-async function callGemini({ apiKey, model, systemPrompt, userPrompt }) {
+async function callGemini({ apiKey, model, systemPrompt, userPrompt, media = [] }) {
   const url = `${API_BASE}/${model}:generateContent?key=${apiKey}`;
 
   const body = {
@@ -52,7 +52,12 @@ async function callGemini({ apiKey, model, systemPrompt, userPrompt }) {
     contents: [
       {
         role: 'user',
-        parts: [{ text: userPrompt }],
+        parts: [
+          { text: userPrompt },
+          ...media.map((item) => ({
+            inline_data: { mime_type: item.mimeType, data: item.data },
+          })),
+        ],
       },
     ],
   };

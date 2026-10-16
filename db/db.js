@@ -760,6 +760,42 @@ function createDb(dbPath) {
     });
   }
 
+  function getCoachReadingPassage(userId, localDate) {
+    return db.prepare(
+      'SELECT title, passage FROM coach_reading_passages WHERE user_id = ? AND local_date = ?'
+    ).get(normalizeUserId(userId), localDate) || null;
+  }
+
+  function saveCoachReadingPassage({ userId, localDate, title, passage }) {
+    db.prepare(
+      `INSERT INTO coach_reading_passages (user_id, local_date, title, passage, created_at)
+       VALUES (?, ?, ?, ?, ?)
+       ON CONFLICT(user_id, local_date) DO NOTHING`
+    ).run(normalizeUserId(userId), localDate, title, passage, new Date().toISOString());
+    return getCoachReadingPassage(userId, localDate);
+  }
+
+  function recordCoachReadingAttempt({ userId, localDate, score, feedback }) {
+    db.prepare(
+      `INSERT INTO coach_reading_attempts (user_id, local_date, score, feedback, created_at)
+       VALUES (?, ?, ?, ?, ?)`
+    ).run(
+      normalizeUserId(userId),
+      localDate,
+      Math.max(0, Math.min(100, Math.round(Number(score) || 0))),
+      feedback,
+      new Date().toISOString(),
+    );
+  }
+
+  function getCoachReadingStats(userId) {
+    return db.prepare(
+      `SELECT COUNT(*) AS attempts, ROUND(AVG(score)) AS average_score,
+              MAX(score) AS best_score
+       FROM coach_reading_attempts WHERE user_id = ?`
+    ).get(normalizeUserId(userId));
+  }
+
   seedSystemRoles();
 
   return {
@@ -802,6 +838,10 @@ function createDb(dbPath) {
     listPendingPaymentRequests,
     updatePaymentRequestStatus,
     getSubscriptionDashboardStats,
+    getCoachReadingPassage,
+    saveCoachReadingPassage,
+    recordCoachReadingAttempt,
+    getCoachReadingStats,
     normalizeUserId,
     close: () => db.close(),
   };

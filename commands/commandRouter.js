@@ -31,7 +31,7 @@ const {
 } = require('./payment');
 const { logger } = require('../utils/logger');
 
-function createCommandRouter({ prefix, quizService, sheetsService, db, stateStore, explanationFlow, tutorService, subscriptionService, sendDirectMessage, client }) {
+function createCommandRouter({ prefix, quizService, sheetsService, db, stateStore, explanationFlow, tutorService, subscriptionService, sendDirectMessage, client, readingCoachService, readingCoachPhoneNumber }) {
   const pendingUpgradePrompts = new Map();
   // Per-user (DM only) state: while a user is choosing a quiz subject from
   // the numbered menu, this maps their userId -> the exact subject list
@@ -41,6 +41,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
   // stays), or the user sends "stop".
   const pendingSubjectSelections = new Map();
   const paymentFlows = createPaymentFlowState();
+  const activeReadingCoach = new Set();
   const handlePaymentFlowMessage = createPaymentFlowMessageHandler(db, paymentFlows);
   const commands = new Map([
     ['help', handleHelpCommand],
@@ -79,13 +80,61 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
     const text = (message.body || '').trim();
     const contact = await message.getContact();
     const username = contact.pushname || contact.name || contact.number || 'Unknown user';
+    const hasMedia = Boolean(message.hasMedia);
 
-    if (!text) return;
+    if (!text && !hasMedia) return;
 
     const chatId = message.from;
     const rawUserId = message.author || message.from;
     const userId = await resolveUserId(rawUserId, contact, db, client);
     db.upsertUser(userId, username);
+
+    const isPrivateChat = !chatId.endsWith('@g.us');
+    const coachUserId = readingCoachPhoneNumber ? db.normalizeUserId(readingCoachPhoneNumber) : null;
+    const isReadingCoachUser = isPrivateChat && coachUserId && userId === coachUserId;
+    const normalizedText = text.toLowerCase();
+
+    if (isReadingCoachUser && readingCoachService && normalizedText === 'coach') {
+      activeReadingCoach.add(userId);
+      try {
+        await readingCoachService.start({ userId, reply: message.reply.bind(message) });
+      } catch (error) {
+        logger.error('Could not start the private reading coach', error);
+        await message.reply('I could not prepare today’s reading practice just now. Please send coach again in a moment.');
+      }
+      return;
+    }
+
+    if (isReadingCoachUser && activeReadingCoach.has(userId)) {
+      if (normalizedText === 'coach off' || normalizedText === 'exit coach') {
+        activeReadingCoach.delete(userId);
+        await message.reply('Reading-coach mode is off. Send coach whenever you want to practise again.');
+        return;
+      }
+
+      try {
+        const media = hasMedia ? await downloadTutorMedia(message) : [];
+        if (hasMedia && !media.length) {
+          await message.reply('I can work with a clear photo, a screenshot, or a voice note. Please try sending one of those again.');
+          return;
+        }
+        await readingCoachService.handleMessage({
+          userId,
+          text,
+          media,
+          reply: message.reply.bind(message),
+        });
+      } catch (error) {
+        logger.error('Private reading coach message failed', error);
+        await message.reply('I could not read or listen to that just now. Please try again with a clear photo or a short voice note.');
+      }
+      return;
+    }
+
+    if (isReadingCoachUser && (normalizedText === 'coach off' || normalizedText === 'exit coach')) {
+      await message.reply('Reading-coach mode is not active. Send coach to start today’s practice.');
+      return;
+    }
 
     if (!chatId.endsWith('@g.us')) {
       const handledPaymentFlow = await handlePaymentFlowMessage({
@@ -141,6 +190,36 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
       return;
     }
 
+    if (hasMedia) {
+      if (!tutorService) return;
+      if (subscriptionService) {
+        const aiAccess = subscriptionService.tryConsumeAiMessage(userId);
+        if (!aiAccess.allowed) {
+          await message.reply(aiAccess.message);
+          return;
+        }
+      }
+
+      try {
+        const media = await downloadTutorMedia(message);
+        if (!media.length) {
+          await message.reply('I can read a photo or screenshot, and listen to a voice note. Please send a clear image or voice note again.');
+          return;
+        }
+        const reply = await tutorService.handleGeneralChat({
+          userId,
+          chatId,
+          userMessage: text,
+          media,
+        });
+        await message.reply(reply);
+      } catch (error) {
+        logger.error('Could not process WhatsApp media for the tutor', error);
+        await message.reply('I could not read or listen to that just now. Please try a smaller, clear photo or a short voice note.');
+      }
+      return;
+    }
+
     // If this user is currently choosing a quiz subject from the numbered
     // menu (see commands/quiz.js), a plain number reply belongs here, not
     // to the quiz-answer handler, the explanation flow, or the AI tutor.
@@ -185,7 +264,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
 
     if (handledAsQuizAnswer) return;
 
-    if (!chatId.endsWith('@g.us') && tutorService) {
+    if (isPrivateChat && tutorService && (hasMedia || text)) {
       if (subscriptionService) {
         const aiAccess = subscriptionService.tryConsumeAiMessage(userId);
         if (!aiAccess.allowed) {
@@ -204,6 +283,23 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
   }
 
   return { handleMessage };
+}
+
+async function downloadTutorMedia(message) {
+  if (!['image', 'audio', 'ptt'].includes(message.type)) return [];
+  const media = await message.downloadMedia();
+  if (!media?.data || !media.mimetype) return [];
+
+  const mimeType = media.mimetype.split(';')[0].trim().toLowerCase();
+  const supported = mimeType.startsWith('image/') || mimeType.startsWith('audio/');
+  if (!supported) return [];
+
+  const estimatedBytes = Math.floor(media.data.length * 0.75);
+  if (estimatedBytes > 10 * 1024 * 1024) {
+    throw new Error('Media is larger than the 10 MB tutor limit.');
+  }
+
+  return [{ mimeType, data: media.data }];
 }
 
 /**
@@ -388,4 +484,4 @@ async function handleUpgradePromptReply({ text, message, userId, prefix, pending
   return false;
 }
 
-module.exports = { createCommandRouter };
+module.exports = { createCommandRouter, downloadTutorMedia };

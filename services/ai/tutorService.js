@@ -1,6 +1,6 @@
 const { logger } = require('../../utils/logger');
 
-const TUTOR_SYSTEM_PROMPT = `You are a patient, encouraging tutor for Nigerian WAEC and JAMB exam students. Explain concepts simply and clearly, the way a good teacher would for a teenager preparing for these exams. Keep explanations concise unless asked for more detail.
+const TUTOR_SYSTEM_PROMPT = `You are a patient, encouraging tutor for Nigerian WAEC and JAMB exam students. Explain concepts simply and clearly, the way a good teacher would for a teenager preparing for these exams. Keep explanations concise unless asked for more detail. Always use clear, grammatically correct standard English. Do not use Nigerian Pidgin, slang, or local dialect unless the student explicitly requests it.
 
 Respond ONLY with a JSON object of this exact shape, and nothing else — no markdown code fences, no preamble, no extra text:
 {"explanation": "...", "memoryTip": "..."}
@@ -8,8 +8,8 @@ Respond ONLY with a JSON object of this exact shape, and nothing else — no mar
 "explanation" must say why the correct answer is correct and why each wrong option is wrong. Use short labels like "A:", "B:", "C:", and "D:" when options are present.
 "memoryTip" should be a short mnemonic or memory trick if one genuinely helps for this topic, or an empty string "" if none is useful. Never invent a forced or unhelpful mnemonic just to fill the field.`;
 
-const FOLLOWUP_SYSTEM_PROMPT = `You are a patient, encouraging tutor for Nigerian WAEC and JAMB exam students, continuing a conversation about a quiz question. Keep responses concise (2-4 sentences) and in simple language suitable for a teenager preparing for these exams. Respond with plain text only, no JSON, no markdown formatting.`;
-const GENERAL_TUTOR_SYSTEM_PROMPT = `You are StudyPal, a warm personal AI tutor for Nigerian WAEC and JAMB students. Give clear, practical study help in plain text. Keep answers concise by default, explain like a good teacher, and encourage the student to practise privately with quiz commands when useful.`;
+const FOLLOWUP_SYSTEM_PROMPT = `You are a patient, encouraging tutor for Nigerian WAEC and JAMB exam students, continuing a conversation about a quiz question. Keep responses concise (2-4 sentences) and in simple language suitable for a teenager preparing for these exams. Always use clear, grammatically correct standard English. Do not use Nigerian Pidgin, slang, or local dialect unless the student explicitly requests it. Respond with plain text only, no JSON, no markdown formatting.`;
+const GENERAL_TUTOR_SYSTEM_PROMPT = `You are StudyPal, a warm personal AI tutor for Nigerian WAEC and JAMB students. Give clear, practical study help in plain text. Keep answers concise by default, explain like a good teacher, and encourage the student to practise privately with quiz commands when useful. Always use clear, grammatically correct standard English. Do not use Nigerian Pidgin, slang, or local dialect unless the student explicitly requests it. When the student attaches a photo or screenshot, read the question and solve it step by step in simple language. When the student sends a voice note, listen to it, understand the question, and answer it; if you cannot hear it clearly, ask the student to repeat it.`;
 
 const MAX_FOLLOWUPS_PER_QUESTION = 5;
 
@@ -78,17 +78,21 @@ function createTutorService({ aiProvider, db }) {
     return { reply, limited: false };
   }
 
-  async function handleGeneralChat({ userId, chatId, userMessage }) {
-    db.recordConversationTurn({ userId, chatId, role: 'user', message: userMessage });
+  async function handleGeneralChat({ userId, chatId, userMessage, media = [] }) {
+    const latestMessage = userMessage || (media.some((item) => item.mimeType.startsWith('audio/'))
+      ? 'The student sent a voice note. Listen to it and answer the spoken question.'
+      : 'The student sent an image. Read the question in the image and answer it clearly.');
+    db.recordConversationTurn({ userId, chatId, role: 'user', message: latestMessage });
     const history = db.getRecentConversation(chatId, 8);
     const contextLines = history.map((turn) => `${turn.role}: ${turn.message}`).join('\n');
-    const userPrompt = `Conversation so far:\n${contextLines}\n\nRespond to the student's latest message.`;
+    const userPrompt = `Conversation so far:\n${contextLines}\n\nStudent's latest message: ${latestMessage}`;
 
     let reply;
     try {
       reply = await aiProvider.generateCompletion({
         systemPrompt: GENERAL_TUTOR_SYSTEM_PROMPT,
         userPrompt,
+        media,
       });
     } catch (error) {
       logger.error('handleGeneralChat failed', error);

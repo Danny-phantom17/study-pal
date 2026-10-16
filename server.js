@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
+const { startQrBrowser } = require('./utils/qrBrowser');
 
 const { createAiSetup } = require('./commands/aiSetup');
 const { createGoogleSheetsService } = require('./services/googleSheetsService');
@@ -33,6 +34,7 @@ const pairingCodeIntervalMs = normalizePositiveInteger(process.env.WEBJS_PAIRING
 
 async function bootstrap() {
   logger.info('Starting WhatsApp Study Group Bot...');
+  const qrBrowser = startQrBrowser();
   logger.info(`WhatsApp auth directory: ${webjsAuthDir || 'default .wwebjs_auth'}`);
   logger.info(`Puppeteer executable: ${puppeteerExecutablePath || 'managed by Puppeteer'}`);
   if (pairingPhoneNumber) {
@@ -85,6 +87,11 @@ async function bootstrap() {
   }
 
   const client = new Client(clientOptions);
+  const sendMessage = client.sendMessage.bind(client);
+  client.sendMessage = (chatId, content, options = {}) => sendMessage(chatId, content, {
+    ...options,
+    sendSeen: options.sendSeen ?? false,
+  });
 
   // createAiSetup wires up everything the AI explanation feature needs —
   // SQLite db, Gemini provider, tutor service, conversation state store,
@@ -98,6 +105,7 @@ async function bootstrap() {
   });
 
   client.on('qr', (qr) => {
+    qrBrowser.setQr(qr);
     logger.info('Scan this QR code with WhatsApp to authenticate:');
     qrcode.generate(qr, { small: false }, (qrText) => {
       logger.info(`\n${qrText}`);
@@ -120,14 +128,17 @@ async function bootstrap() {
   });
 
   client.on('auth_failure', (message) => {
+    qrBrowser.setStatus('auth_failure');
     logger.error(`WhatsApp authentication failed: ${message}`);
   });
 
   client.on('authenticated', () => {
+    qrBrowser.setStatus('authenticating');
     logger.info('WhatsApp authentication successful.');
   });
 
   client.on('ready', () => {
+    qrBrowser.setStatus('ready');
     logger.info('Study bot is ready and listening for messages.');
   });
 
@@ -194,11 +205,13 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
   });
 
   client.on('disconnected', (reason) => {
+    qrBrowser.setStatus('disconnected');
     logger.warn(`WhatsApp client disconnected: ${reason}`);
   });
 
   async function shutdown(signal) {
     logger.info(`Shutting down bot after ${signal}...`);
+    qrBrowser.close();
     await quizService.stopAll();
     if (db && typeof db.close === 'function') {
       db.close();

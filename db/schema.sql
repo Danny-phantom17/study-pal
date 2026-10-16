@@ -146,3 +146,23 @@ CREATE TABLE IF NOT EXISTS achievements (
   PRIMARY KEY (user_id, badge_key),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE IF NOT EXISTS coach_reading_passages (
+  user_id TEXT NOT NULL,
+  local_date TEXT NOT NULL,
+  title TEXT NOT NULL,
+  passage TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, local_date)
+);
+
+CREATE TABLE IF NOT EXISTS coach_reading_attempts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL,
+  local_date TEXT NOT NULL,
+  score INTEGER NOT NULL,
+  feedback TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_coach_reading_attempts_user_date
+  ON coach_reading_attempts(user_id, local_date);

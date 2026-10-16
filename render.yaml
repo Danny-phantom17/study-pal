@@ -56,3 +56,5 @@ services:
         sync: false
       - key: ADMIN_WHATSAPP_NUMBER
         sync: false
+      - key: READING_COACH_PHONE_NUMBER
+        sync: false

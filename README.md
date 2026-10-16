@@ -262,6 +262,9 @@ npm start
 ```
 
 When the QR code appears, open WhatsApp, go to Linked devices, and scan the code.
+The bot also opens a local browser page with the QR code automatically. This page uses a `127.0.0.1` address because it is served locally; it is not WhatsApp Web. After scanning, the page reports when the bot is connected. The bot runs WhatsApp in the background and does not open a separate WhatsApp Web window. Replies are sent without marking the chat as seen.
+
+For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env` or the Render environment. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
 
 ## Question Bank
 

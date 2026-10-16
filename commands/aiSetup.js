@@ -1,4 +1,3 @@
-const path = require('path');
 const { createDb } = require('../db/db');
 const { createGeminiProvider } = require('../services/ai/aiProvider');
 const { createTutorService } = require('../services/ai/tutorService');
@@ -8,6 +7,8 @@ const { createQuizService } = require('../services/quizService');
 const { createReminderService } = require('../reminders/reminderService');
 const { createCommandRouter } = require('./commandRouter');
 const { createSubscriptionService } = require('../services/subscriptionService');
+const { getConfig } = require('../config/env');
+const { createReadingCoachService } = require('../services/ai/readingCoachService');
 const { logger } = require('../utils/logger');
 
 /**
@@ -26,15 +27,16 @@ const { logger } = require('../utils/logger');
  * @param {object} params.client - your whatsapp-web.js Client instance
  */
 function createAiSetup({ sheetsService, prefix, client }) {
-  const dbPath = process.env.STUDYPAL_DB_PATH || path.join(__dirname, '..', 'data', 'studypal.db');
-  const db = createDb(dbPath);
+  const config = getConfig();
+  const db = createDb(config.database.path);
 
   const aiProvider = createGeminiProvider({
-    apiKey: process.env.GEMINI_API_KEY,
+    apiKey: config.geminiApiKey,
   });
 
   const subscriptionService = createSubscriptionService({ db });
   const tutorService = createTutorService({ aiProvider, db });
+  const readingCoachService = createReadingCoachService({ aiProvider, db });
   const stateStore = createConversationStateStore();
 
   const explanationFlow = createExplanationFlow({
@@ -63,19 +65,19 @@ function createAiSetup({ sheetsService, prefix, client }) {
   // quizService's onQuizStarted hook below for how it finds out.
   const reminderService = createReminderService({
     client,
-    groupChatId: process.env.STUDY_GROUP_CHAT_ID,
-    adminNumber: process.env.ADMIN_WHATSAPP_NUMBER,
-    startHour: Number(process.env.REMINDER_START_HOUR || 21),
+    groupChatId: config.whatsapp.studyGroupChatId,
+    adminNumber: config.whatsapp.adminNumber,
+    startHour: config.quiz.reminderStartHour,
   });
   reminderService.start();
 
   const quizService = createQuizService({
     sheetsService,
     db,
-    timeLimitSeconds: Number(process.env.QUIZ_TIME_LIMIT_SECONDS || 30),
-    pointsPerCorrectAnswer: Number(process.env.POINTS_PER_CORRECT_ANSWER || 1.67),
-    maxAttemptsPerQuestion: 2,
-    questionLimit: Number(process.env.QUIZ_QUESTION_COUNT || 20),
+    timeLimitSeconds: config.quiz.timeLimitSeconds,
+    pointsPerCorrectAnswer: config.quiz.pointsPerCorrectAnswer,
+    maxAttemptsPerQuestion: config.quiz.maxAttemptsPerQuestion,
+    questionLimit: config.quiz.questionCount,
     explanationFlow,
     sendDirectMessage,
     subscriptionService,
@@ -83,7 +85,7 @@ function createAiSetup({ sheetsService, prefix, client }) {
   });
 
   const router = createCommandRouter({
-    prefix,
+    prefix: prefix || config.commandPrefix,
     quizService,
     sheetsService,
     db,
@@ -93,6 +95,8 @@ function createAiSetup({ sheetsService, prefix, client }) {
     subscriptionService,
     sendDirectMessage,
     client,
+    readingCoachService,
+    readingCoachPhoneNumber: config.whatsapp.readingCoachPhoneNumber,
   });
 
   return { db, quizService, router };
