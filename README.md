@@ -25,7 +25,7 @@ Quizzes are not run in the group. If a student sends `!quiz` in a group, StudyPa
 - Weekly reports
 - Wrong-answer review
 - Optional Google Sheets integration for legacy points, attendance, and sheet-hosted questions
-- Railway persistent service deployment with a persistent volume
+- AWS EC2 worker deployment with persistent EBS storage
 
 ## Commands
 
@@ -190,7 +190,7 @@ Admins can be added or removed from the database without changing code. VIP user
 
 The owner role cannot be removed or assigned through chat commands.
 
-Premium payment details shown to students come from `BANK_NAME`, `BANK_ACCOUNT_NAME`, and `BANK_ACCOUNT_NUMBER`. Configure these privately in Railway before enabling paid subscriptions.
+Premium payment details shown to students come from `BANK_NAME`, `BANK_ACCOUNT_NAME`, and `BANK_ACCOUNT_NUMBER`. Configure these privately on the EC2 instance before enabling paid subscriptions.
 
 Students type `subscribe` to view the payment details. After payment, they type `payment` and answer:
 
@@ -247,7 +247,7 @@ npm start
 When the QR code appears, open WhatsApp, go to Linked devices, and scan the code.
 The bot also opens a local browser page with the QR code automatically. This page uses a `127.0.0.1` address because it is served locally; it is not WhatsApp Web. After scanning, the page reports when the bot is connected. The bot runs WhatsApp in the background and does not open a separate WhatsApp Web window. Replies are sent without marking the chat as seen.
 
-For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env` or Railway Variables. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
+For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env`. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
 
 ## Question Bank
 
@@ -265,14 +265,23 @@ Subject files live in `data/` as JSON arrays. Each question should follow this s
 
 AI explains questions, but the question bank remains the source of truth.
 
-## Deploy To Railway
+## Deploy To AWS EC2
 
-StudyPal runs as a persistent WhatsApp worker and does not need a public web domain.
+StudyPal is a persistent WhatsApp worker. It does not need a public web domain or open application ports.
 
-1. In Railway, create a project and add a service from this GitHub repository on the `main` branch. The repository root contains the `Dockerfile` and `package.json`.
-2. Railway detects the `Dockerfile`. It installs the Linux libraries Chrome needs, then runs `npm ci`; the package `postinstall` script installs Chrome. The container starts with `npm start`.
-3. Attach a Railway Volume to the service with mount path `/data`. Set the service to one replica because StudyPal uses one WhatsApp session and a local SQLite database. Do not mount over `/app/data`, which contains the question bank files.
-4. Add these service variables in Railway. Keep secrets in Railway Variables; do not commit them to Git.
+1. Launch a Linux EC2 instance and attach a separate encrypted EBS data volume. Set the data volume to persist when the instance is terminated. Attach and mount that volume at `/mnt/studypal`, and configure it to mount by UUID after each reboot. Follow the [AWS EBS volume setup guide](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-using-volumes.html); format only a new, empty volume.
+2. In the instance security group, allow SSH only from your own IP address. Keep outbound internet access available for WhatsApp and Gemini; do not open inbound application ports.
+3. Install Docker on the instance. On Amazon Linux 2023, run:
+
+```bash
+sudo yum update -y
+sudo yum install -y docker
+sudo systemctl enable --now docker
+sudo usermod -aG docker ec2-user
+```
+
+Reconnect your SSH session after adding the user to the Docker group.
+4. Clone this repository, create `.env` from `.env.example`, and fill in the variables below. Keep `.env` private and set its permissions to owner-only.
 
 ```env
 NODE_ENV=production
@@ -282,6 +291,7 @@ PUPPETEER_HEADLESS=true
 WEBJS_CLEAR_CHROMIUM_LOCKS=true
 WEBJS_AUTH_DIR=/data/.wwebjs_auth
 STUDYPAL_DB_PATH=/data/studypal.db
+WEBJS_PAIRING_PHONE_NUMBER=234...
 STUDY_GROUP_CHAT_ID=...
 ADMIN_WHATSAPP_NUMBER=...
 BANK_NAME=...
@@ -290,17 +300,26 @@ BANK_ACCOUNT_NUMBER=...
 PREMIUM_PRICE=3000
 ```
 
-`STUDY_GROUP_CHAT_ID`, `ADMIN_WHATSAPP_NUMBER`, and the bank fields can be left unset if you do not use those features. `APPS_SCRIPT_WEB_APP_URL` and service-account Google Sheets credentials are optional.
+`STUDY_GROUP_CHAT_ID`, `ADMIN_WHATSAPP_NUMBER`, the bank fields, and `WEBJS_PAIRING_PHONE_NUMBER` can be left unset if you do not use those features. `APPS_SCRIPT_WEB_APP_URL` and service-account Google Sheets credentials are optional. The pairing phone number is international digits without `+`.
 
-5. For first-time WhatsApp linking, set `WEBJS_PAIRING_PHONE_NUMBER` to the account number in international digits without `+`. Use the pairing code printed in the deployment logs. Keep the volume attached so both the linked session and SQLite history survive restarts.
-6. Deploy the service and check its logs for `Study bot is ready and listening for messages.` Keep one replica attached to the volume.
+5. Build and start the single worker from the repository root:
 
-Railway mounts volumes at runtime. The `/data` mount persists the database and WhatsApp session across deployments; the service should not be scaled to multiple replicas while using this local session and SQLite setup.
+```bash
+docker build -t studypal .
+docker run -d --name studypal --restart unless-stopped --init --env-file .env \
+  --volume /mnt/studypal:/data \
+  --env WEBJS_AUTH_DIR=/data/.wwebjs_auth \
+  --env STUDYPAL_DB_PATH=/data/studypal.db \
+  studypal
+docker logs -f studypal
+```
 
-If you need to migrate existing study records, stop the local bot and make a consistent SQLite backup before uploading it to the volume. Do not copy a live database's `-wal` or `-shm` sidecars separately.
+The Dockerfile installs Chrome's Linux runtime libraries and runs `npm ci`; the package `postinstall` installs the matching Chrome browser. For first-time WhatsApp linking, use the pairing code printed in the container logs. The Docker restart policy brings the worker back after host reboots, and the mounted EBS volume retains the SQLite database and WhatsApp session.
+
+Keep this as a single worker because StudyPal uses one WhatsApp session and a local SQLite database. Configure EBS snapshots for backups. If you need existing study records, stop the local bot and make a consistent SQLite backup before copying it to `/mnt/studypal`; do not copy a live database's `-wal` or `-shm` sidecars separately.
 
 ## Notes
 
 - WhatsApp Web automation depends on a stable linked-device session.
-- For long-running production use, monitor Railway deployment logs after deploys and WhatsApp reconnects.
+- For long-running production use, monitor the Docker logs after deploys and WhatsApp reconnects.
 - If Puppeteer/Chromium fails, keep `PUPPETEER_HEADLESS=true` and check the deployment logs for browser installation issues.
