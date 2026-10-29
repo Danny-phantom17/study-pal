@@ -1,0 +1,12 @@
+.git
+node_modules
+.env
+.env.*
+!.env.example
+.wwebjs_auth
+.wwebjs_cache
+.chrome-diagnostic
+data/*.db
+data/*.db-*
+*.log
+coverage

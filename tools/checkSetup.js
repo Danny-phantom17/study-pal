@@ -56,7 +56,7 @@ reportGroup('Required AI Tutor', ['GEMINI_API_KEY']);
 reportGroup('Google Sheets - Apps Script (optional)', appsScriptGoogleSheets);
 reportGroup('Google Sheets - Service Account (optional)', serviceAccountGoogleSheets);
 reportGroup('Internet Question Lookup (optional)', optionalInternetLookup);
-console.log('\nWhatsApp / Render Persistence');
+console.log('\nWhatsApp / Persistent Storage');
 reportOptionalSetting('WEBJS_AUTH_DIR', hasValue('WEBJS_AUTH_DIR') || hasValue('WWEBJS_AUTH_DIR'));
 reportOptionalSetting('STUDYPAL_DB_PATH', hasValue('STUDYPAL_DB_PATH'));
 reportOptionalSetting('WEBJS_CLEAR_CHROMIUM_LOCKS', hasValue('WEBJS_CLEAR_CHROMIUM_LOCKS'));

@@ -25,7 +25,7 @@ Quizzes are not run in the group. If a student sends `!quiz` in a group, StudyPa
 - Weekly reports
 - Wrong-answer review
 - Optional Google Sheets integration for legacy points, attendance, and sheet-hosted questions
-- Render Background Worker deployment with persistent disk support
+- Railway persistent service deployment with a persistent volume
 
 ## Commands
 
@@ -101,8 +101,9 @@ COMMAND_PREFIX=!
 QUIZ_QUESTION_COUNT=20
 QUIZ_TIME_LIMIT_SECONDS=30
 POINTS_PER_CORRECT_ANSWER=1.67
-WWEBJS_AUTH_DIR=.wwebjs_auth
+WEBJS_AUTH_DIR=.wwebjs_auth
 STUDYPAL_DB_PATH=data/studypal.db
+PUPPETEER_HEADLESS=true
 FREE_DAILY_QUESTIONS=5
 FREE_FOLLOWUPS_PER_QUESTION=3
 FREE_REVIEW_LIMIT=5
@@ -189,7 +190,7 @@ Admins can be added or removed from the database without changing code. VIP user
 
 The owner role cannot be removed or assigned through chat commands.
 
-Premium payment details shown to students come from `BANK_NAME`, `BANK_ACCOUNT_NAME`, and `BANK_ACCOUNT_NUMBER`. Configure these privately in Render before enabling paid subscriptions.
+Premium payment details shown to students come from `BANK_NAME`, `BANK_ACCOUNT_NAME`, and `BANK_ACCOUNT_NUMBER`. Configure these privately in Railway before enabling paid subscriptions.
 
 Students type `subscribe` to view the payment details. After payment, they type `payment` and answer:
 
@@ -246,7 +247,7 @@ npm start
 When the QR code appears, open WhatsApp, go to Linked devices, and scan the code.
 The bot also opens a local browser page with the QR code automatically. This page uses a `127.0.0.1` address because it is served locally; it is not WhatsApp Web. After scanning, the page reports when the bot is connected. The bot runs WhatsApp in the background and does not open a separate WhatsApp Web window. Replies are sent without marking the chat as seen.
 
-For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env` or the Render environment. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
+For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env` or Railway Variables. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
 
 ## Question Bank
 
@@ -264,45 +265,42 @@ Subject files live in `data/` as JSON arrays. Each question should follow this s
 
 AI explains questions, but the question bank remains the source of truth.
 
-## Deploy To Render
+## Deploy To Railway
 
-This repo includes `render.yaml` for a Render Background Worker.
+StudyPal runs as a persistent WhatsApp worker and does not need a public web domain.
 
-1. Connect this repository to Render and create a Blueprint from the `render.yaml` at the repository root.
-2. Fill the prompted values in Render, including the Gemini key, WhatsApp admin/group settings, and bank details used for Premium payments.
-3. The Blueprint uses:
-
-```bash
-Build command: npm ci
-Start command: npm start
-```
-
-4. Set or verify these environment variables in Render:
+1. In Railway, create a project and add a service from this GitHub repository on the `main` branch. The repository root contains the `Dockerfile` and `package.json`.
+2. Railway detects the `Dockerfile`. It installs the Linux libraries Chrome needs, then runs `npm ci`; the package `postinstall` script installs Chrome. The container starts with `npm start`.
+3. Attach a Railway Volume to the service with mount path `/data`. Set the service to one replica because StudyPal uses one WhatsApp session and a local SQLite database. Do not mount over `/app/data`, which contains the question bank files.
+4. Add these service variables in Railway. Keep secrets in Railway Variables; do not commit them to Git.
 
 ```env
+NODE_ENV=production
 GEMINI_API_KEY=...
+COMMAND_PREFIX=!
+PUPPETEER_HEADLESS=true
+WEBJS_CLEAR_CHROMIUM_LOCKS=true
+WEBJS_AUTH_DIR=/data/.wwebjs_auth
+STUDYPAL_DB_PATH=/data/studypal.db
 STUDY_GROUP_CHAT_ID=...
 ADMIN_WHATSAPP_NUMBER=...
 BANK_NAME=...
 BANK_ACCOUNT_NAME=...
 BANK_ACCOUNT_NUMBER=...
+PREMIUM_PRICE=3000
 ```
 
-`APPS_SCRIPT_WEB_APP_URL` is optional. Leave it unset if you do not use Google Sheets.
+`STUDY_GROUP_CHAT_ID`, `ADMIN_WHATSAPP_NUMBER`, and the bank fields can be left unset if you do not use those features. `APPS_SCRIPT_WEB_APP_URL` and service-account Google Sheets credentials are optional.
 
-5. Keep these disk-backed values from `render.yaml`:
+5. For first-time WhatsApp linking, set `WEBJS_PAIRING_PHONE_NUMBER` to the account number in international digits without `+`. Use the pairing code printed in the deployment logs. Keep the volume attached so both the linked session and SQLite history survive restarts.
+6. Deploy the service and check its logs for `Study bot is ready and listening for messages.` Keep one replica attached to the volume.
 
-```env
-WWEBJS_AUTH_DIR=/var/data/studypal/.wwebjs_auth
-STUDYPAL_DB_PATH=/var/data/studypal/studypal.db
-```
+Railway mounts volumes at runtime. The `/data` mount persists the database and WhatsApp session across deployments; the service should not be scaled to multiple replicas while using this local session and SQLite setup.
 
-6. Deploy and link the WhatsApp device using the pairing method shown in Render logs.
-
-Render free instances do not support background workers. Use at least the Starter plan and attach the persistent disk so WhatsApp auth and the SQLite learning history survive deploys and restarts.
+If you need to migrate existing study records, stop the local bot and make a consistent SQLite backup before uploading it to the volume. Do not copy a live database's `-wal` or `-shm` sidecars separately.
 
 ## Notes
 
 - WhatsApp Web automation depends on a stable linked-device session.
-- For long-running production use, monitor Render logs after deploys and WhatsApp reconnects.
-- If Puppeteer/Chromium fails on Render, keep `PUPPETEER_HEADLESS=true` and check the Render build logs for browser install issues.
+- For long-running production use, monitor Railway deployment logs after deploys and WhatsApp reconnects.
+- If Puppeteer/Chromium fails, keep `PUPPETEER_HEADLESS=true` and check the deployment logs for browser installation issues.
