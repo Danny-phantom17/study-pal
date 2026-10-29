@@ -58,10 +58,11 @@ const envSchema = z.object({
   MAX_ATTEMPTS_PER_QUESTION: numericValue(2, { integer: true, positive: true }),
 
   FREE_DAILY_QUESTIONS: numericValue(5, { integer: true, minimum: 0 }),
-  FREE_DAILY_AI_MESSAGES: numericValue(5, { integer: true, minimum: 0 }),
+  FREE_DAILY_AI_MESSAGES: numericValue(10, { integer: true, minimum: 0 }),
   FREE_TRIAL_DAYS: numericValue(7, { integer: true, minimum: 0 }),
   FREE_TRIAL_DAILY_QUESTIONS: numericValue(20, { integer: true, minimum: 0 }),
   FREE_TRIAL_DAILY_SUBJECTS: numericValue(2, { integer: true, minimum: 0 }),
+  FREE_TRIAL_DAILY_AI_MESSAGES: numericValue(20, { integer: true, minimum: 0 }),
 
   JWT_SECRET: optionalString,
 }).superRefine((config, context) => {
@@ -135,6 +136,7 @@ function loadConfig(environment = process.env) {
       trialDays: env.FREE_TRIAL_DAYS,
       trialDailyQuestions: env.FREE_TRIAL_DAILY_QUESTIONS,
       trialDailySubjects: env.FREE_TRIAL_DAILY_SUBJECTS,
+      trialDailyAiMessages: env.FREE_TRIAL_DAILY_AI_MESSAGES,
     },
     jwtSecret: env.JWT_SECRET,
   };

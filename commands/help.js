@@ -92,7 +92,13 @@ async function handleHelpCommand({ message, prefix }) {
 
   try {
     const media = MessageMedia.fromFilePath(LOGO_PATH);
-    await message.reply(media, undefined, { caption: helpText });
+    // WhatsApp image captions are limited to 1,024 characters. The full
+    // command guide is longer, so send the logo with a short caption and
+    // the guide as a separate text message.
+    await message.reply(media, undefined, {
+      caption: '*StudyPal* - _Study. Practice. Improve._',
+    });
+    await message.reply(helpText);
   } catch (error) {
     await message.reply(helpText);
   }

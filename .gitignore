@@ -11,6 +11,7 @@ data/*.db-*
 
 .wwebjs_auth/
 .wwebjs_cache/
+.chrome-diagnostic/
 
 logs/
 *.log

@@ -30,6 +30,18 @@ function reportGroup(title, keys) {
   });
 }
 
+function reportOptionalSetting(title, configured) {
+  console.log(`${configured ? 'OK  ' : 'OK  (default)'} ${title}`);
+}
+
+function reportLimit(key, defaultValue) {
+  const configuredValue = String(process.env[key] || '').trim();
+  const value = configuredValue ? Number(configuredValue) : defaultValue;
+  const isValid = Number.isFinite(value) && value >= 0;
+  console.log(`${isValid ? 'OK  ' : 'FAIL'} ${key}: ${isValid ? value : 'must be a non-negative number'}${configuredValue ? '' : ' (default)'}`);
+  return isValid;
+}
+
 function nodeReady() {
   const [major, minor] = process.versions.node.split('.').map(Number);
   return major > 22 || (major === 22 && minor >= 5);
@@ -44,15 +56,27 @@ reportGroup('Required AI Tutor', ['GEMINI_API_KEY']);
 reportGroup('Google Sheets - Apps Script (optional)', appsScriptGoogleSheets);
 reportGroup('Google Sheets - Service Account (optional)', serviceAccountGoogleSheets);
 reportGroup('Internet Question Lookup (optional)', optionalInternetLookup);
-reportGroup('WhatsApp / Render Persistence', ['WEBJS_AUTH_DIR', 'STUDYPAL_DB_PATH']);
-reportGroup('WhatsApp Chromium Lock Cleanup', ['WEBJS_CLEAR_CHROMIUM_LOCKS']);
+console.log('\nWhatsApp / Render Persistence');
+reportOptionalSetting('WEBJS_AUTH_DIR', hasValue('WEBJS_AUTH_DIR') || hasValue('WWEBJS_AUTH_DIR'));
+reportOptionalSetting('STUDYPAL_DB_PATH', hasValue('STUDYPAL_DB_PATH'));
+reportOptionalSetting('WEBJS_CLEAR_CHROMIUM_LOCKS', hasValue('WEBJS_CLEAR_CHROMIUM_LOCKS'));
 reportGroup('WhatsApp Pairing Code (optional)', ['WEBJS_PAIRING_PHONE_NUMBER']);
-reportGroup('Subscription Limits', ['FREE_DAILY_QUIZ_LIMIT', 'FREE_FOLLOWUPS_PER_QUESTION', 'FREE_REVIEW_LIMIT']);
+console.log('\nSubscription Limits');
+const limitsValid = [
+  reportLimit('FREE_DAILY_QUESTIONS', 5),
+  reportLimit('FREE_DAILY_AI_MESSAGES', 10),
+  reportLimit('FREE_FOLLOWUPS_PER_QUESTION', 3),
+  reportLimit('FREE_REVIEW_LIMIT', 5),
+  reportLimit('FREE_TRIAL_DAYS', 7),
+  reportLimit('FREE_TRIAL_DAILY_QUESTIONS', 20),
+  reportLimit('FREE_TRIAL_DAILY_SUBJECTS', 2),
+  reportLimit('FREE_TRIAL_DAILY_AI_MESSAGES', 20),
+].every(Boolean);
 
 const sheetsReady = appsScriptGoogleSheets.every(hasValue) || serviceAccountGoogleSheets.every(hasValue);
 const customApiReady = hasValue('JAMB_QUESTION_API_URL');
 const googleSearchReady = hasValue('GOOGLE_SEARCH_API_KEY') && hasValue('GOOGLE_SEARCH_ENGINE_ID');
-const ready = hasValue('GEMINI_API_KEY') && nodeReady() && localQuestionBankReady();
+const ready = hasValue('GEMINI_API_KEY') && nodeReady() && localQuestionBankReady() && limitsValid;
 
 console.log('\nStatus');
 console.log(`Node ${process.versions.node}: ${nodeReady() ? 'ready' : 'requires >=22.5.0'}`);

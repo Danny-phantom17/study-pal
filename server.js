@@ -21,7 +21,7 @@ process.on('unhandledRejection', (reason) => {
   process.exit(1);
 });
 
-const commandPrefix = process.env.BOT_COMMAND_PREFIX || '!';
+const commandPrefix = process.env.BOT_COMMAND_PREFIX || process.env.COMMAND_PREFIX || '!';
 const webjsClientId = process.env.WEBJS_CLIENT_ID || 'study-group-bot';
 const webjsAuthDir = process.env.WEBJS_AUTH_DIR || process.env.WWEBJS_AUTH_DIR || undefined;
 const puppeteerExecutablePath = getPuppeteerExecutablePath();
@@ -72,6 +72,8 @@ async function bootstrap() {
         '--disable-sync',
         '--disable-translate',
         '--disable-accelerated-2d-canvas',
+        '--disable-crash-reporter',
+        '--disable-breakpad',
         '--no-first-run',
         '--no-zygote',
       ],
@@ -196,6 +198,14 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
   });
 
   client.on('message', async (message) => {
+    // WhatsApp Status updates can arrive through the same message event as
+    // chats. They are not replyable conversations; attempting message.reply
+    // on status@broadcast reaches whatsapp-web.js's unsupported status-send
+    // path and can terminate the bot on current WhatsApp Web builds.
+    if (message.from === 'status@broadcast' || message.to === 'status@broadcast') {
+      return;
+    }
+
     try {
       await router.handleMessage(message);
     } catch (error) {

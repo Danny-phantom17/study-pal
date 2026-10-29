@@ -34,7 +34,15 @@ function createAiSetup({ sheetsService, prefix, client }) {
     apiKey: config.geminiApiKey,
   });
 
-  const subscriptionService = createSubscriptionService({ db });
+  const subscriptionService = createSubscriptionService({
+    db,
+    freeDailyQuestionLimit: config.limits.freeDailyQuestions,
+    freeDailyAiLimit: config.limits.freeDailyAiMessages,
+    trialDays: config.limits.trialDays,
+    trialDailyQuestionLimit: config.limits.trialDailyQuestions,
+    trialDailySubjectLimit: config.limits.trialDailySubjects,
+    trialDailyAiLimit: config.limits.trialDailyAiMessages,
+  });
   const tutorService = createTutorService({ aiProvider, db });
   const readingCoachService = createReadingCoachService({ aiProvider, db });
   const stateStore = createConversationStateStore();

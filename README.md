@@ -97,20 +97,20 @@ Copy `.env.example` to `.env` and fill in at least:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
-BOT_COMMAND_PREFIX=!
+COMMAND_PREFIX=!
 QUIZ_QUESTION_COUNT=20
 QUIZ_TIME_LIMIT_SECONDS=30
 POINTS_PER_CORRECT_ANSWER=10
 WWEBJS_AUTH_DIR=.wwebjs_auth
 STUDYPAL_DB_PATH=data/studypal.db
-FREE_DAILY_QUESTION_LIMIT=5
+FREE_DAILY_QUESTIONS=5
 FREE_FOLLOWUPS_PER_QUESTION=3
 FREE_REVIEW_LIMIT=5
-FREE_DAILY_AI_LIMIT=10
-TRIAL_DAYS=7
-TRIAL_DAILY_QUESTION_LIMIT=20
-TRIAL_DAILY_SUBJECT_LIMIT=2
-TRIAL_DAILY_AI_LIMIT=20
+FREE_DAILY_AI_MESSAGES=10
+FREE_TRIAL_DAYS=7
+FREE_TRIAL_DAILY_QUESTIONS=20
+FREE_TRIAL_DAILY_SUBJECTS=2
+FREE_TRIAL_DAILY_AI_MESSAGES=20
 ```
 
 Optional group reminders:
@@ -145,19 +145,7 @@ Premium adds unlimited questions, unlimited subjects, unlimited AI tutor message
 
 Owner, Admin, VIP, and Premium users always receive unrestricted access. They are never affected by Free or Trial question limits, subject limits, AI limits, or future usage restrictions.
 
-Seeded Owner:
-
-```text
-Danny - +2347044438532
-```
-
-Seeded VIP users:
-
-```text
-Shedrach - +2349031103913
-Claudia - +2347060582146
-Vivian - +2348130351163
-```
+Owner and VIP phone profiles are seeded by the application. Do not commit live database files or credentials.
 
 When a student reaches a daily question or subject limit, StudyPal explains the limit and shows how to upgrade. If they answer `1` or `Yes` to an upgrade prompt, StudyPal shows subscription plans and payment instructions. If they answer `2` or `No`, StudyPal returns them to the main menu and reminds them they can still review quizzes, read explanations, check statistics, and participate in the community. Free and Trial limits reset automatically the following day.
 
@@ -201,13 +189,7 @@ Admins can be added or removed from the database without changing code. VIP user
 
 The owner role cannot be removed or assigned through chat commands.
 
-Premium payment details shown to students:
-
-```text
-Bank Name: PalmPay
-Account Name: Daniel Godwin Effiong
-Account Number: 7044438532
-```
+Premium payment details shown to students come from `BANK_NAME`, `BANK_ACCOUNT_NAME`, and `BANK_ACCOUNT_NUMBER`. Configure these privately in Render before enabling paid subscriptions.
 
 Students type `subscribe` to view the payment details. After payment, they type `payment` and answer:
 
@@ -286,23 +268,27 @@ AI explains questions, but the question bank remains the source of truth.
 
 This repo includes `render.yaml` for a Render Background Worker.
 
-1. Push `study-bot/` to GitHub as the repo root, or set the Render root directory to `study-bot`.
-2. In Render, create a Blueprint from `render.yaml`, or create a Background Worker manually.
-3. Use:
+1. Connect this repository to Render and create a Blueprint from the `render.yaml` at the repository root.
+2. Fill the prompted values in Render, including the Gemini key, WhatsApp admin/group settings, and bank details used for Premium payments.
+3. The Blueprint uses:
 
 ```bash
-Build command: npm install
+Build command: npm ci
 Start command: npm start
 ```
 
-4. Set secret environment variables in Render:
+4. Set or verify these environment variables in Render:
 
 ```env
 GEMINI_API_KEY=...
-APPS_SCRIPT_WEB_APP_URL=...
 STUDY_GROUP_CHAT_ID=...
 ADMIN_WHATSAPP_NUMBER=...
+BANK_NAME=...
+BANK_ACCOUNT_NAME=...
+BANK_ACCOUNT_NUMBER=...
 ```
+
+`APPS_SCRIPT_WEB_APP_URL` is optional. Leave it unset if you do not use Google Sheets.
 
 5. Keep these disk-backed values from `render.yaml`:
 
@@ -311,7 +297,7 @@ WWEBJS_AUTH_DIR=/var/data/studypal/.wwebjs_auth
 STUDYPAL_DB_PATH=/var/data/studypal/studypal.db
 ```
 
-6. Deploy and scan the WhatsApp QR code from Render logs.
+6. Deploy and link the WhatsApp device using the pairing method shown in Render logs.
 
 Render free instances do not support background workers. Use at least the Starter plan and attach the persistent disk so WhatsApp auth and the SQLite learning history survive deploys and restarts.
 
