@@ -34,6 +34,7 @@ const { CLARIFY_INTENT_REPLY } = require('../services/ai/shedShareService');
 const { createShedShareOutreachCommand } = require('./shedShareOutreach');
 const { createShedShareAccountsCommand } = require('./shedShareAccounts');
 const { createBusinessProfileCommand, createBusinessOutreachCommand } = require('./businessProfile');
+const { createSendListCommand } = require('./sendList');
 
 function createCommandRouter({ prefix, quizService, sheetsService, db, stateStore, explanationFlow, tutorService, subscriptionService, sendDirectMessage, client, readingCoachService, readingCoachPhoneNumber, shedShareService, businessSecretary }) {
   const pendingUpgradePrompts = new Map();
@@ -84,6 +85,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
     ['accounts', createShedShareAccountsCommand({ db, client, shedShareService })],
     ['business', createBusinessProfileCommand({ db })],
     ['outreach', createBusinessOutreachCommand({ db, client, businessSecretary })],
+    ['sendlist', createSendListCommand({ db, client })],
   ]);
 
   async function handleMessage(message) {

@@ -5,11 +5,8 @@ const { logger } = require('../utils/logger');
 const FOLLOW_UP_AFTER_MS = 3 * 24 * 60 * 60 * 1000;
 const CHECK_INTERVAL_MS = 60 * 1000;
 const SEND_HOUR_LAGOS = 10;
-const SEND_WINDOW_START_HOUR_LAGOS = 9;
-const SEND_WINDOW_END_HOUR_LAGOS = 19;
 const SEND_DAILY_CAP = 10;
 const MESSAGE_HISTORY_LIMIT = 30;
-const INITIAL_REVIEW_DELAY_MS = 8000;
 
 function createShedShareFollowUpService({ client, db, shedShareService }) {
   let interval = null;
@@ -44,8 +41,6 @@ function createShedShareFollowUpService({ client, db, shedShareService }) {
         try {
           const messages = await chat.fetchMessages({ limit: MESSAGE_HISTORY_LIMIT });
           if (!messages.length) continue;
-          if (!messages.some((message) => message.fromMe && looksLikeShedShareOutreach(message.body))) continue;
-
           claimed = db.claimShedShareFollowup(chatId, outreachMessageId);
           if (!claimed) continue;
 
@@ -68,33 +63,20 @@ function createShedShareFollowUpService({ client, db, shedShareService }) {
           const sentMessage = await client.sendMessage(chatId, decision.message);
           db.markShedShareFollowupSent(chatId, sentMessage?.id?._serialized || null);
           sentCount += 1;
-          logger.info(`Sent one scheduled ShedShare follow-up (${sentCount}/${SEND_DAILY_CAP} today).`);
+          logger.info(`Sent one scheduled WhatsApp follow-up (${sentCount}/${SEND_DAILY_CAP} today).`);
         } catch (error) {
           if (claimed) db.markShedShareFollowupFailed(chatId);
-          logger.error('Could not process a scheduled ShedShare follow-up', error);
+          logger.error('Could not process a scheduled WhatsApp follow-up', error);
         }
       }
     } catch (error) {
-      logger.error('ShedShare scheduled follow-up review failed', error);
+      logger.error('WhatsApp scheduled follow-up review failed', error);
     } finally {
       running = false;
     }
 
-    logger.info(`ShedShare scheduled review finished; sent ${sentCount} follow-up(s).`);
+    logger.info(`WhatsApp scheduled review finished; sent ${sentCount} follow-up(s).`);
     return reviewSucceeded;
-  }
-
-  async function runInitialReviewWithRetry(remainingRetries = 2) {
-    const success = await runScheduledReview();
-    if (success || remainingRetries <= 0) return;
-
-    const delayMs = (3 - remainingRetries) * 30 * 1000;
-    logger.warn(`WhatsApp could not complete the initial ShedShare review. Retrying in ${delayMs / 1000} seconds.`);
-    const retryTimer = setTimeout(() => {
-      runInitialReviewWithRetry(remainingRetries - 1)
-        .catch((error) => logger.error('Initial ShedShare follow-up retry failed', error));
-    }, delayMs);
-    retryTimer.unref?.();
   }
 
   function checkSchedule() {
@@ -102,28 +84,18 @@ function createShedShareFollowUpService({ client, db, shedShareService }) {
     if (hour < SEND_HOUR_LAGOS || lastRunDate === date || running) return;
 
     lastRunDate = date;
-    runScheduledReview().catch((error) => logger.error('ShedShare follow-up schedule failed', error));
+    runScheduledReview().catch((error) => logger.error('WhatsApp follow-up schedule failed', error));
   }
 
   function start() {
     if (interval) return;
 
     const now = getLagosTime();
-    if (now.hour >= SEND_WINDOW_START_HOUR_LAGOS && now.hour < SEND_WINDOW_END_HOUR_LAGOS) {
-      lastRunDate = now.date;
-      logger.info('The first eligible ShedShare follow-up review will run after WhatsApp finishes loading.');
-      const initialReviewTimer = setTimeout(() => {
-        runInitialReviewWithRetry()
-          .catch((error) => logger.error('Initial ShedShare follow-up review failed', error));
-      }, INITIAL_REVIEW_DELAY_MS);
-      initialReviewTimer.unref?.();
-    } else if (now.hour >= SEND_HOUR_LAGOS) {
-      lastRunDate = now.date;
-    }
+    if (now.hour >= SEND_HOUR_LAGOS) lastRunDate = now.date;
 
     interval = setInterval(checkSchedule, CHECK_INTERVAL_MS);
     interval.unref?.();
-    logger.info('ShedShare follow-ups are scheduled daily at 10:00 Africa/Lagos: one message per eligible chat, no sooner than 3 days after outreach, with a maximum of 10 per day.');
+    logger.info('One-time WhatsApp follow-ups are scheduled daily at 10:00 Africa/Lagos: only direct chats with a clear unanswered request, at least 3 days since the last outgoing message, at most one message per chat, maximum 10 per day.');
   }
 
   function stop() {
@@ -146,7 +118,7 @@ async function getChatsWithRetry(client) {
         try {
           const directChats = await getDirectChatsOnly(client);
           if (directChats.length) {
-            logger.info(`Loaded ${directChats.length} direct WhatsApp chats for ShedShare review.`);
+            logger.info(`Loaded ${directChats.length} direct WhatsApp chats for follow-up review.`);
             return directChats;
           }
         } catch (fallbackError) {
@@ -170,6 +142,7 @@ async function getDirectChatsOnly(client) {
       .filter((chat) => {
         const chatId = chat?.id?._serialized || '';
         return !chat.groupMetadata
+          && chatId.endsWith('@c.us')
           && !/@g\.us$|@broadcast$|@newsletter$/.test(chatId)
           && chatId !== 'status@broadcast';
       })
@@ -177,15 +150,16 @@ async function getDirectChatsOnly(client) {
   });
 
   const directChats = [];
+  let failedCount = 0;
   for (const chatId of chatIds) {
     try {
       const chat = await client.getChatById(chatId);
       if (chat && !chat.isGroup && !chat.isChannel) directChats.push(chat);
     } catch (error) {
-      logger.warn('WhatsApp could not hydrate direct chats for ShedShare history review; skipping this startup scan.', error);
-      return [];
+      failedCount += 1;
     }
   }
+  if (failedCount) logger.warn(`Could not load ${failedCount} direct chat(s); continuing the follow-up review with the available WhatsApp numbers.`);
   return directChats;
 }
 
@@ -205,8 +179,4 @@ function getLagosTime(date = new Date()) {
   };
 }
 
-function looksLikeShedShareOutreach(message) {
-  return /shed\s?share|rent(?:al|er|ing)?|founding renter|list(?:ing)? an? item|marketplace/i.test(String(message || ''));
-}
-
-module.exports = { createShedShareFollowUpService, getLagosTime, looksLikeShedShareOutreach, getChatsWithRetry, getDirectChatsOnly };
+module.exports = { createShedShareFollowUpService, getLagosTime, getChatsWithRetry, getDirectChatsOnly };

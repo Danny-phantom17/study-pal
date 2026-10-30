@@ -207,7 +207,7 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
     if (!ownChatId || db.normalizeUserId(message.to) !== db.normalizeUserId(ownChatId)) return;
 
     const text = String(message.body || '').trim();
-    if (!/^(?:!|-)?\s*(?:lister|renter)(?:\s|$)/i.test(text)) return;
+    if (!/^(?:!|-)?\s*(?:lister|renter|account|accounts|business|outreach|sendlist)(?:\s|$)/i.test(text)) return;
 
     logger.info('Owner ShedShare outreach command received from the account self-chat.');
     try {

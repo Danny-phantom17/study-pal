@@ -83,6 +83,7 @@ async function handleHelpCommand({ message, prefix }) {
     'business add | key | name | about | offerings | customers | rules | follow-up days | max follow-ups',
     'business list / business show <key> / business accounts <key>',
     'outreach <key> | <phone> | <name> | <location> - Start outreach using that profile',
+    'sendlist <numbers separated by commas> | <exact message> - Send your message to up to 100 numbers',
     '',
     '*Examples*',
     'quiz',

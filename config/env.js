@@ -38,6 +38,9 @@ const envSchema = z.object({
   COMMAND_PREFIX: z.string().trim().min(1).max(3).default('!'),
 
   GEMINI_API_KEY: optionalString,
+  AI_PROVIDER: z.enum(['gemini', 'openai']).default('gemini'),
+  OPENAI_API_KEY: optionalString,
+  OPENAI_MODEL: z.string().trim().min(1).default('gpt-6-luna'),
 
   STUDYPAL_DB_PATH: z.string().trim().min(1).default('./data/studypal.db'),
 
@@ -66,11 +69,19 @@ const envSchema = z.object({
 
   JWT_SECRET: optionalString,
 }).superRefine((config, context) => {
-  if (config.NODE_ENV === 'production' && !config.GEMINI_API_KEY) {
+  if (config.NODE_ENV === 'production'
+    && config.AI_PROVIDER === 'gemini' && !config.GEMINI_API_KEY) {
     context.addIssue({
       code: z.ZodIssueCode.custom,
       path: ['GEMINI_API_KEY'],
       message: 'Required in production',
+    });
+  }
+  if (config.NODE_ENV === 'production' && config.AI_PROVIDER === 'openai' && !config.OPENAI_API_KEY) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['OPENAI_API_KEY'],
+      message: 'Required in production when AI_PROVIDER=openai',
     });
   }
 
@@ -108,6 +119,9 @@ function loadConfig(environment = process.env) {
     port: env.PORT,
     commandPrefix: env.COMMAND_PREFIX,
     geminiApiKey: env.GEMINI_API_KEY,
+    aiProvider: env.AI_PROVIDER,
+    openAiApiKey: env.OPENAI_API_KEY,
+    openAiModel: env.OPENAI_MODEL,
     database: {
       path: env.STUDYPAL_DB_PATH,
     },

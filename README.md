@@ -72,6 +72,8 @@ The ShedShare outreach commands are private-chat owner commands. `!lister` sends
 
 The owner can add future business profiles directly in the WhatsApp self-chat without editing code. Send `!business help` for the format. Each profile stores its business name, description, offerings, intended customers, interaction rules, follow-up interval, and maximum number of follow-ups in SQLite. `!business list`, `!business show <key>`, and `!business accounts <key>` manage and inspect them. `!outreach <key> | <phone> | <name> | <location>` starts a customized conversation; subsequent replies use only that profile, and scheduled follow-ups obey its configured interval/count. Re-adding a key updates the profile; setting max follow-ups to 0 disables them. These profiles are private owner-managed records; customer chats only receive business information needed for that business's conversation.
 
+The owner can also send an exact message to a list of saved or unsaved WhatsApp numbers with `!sendlist <number1, number2, ...> | <message>`. Numbers are normalized, deduplicated, and limited to 100 per command. Sends are paced, and the bot replies with success and failure counts.
+
 Community group:
 
 ```text
@@ -92,7 +94,9 @@ Make the questions harder.
 
 For ordinary private messages, Gemini routes explicit study requests to the StudyPal tutor and ShedShare marketplace questions to the customer-service secretary. If the intent is unclear, the bot asks which kind of help is needed. StudyPal commands and active quiz flows keep their existing handling. ShedShare answers use the product guidance in `services/ai/shedShareService.js`; the bot does not have live access to listings or bookings, so the website and booking screens remain authoritative for current availability, prices, and payment status.
 
-The ShedShare secretary reviews existing one-to-one chat histories and checks daily at 10:00 Africa/Lagos for clear ShedShare outreach with no reply that is at least 3 days old. It sends at most one follow-up per chat and no more than 10 per day. Group chats, unrelated messages, conversations with a reply or decline, and chats already followed up are excluded. The secretary thanks people who decline, asks interested prospects what items they rent out, and says ShedShare will notify them before launch as founding renters. Follow-up state is stored in the StudyPal SQLite database.
+At 10:00 Africa/Lagos daily, StudyPal reviews direct one-to-one WhatsApp chats, including unsaved phone-number chats. It considers a single follow-up only when the last outgoing message is at least 3 days old and the conversation clearly expects an answer or next step, with no later reply, refusal, or completed exchange. It sends at most one follow-up per chat and no more than 10 per day. Groups and status chats are excluded; follow-up state is stored in SQLite.
+
+Gemini is the default AI provider. To switch providers later, set `AI_PROVIDER=openai`, add `OPENAI_API_KEY`, choose an `OPENAI_MODEL`, and restart. The OpenAI adapter uses the Responses API for text/images and the audio transcription endpoint for voice notes; see OpenAI's [Responses API](https://platform.openai.com/docs/api-reference/responses) and [speech-to-text guide](https://developers.openai.com/api/docs/guides/speech-to-text).
 
 ## Install
 

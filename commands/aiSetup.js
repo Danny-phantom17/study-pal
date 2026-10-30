@@ -1,5 +1,5 @@
 const { createDb } = require('../db/db');
-const { createGeminiProvider } = require('../services/ai/aiProvider');
+const { createAiProvider } = require('../services/ai/aiProvider');
 const { createTutorService } = require('../services/ai/tutorService');
 const { createConversationStateStore } = require('../state/conversationStateStore');
 const { createExplanationFlow } = require('../explanation/explanationFlow');
@@ -34,8 +34,11 @@ function createAiSetup({ sheetsService, prefix, client }) {
   const config = getConfig();
   const db = createDb(config.database.path);
 
-  const aiProvider = createGeminiProvider({
-    apiKey: config.geminiApiKey,
+  const aiProvider = createAiProvider({
+    provider: config.aiProvider,
+    geminiApiKey: config.geminiApiKey,
+    openAiApiKey: config.openAiApiKey,
+    openAiModel: config.openAiModel,
   });
 
   const subscriptionService = createSubscriptionService({
