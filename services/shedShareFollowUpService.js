@@ -78,6 +78,43 @@ function createShedShareFollowUpService({ client, db, shedShareService }) {
     return reviewSucceeded;
   }
 
+  async function previewDirectChats() {
+    const chats = await getChatsWithRetry(client);
+    const ownChatId = client.info?.wid?._serialized;
+    const directChats = chats.filter((chat) => {
+      const id = chat.id?._serialized || '';
+      return id && id !== ownChatId && !chat.isGroup && !chat.isChannel && !chat.isReadOnly
+        && id !== 'status@broadcast' && !id.endsWith('@broadcast');
+    });
+    const latestThree = directChats
+      .filter((chat) => chat.lastMessage?.timestamp)
+      .sort((a, b) => b.lastMessage.timestamp - a.lastMessage.timestamp)
+      .slice(0, 3)
+      .map((chat) => ({
+        contact: chat.name || (chat.id._serialized.endsWith('@lid') ? 'WhatsApp contact' : chat.id._serialized.split('@')[0]),
+        lastMessageAt: new Date(chat.lastMessage.timestamp * 1000).toISOString(),
+        lastMessageFromOwner: Boolean(chat.lastMessage.fromMe),
+        lastMessage: String(chat.lastMessage.body || `[${chat.lastMessage.type || 'message'}]`).slice(0, 180),
+      }));
+
+    let eligibleFollowupsNow = 0;
+    for (const chat of directChats) {
+      const chatId = chat.id._serialized;
+      if (!isFollowUpDue(chat.lastMessage) || db.hasShedShareFollowupClaim(chatId)) continue;
+      const messages = await chat.fetchMessages({ limit: MESSAGE_HISTORY_LIMIT });
+      const decision = await shedShareService.createScheduledFollowUp({
+        messages: messages.map((message) => ({
+          fromMe: message.fromMe,
+          timestamp: message.timestamp,
+          type: message.type,
+          body: String(message.body || '').slice(0, 2000),
+        })),
+      });
+      if (decision.eligible) eligibleFollowupsNow += 1;
+    }
+    return { scannedDirectChats: directChats.length, latestThree, eligibleFollowupsNow };
+  }
+
   function checkSchedule() {
     const { date } = getLagosTime();
     if (!shouldRunScheduledReview(new Date(), lastRunDate, running)) return;
@@ -103,7 +140,7 @@ function createShedShareFollowUpService({ client, db, shedShareService }) {
     interval = null;
   }
 
-  return { start, stop, runScheduledReview };
+  return { start, stop, runScheduledReview, previewDirectChats };
 }
 
 async function getChatsWithRetry(client) {
@@ -135,31 +172,68 @@ async function getChatsWithRetry(client) {
 
 async function getDirectChatsOnly(client) {
   if (!client.pupPage) return [];
-  const chatIds = await client.pupPage.evaluate(() => {
+  const rawChats = await client.pupPage.evaluate(async () => {
     const chats = window.require('WAWebCollections').Chat.getModelsArray();
-    return chats
-      .filter((chat) => {
+    const selected = chats.filter((chat) => {
         const chatId = chat?.id?._serialized || '';
         return !chat.groupMetadata
-          && chatId.endsWith('@c.us')
+          && /@(?:c\.us|lid)$/.test(chatId)
           && !/@g\.us$|@broadcast$|@newsletter$/.test(chatId)
           && chatId !== 'status@broadcast';
-      })
-      .map((chat) => chat.id._serialized);
+      });
+
+    const results = [];
+    for (const chat of selected) {
+      try {
+        let messages = chat.msgs?.getModelsArray?.() || [];
+        while (messages.length < MESSAGE_HISTORY_LIMIT) {
+          let earlier;
+          try {
+            earlier = await window.require('WAWebChatLoadMessages').loadEarlierMsgs({ chat });
+          } catch (_) {
+            break;
+          }
+          if (!earlier?.length) break;
+          messages = chat.msgs?.getModelsArray?.() || [...earlier, ...messages];
+        }
+        messages = messages.slice(-MESSAGE_HISTORY_LIMIT);
+        results.push({
+          id: chat.id._serialized,
+          name: chat.name || chat.formattedTitle || chat.contact?.name || '',
+          isGroup: false,
+          isChannel: false,
+          isReadOnly: false,
+          messages: messages.filter((message) => !message.isNotification
+            && !['notification_template', 'protocol', 'ciphertext', 'e2e_notification'].includes(message.type)).map((message) => ({
+            id: { _serialized: message.id?._serialized || '', fromMe: Boolean(message.id?.fromMe) },
+            fromMe: Boolean(message.id?.fromMe),
+            timestamp: Number(message.t || 0),
+            type: message.type || 'chat',
+            body: String(message.body || message.caption || message.pollName || '').slice(0, 2000),
+          })),
+        });
+      } catch (_) {
+        // A malformed or transitioning chat should not prevent scanning its siblings.
+      }
+    }
+    return results;
   });
 
-  const directChats = [];
-  let failedCount = 0;
-  for (const chatId of chatIds) {
-    try {
-      const chat = await client.getChatById(chatId);
-      if (chat && !chat.isGroup && !chat.isChannel) directChats.push(chat);
-    } catch (error) {
-      failedCount += 1;
-    }
-  }
-  if (failedCount) logger.warn(`Could not load ${failedCount} direct chat(s); continuing the follow-up review with the available WhatsApp numbers.`);
-  return directChats;
+  const chats = rawChats.map((raw) => {
+    const messages = raw.messages;
+    const lastMessage = messages.at(-1) || null;
+    return {
+      id: { _serialized: raw.id },
+      name: raw.name,
+      isGroup: false,
+      isChannel: false,
+      isReadOnly: false,
+      lastMessage,
+      fetchMessages: async ({ limit } = {}) => limit > 0 ? messages.slice(-limit) : messages,
+    };
+  });
+  logger.info(`Read ${chats.length} direct WhatsApp chat histories from the WhatsApp page models (including unsaved numbers).`);
+  return chats;
 }
 
 function getLagosTime(date = new Date()) {

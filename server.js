@@ -145,6 +145,9 @@ async function bootstrap() {
     logger.info('Study bot is ready and listening for messages.');
     shedShareFollowUpService.start();
     businessFollowUpService.start();
+    shedShareFollowUpService.previewDirectChats()
+      .then((summary) => logger.info(`WhatsApp history scan (review only; no messages sent): ${JSON.stringify(summary)}`))
+      .catch((error) => logger.error('Could not scan direct WhatsApp histories for the follow-up review.', error));
   });
 
   client.on('group_join', async (notification) => {
@@ -207,9 +210,10 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
     if (!ownChatId || db.normalizeUserId(message.to) !== db.normalizeUserId(ownChatId)) return;
 
     const text = String(message.body || '').trim();
-    if (!/^(?:!|-)?\s*(?:lister|renter|account|accounts|business|outreach|sendlist)(?:\s|$)/i.test(text)) return;
+    const isSecretaryCommand = /^(?:!|-)?\s*(?:lister|renter|account|accounts|business|outreach|sendlist)(?:\s|$)/i.test(text);
+    if (!isSecretaryCommand && !router.shouldHandleSelfChatMessage(message)) return;
 
-    logger.info('Owner ShedShare outreach command received from the account self-chat.');
+    logger.info('Owner secretary command or business setup reply received from the account self-chat.');
     try {
       await router.handleMessage(message);
     } catch (error) {
