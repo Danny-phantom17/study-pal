@@ -1,11 +1,35 @@
 'use strict';
 
-function createBusinessProfileCommand({ db }) {
+const SETUP_STEPS = [
+  { key: 'key', label: 'a short key', example: 'acme' },
+  { key: 'name', label: 'the business name', example: 'Acme Repairs' },
+  { key: 'description', label: 'what the business does', example: 'Repairs home generators' },
+  { key: 'offerings', label: 'the products or services', example: 'Repairs and maintenance' },
+  { key: 'targetCustomers', label: 'who the business serves', example: 'Homes and shops in Lagos' },
+  { key: 'interactionRules', label: 'how the secretary should speak and what it should do or avoid', example: 'Be polite; ask before booking; never promise same-day service' },
+  { key: 'followupDays', label: 'how many days to wait before a follow-up', example: '3' },
+  { key: 'maxFollowups', label: 'the maximum number of follow-ups (0 turns them off)', example: '1' },
+];
+
+function createBusinessProfileCommand({ db, pendingSetups }) {
   return async function handleBusinessProfileCommand({ message, userId, args, prefix }) {
     if (message.from.endsWith('@g.us')) return message.reply('Use business profile commands in a private chat with StudyPal.');
     if (!db.hasOwnerAccess(userId)) return message.reply('Only the registered StudyPal owner can manage business profiles.');
 
     const action = String(args[0] || '').toLowerCase();
+    if (action === 'add' && args.length === 1 || action === 'setup') {
+      pendingSetups.set(userId, { step: 0, values: {} });
+      return message.reply(`Let’s add your business step by step. Step 1 of ${SETUP_STEPS.length}: enter ${SETUP_STEPS[0].label} (letters/numbers, e.g. ${SETUP_STEPS[0].example}). Send cancel any time to stop.`);
+    }
+
+    if (action === 'preview') {
+      return message.reply([
+        'Business setup asks for these details, one at a time:',
+        ...SETUP_STEPS.map((step, index) => `${index + 1}. ${step.label} (example: ${step.example})`),
+        `Start: ${prefix}business add`,
+      ].join('\n'));
+    }
+
     if (action === 'list' || action === 'ls') {
       const profiles = db.listBusinessProfiles();
       if (!profiles.length) return message.reply('No business profiles yet. Add one with the format shown by !business help.');
@@ -30,6 +54,8 @@ function createBusinessProfileCommand({ db }) {
     if (action === 'help' || action !== 'add') {
       return message.reply([
         `Add or update a profile:`,
+        `${prefix}business add — start the guided setup, one question at a time`,
+        `${prefix}business preview — show the setup steps`,
         `${prefix}business add | key | business name | what it does | products/services | target customers | interaction instructions | follow-up days | max follow-ups`,
         `Example: ${prefix}business add | acme | Acme Repairs | Repairs home generators | Repairs and maintenance | Homes in Lagos | Be polite; ask before booking; never promise same-day service | 3 | 1`,
         `View profiles: ${prefix}business list`,
@@ -65,6 +91,63 @@ function createBusinessProfileCommand({ db }) {
     });
     await message.reply(`Saved the ${name} profile as “${key}”. Follow-ups: after ${followupDays} day(s), at most ${maxFollowups}. It is ready for owner-directed outreach with ${prefix}outreach.`);
   };
+}
+
+async function handleBusinessProfileSetupReply({ message, userId, text, db, pendingSetups }) {
+  const setup = pendingSetups.get(userId);
+  if (!setup) return false;
+  const answer = String(text || '').trim();
+  if (/^(?:cancel|stop)$/i.test(answer)) {
+    pendingSetups.delete(userId);
+    await message.reply('Business setup cancelled. Your existing profiles were not changed.');
+    return true;
+  }
+
+  const step = SETUP_STEPS[setup.step];
+  let value = answer;
+  if (!value) {
+    await message.reply(`Please enter ${step.label}. Example: ${step.example}`);
+    return true;
+  }
+
+  if (step.key === 'key') {
+    if (!/^[a-z0-9_-]{1,32}$/i.test(value)) {
+      await message.reply('Use a short key with only letters, numbers, hyphens, or underscores. Example: acme');
+      return true;
+    }
+    value = value.toLowerCase();
+    if (db.getBusinessProfile(value)) {
+      await message.reply(`The key “${value}” already exists. Choose another key, or use !business add | ... to update that profile.`);
+      return true;
+    }
+  }
+
+  if (step.key === 'followupDays' || step.key === 'maxFollowups') {
+    const number = Number(value);
+    const minimum = step.key === 'maxFollowups' ? 0 : 1;
+    const maximum = step.key === 'maxFollowups' ? 20 : 365;
+    if (!Number.isInteger(number) || number < minimum || number > maximum) {
+      await message.reply(`Enter a whole number from ${minimum} to ${maximum}.`);
+      return true;
+    }
+    value = number;
+  } else {
+    const maxLength = step.key === 'name' ? 100 : step.key === 'targetCustomers' ? 500 : 1200;
+    value = value.slice(0, maxLength);
+  }
+
+  setup.values[step.key] = value;
+  setup.step += 1;
+  if (setup.step < SETUP_STEPS.length) {
+    const next = SETUP_STEPS[setup.step];
+    await message.reply(`Saved. Step ${setup.step + 1} of ${SETUP_STEPS.length}: enter ${next.label}. Example: ${next.example}`);
+    return true;
+  }
+
+  db.upsertBusinessProfile(setup.values);
+  pendingSetups.delete(userId);
+  await message.reply(`Saved ${setup.values.name} as “${setup.values.key}”. Use !outreach ${setup.values.key} | phone | name | location to contact a customer, or !business show ${setup.values.key} to review the profile.`);
+  return true;
 }
 
 function createBusinessOutreachCommand({ db, client, businessSecretary }) {
@@ -106,4 +189,4 @@ function createBusinessOutreachCommand({ db, client, businessSecretary }) {
   };
 }
 
-module.exports = { createBusinessProfileCommand, createBusinessOutreachCommand };
+module.exports = { createBusinessProfileCommand, createBusinessOutreachCommand, handleBusinessProfileSetupReply, SETUP_STEPS };

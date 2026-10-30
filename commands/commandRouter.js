@@ -33,7 +33,7 @@ const { logger } = require('../utils/logger');
 const { CLARIFY_INTENT_REPLY } = require('../services/ai/shedShareService');
 const { createShedShareOutreachCommand } = require('./shedShareOutreach');
 const { createShedShareAccountsCommand } = require('./shedShareAccounts');
-const { createBusinessProfileCommand, createBusinessOutreachCommand } = require('./businessProfile');
+const { createBusinessProfileCommand, createBusinessOutreachCommand, handleBusinessProfileSetupReply } = require('./businessProfile');
 const { createSendListCommand } = require('./sendList');
 
 function createCommandRouter({ prefix, quizService, sheetsService, db, stateStore, explanationFlow, tutorService, subscriptionService, sendDirectMessage, client, readingCoachService, readingCoachPhoneNumber, shedShareService, businessSecretary }) {
@@ -47,6 +47,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
   const pendingSubjectSelections = new Map();
   const paymentFlows = createPaymentFlowState();
   const activeReadingCoach = new Set();
+  const pendingBusinessProfileSetups = new Map();
   const handlePaymentFlowMessage = createPaymentFlowMessageHandler(db, paymentFlows);
   const commands = new Map([
     ['help', handleHelpCommand],
@@ -83,7 +84,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
     ['renter', createShedShareOutreachCommand({ leadType: 'renter', db, client })],
     ['account', createShedShareAccountsCommand({ db, client, shedShareService })],
     ['accounts', createShedShareAccountsCommand({ db, client, shedShareService })],
-    ['business', createBusinessProfileCommand({ db })],
+    ['business', createBusinessProfileCommand({ db, pendingSetups: pendingBusinessProfileSetups })],
     ['outreach', createBusinessOutreachCommand({ db, client, businessSecretary })],
     ['sendlist', createSendListCommand({ db, client })],
   ]);
@@ -206,6 +207,10 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
         pendingUpgradePrompts,
         pendingSubjectSelections,
       });
+      return;
+    }
+
+    if (await handleBusinessProfileSetupReply({ message, userId, text, db, pendingSetups: pendingBusinessProfileSetups })) {
       return;
     }
 
@@ -350,7 +355,14 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
     }
   }
 
-  return { handleMessage };
+  function shouldHandleSelfChatMessage(message) {
+    if (!message?.fromMe) return false;
+    const ownChatId = client?.info?.wid?._serialized;
+    if (!ownChatId || db.normalizeUserId(message.to) !== db.normalizeUserId(ownChatId)) return false;
+    return pendingBusinessProfileSetups.has(db.normalizeUserId(message.from));
+  }
+
+  return { handleMessage, shouldHandleSelfChatMessage };
 }
 
 async function downloadTutorMedia(message) {

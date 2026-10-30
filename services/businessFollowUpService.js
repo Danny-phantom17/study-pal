@@ -55,11 +55,7 @@ function createBusinessFollowUpService({ client, db, businessSecretary }) {
   function start() {
     if (interval) return;
     const now = getLagosDateHour();
-    if (now.hour >= 9 && now.hour < 19) {
-      lastRunDate = now.date;
-      const timer = setTimeout(() => reviewDueLeads().catch((error) => logger.error('Initial business follow-up review failed.', error)), 10000);
-      timer.unref?.();
-    } else if (now.hour >= 10) lastRunDate = now.date;
+    if (now.hour >= 10) lastRunDate = now.date;
     interval = setInterval(checkSchedule, 60000);
     interval.unref?.();
   }

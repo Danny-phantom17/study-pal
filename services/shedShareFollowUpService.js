@@ -33,8 +33,7 @@ function createShedShareFollowUpService({ client, db, shedShareService }) {
         if (db.hasShedShareFollowupClaim(chatId)) continue;
 
         const lastMessage = chat.lastMessage;
-        if (!lastMessage?.fromMe || !lastMessage.timestamp) continue;
-        if (Date.now() - lastMessage.timestamp * 1000 < FOLLOW_UP_AFTER_MS) continue;
+        if (!isFollowUpDue(lastMessage)) continue;
 
         let claimed = false;
         const outreachMessageId = lastMessage.id?._serialized || `${chatId}:${lastMessage.timestamp}`;
@@ -80,8 +79,8 @@ function createShedShareFollowUpService({ client, db, shedShareService }) {
   }
 
   function checkSchedule() {
-    const { date, hour } = getLagosTime();
-    if (hour < SEND_HOUR_LAGOS || lastRunDate === date || running) return;
+    const { date } = getLagosTime();
+    if (!shouldRunScheduledReview(new Date(), lastRunDate, running)) return;
 
     lastRunDate = date;
     runScheduledReview().catch((error) => logger.error('WhatsApp follow-up schedule failed', error));
@@ -179,4 +178,14 @@ function getLagosTime(date = new Date()) {
   };
 }
 
-module.exports = { createShedShareFollowUpService, getLagosTime, getChatsWithRetry, getDirectChatsOnly };
+function isFollowUpDue(lastMessage, now = Date.now()) {
+  return Boolean(lastMessage?.fromMe && lastMessage.timestamp
+    && now - lastMessage.timestamp * 1000 >= FOLLOW_UP_AFTER_MS);
+}
+
+function shouldRunScheduledReview(now = new Date(), lastRunDate = null, running = false) {
+  const local = getLagosTime(now);
+  return local.hour >= SEND_HOUR_LAGOS && lastRunDate !== local.date && !running;
+}
+
+module.exports = { createShedShareFollowUpService, getLagosTime, getChatsWithRetry, getDirectChatsOnly, isFollowUpDue, shouldRunScheduledReview };
