@@ -219,6 +219,11 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
       if (businessLead) {
         db.markBusinessLeadReplied(userId);
         try {
+          const media = hasMedia ? await downloadTutorMedia(message) : [];
+          if (hasMedia && !media.length) {
+            await message.reply('I could not read that attachment. Please resend it as a clear photo or a short voice note.');
+            return;
+          }
           const chat = await resolveWithTimeout(message.getChat(), 5000, null);
           const recent = chat
             ? await resolveWithTimeout(chat.fetchMessages({ limit: 12 }), 7000, [])
@@ -226,6 +231,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
           const reply = await businessSecretary.replyToCustomer({
             profile: db.getBusinessProfile(businessLead.businessKey),
             messages: recent.map((item) => ({ fromMe: item.fromMe, body: String(item.body || '').slice(0, 1200) })),
+            media,
           });
           await message.reply(reply);
         } catch (error) {
