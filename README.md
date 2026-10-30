@@ -25,7 +25,7 @@ Quizzes are not run in the group. If a student sends `!quiz` in a group, StudyPa
 - Weekly reports
 - Wrong-answer review
 - Optional Google Sheets integration for legacy points, attendance, and sheet-hosted questions
-- AWS EC2 worker deployment with persistent EBS storage
+- Render Background Worker deployment with persistent disk support
 
 ## Commands
 
@@ -101,9 +101,8 @@ COMMAND_PREFIX=!
 QUIZ_QUESTION_COUNT=20
 QUIZ_TIME_LIMIT_SECONDS=30
 POINTS_PER_CORRECT_ANSWER=1.67
-WEBJS_AUTH_DIR=.wwebjs_auth
+WWEBJS_AUTH_DIR=.wwebjs_auth
 STUDYPAL_DB_PATH=data/studypal.db
-PUPPETEER_HEADLESS=true
 FREE_DAILY_QUESTIONS=5
 FREE_FOLLOWUPS_PER_QUESTION=3
 FREE_REVIEW_LIMIT=5
@@ -190,7 +189,7 @@ Admins can be added or removed from the database without changing code. VIP user
 
 The owner role cannot be removed or assigned through chat commands.
 
-Premium payment details shown to students come from `BANK_NAME`, `BANK_ACCOUNT_NAME`, and `BANK_ACCOUNT_NUMBER`. Configure these privately on the EC2 instance before enabling paid subscriptions.
+Premium payment details shown to students come from `BANK_NAME`, `BANK_ACCOUNT_NAME`, and `BANK_ACCOUNT_NUMBER`. Configure these privately in Render before enabling paid subscriptions.
 
 Students type `subscribe` to view the payment details. After payment, they type `payment` and answer:
 
@@ -245,9 +244,9 @@ npm start
 ```
 
 When the QR code appears, open WhatsApp, go to Linked devices, and scan the code.
-The bot also opens a local browser page with the QR code automatically. This page uses a `127.0.0.1` address because it is served locally; it is not WhatsApp Web. After scanning, the page reports when the bot is connected. The bot runs WhatsApp in the background and does not open a separate WhatsApp Web window. Replies are sent without marking the chat as seen.
+The bot opens a local connection-status page and WhatsApp Web in your browser at startup. With an existing valid StudyPal session, the bot reconnects as usual and WhatsApp Web opens separately. The local status page uses a `127.0.0.1` address and shows a QR code only when WhatsApp requests a new link. Replies are sent without marking the chat as seen.
 
-For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env`. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
+For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env` or the Render environment. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
 
 ## Question Bank
 
@@ -265,61 +264,45 @@ Subject files live in `data/` as JSON arrays. Each question should follow this s
 
 AI explains questions, but the question bank remains the source of truth.
 
-## Deploy To AWS EC2
+## Deploy To Render
 
-StudyPal is a persistent WhatsApp worker. It does not need a public web domain or open application ports.
+This repo includes `render.yaml` for a Render Background Worker.
 
-1. Launch a Linux EC2 instance and attach a separate encrypted EBS data volume. Set the data volume to persist when the instance is terminated. Attach and mount that volume at `/mnt/studypal`, and configure it to mount by UUID after each reboot. Follow the [AWS EBS volume setup guide](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-using-volumes.html); format only a new, empty volume.
-2. In the instance security group, allow SSH only from your own IP address. Keep outbound internet access available for WhatsApp and Gemini; do not open inbound application ports.
-3. Install Docker on the instance. On Amazon Linux 2023, run:
+1. Connect this repository to Render and create a Blueprint from the `render.yaml` at the repository root.
+2. Fill the prompted values in Render, including the Gemini key, WhatsApp admin/group settings, and bank details used for Premium payments.
+3. The Blueprint builds the included Dockerfile so Chromium's Linux libraries are available to WhatsApp Web. The image runs:
 
 ```bash
-sudo yum update -y
-sudo yum install -y docker
-sudo systemctl enable --now docker
-sudo usermod -aG docker ec2-user
+Dockerfile: ./Dockerfile
+Container command: npm start
 ```
 
-Reconnect your SSH session after adding the user to the Docker group.
-4. Clone this repository, create `.env` from `.env.example`, and fill in the variables below. Keep `.env` private and set its permissions to owner-only.
+4. Set or verify these environment variables in Render:
 
 ```env
-NODE_ENV=production
 GEMINI_API_KEY=...
-COMMAND_PREFIX=!
-PUPPETEER_HEADLESS=true
-WEBJS_CLEAR_CHROMIUM_LOCKS=true
-WEBJS_AUTH_DIR=/data/.wwebjs_auth
-STUDYPAL_DB_PATH=/data/studypal.db
-WEBJS_PAIRING_PHONE_NUMBER=234...
 STUDY_GROUP_CHAT_ID=...
 ADMIN_WHATSAPP_NUMBER=...
 BANK_NAME=...
 BANK_ACCOUNT_NAME=...
 BANK_ACCOUNT_NUMBER=...
-PREMIUM_PRICE=3000
 ```
 
-`STUDY_GROUP_CHAT_ID`, `ADMIN_WHATSAPP_NUMBER`, the bank fields, and `WEBJS_PAIRING_PHONE_NUMBER` can be left unset if you do not use those features. `APPS_SCRIPT_WEB_APP_URL` and service-account Google Sheets credentials are optional. The pairing phone number is international digits without `+`.
+`APPS_SCRIPT_WEB_APP_URL` is optional. Leave it unset if you do not use Google Sheets.
 
-5. Build and start the single worker from the repository root:
+5. Keep these disk-backed values from `render.yaml`:
 
-```bash
-docker build -t studypal .
-docker run -d --name studypal --restart unless-stopped --init --env-file .env \
-  --volume /mnt/studypal:/data \
-  --env WEBJS_AUTH_DIR=/data/.wwebjs_auth \
-  --env STUDYPAL_DB_PATH=/data/studypal.db \
-  studypal
-docker logs -f studypal
+```env
+WEBJS_AUTH_DIR=/var/data/studypal/.wwebjs_auth
+STUDYPAL_DB_PATH=/var/data/studypal/studypal.db
 ```
 
-The Dockerfile installs Chrome's Linux runtime libraries and runs `npm ci`; the package `postinstall` installs the matching Chrome browser. For first-time WhatsApp linking, use the pairing code printed in the container logs. The Docker restart policy brings the worker back after host reboots, and the mounted EBS volume retains the SQLite database and WhatsApp session.
+6. Deploy and link the WhatsApp device using the pairing method shown in Render logs.
 
-Keep this as a single worker because StudyPal uses one WhatsApp session and a local SQLite database. Configure EBS snapshots for backups. If you need existing study records, stop the local bot and make a consistent SQLite backup before copying it to `/mnt/studypal`; do not copy a live database's `-wal` or `-shm` sidecars separately.
+Render free instances do not support background workers. Use at least the Starter plan and attach the persistent disk so WhatsApp auth and the SQLite learning history survive deploys and restarts.
 
 ## Notes
 
 - WhatsApp Web automation depends on a stable linked-device session.
-- For long-running production use, monitor the Docker logs after deploys and WhatsApp reconnects.
-- If Puppeteer/Chromium fails, keep `PUPPETEER_HEADLESS=true` and check the deployment logs for browser installation issues.
+- For long-running production use, monitor Render logs after deploys and WhatsApp reconnects.
+- If Puppeteer/Chromium fails on Render, keep `PUPPETEER_HEADLESS=true` and check the Render build logs for browser install issues.
