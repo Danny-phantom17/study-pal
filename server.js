@@ -31,6 +31,7 @@ const pairingPhoneNumber = normalizePairingPhoneNumber(
   process.env.WEBJS_PAIRING_PHONE_NUMBER || process.env.WHATSAPP_PAIRING_PHONE_NUMBER
 );
 const pairingCodeIntervalMs = normalizePositiveInteger(process.env.WEBJS_PAIRING_CODE_INTERVAL_MS, 180000);
+const puppeteerHeadless = String(process.env.PUPPETEER_HEADLESS ?? 'false').toLowerCase() === 'true';
 
 async function bootstrap() {
   logger.info('Starting WhatsApp Study Group Bot...');
@@ -53,7 +54,7 @@ async function bootstrap() {
       dataPath: webjsAuthDir,
     }),
     puppeteer: {
-      headless: process.env.PUPPETEER_HEADLESS !== 'false',
+      headless: puppeteerHeadless,
       executablePath: puppeteerExecutablePath,
       args: [
         '--no-sandbox',
@@ -100,7 +101,7 @@ async function bootstrap() {
   // explanation flow — and returns a quizService/router that already have
   // all of that connected. client is passed in so solo-chat DMs
   // (sendDirectMessage) actually work instead of being null.
-  const { db, quizService, router } = createAiSetup({
+  const { db, quizService, router, shedShareFollowUpService, businessFollowUpService } = createAiSetup({
     sheetsService,
     prefix: commandPrefix,
     client,
@@ -142,6 +143,8 @@ async function bootstrap() {
   client.on('ready', () => {
     qrBrowser.setStatus('ready');
     logger.info('Study bot is ready and listening for messages.');
+    shedShareFollowUpService.start();
+    businessFollowUpService.start();
   });
 
   client.on('group_join', async (notification) => {
@@ -197,6 +200,24 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
     }
   });
 
+  client.on('message_create', async (message) => {
+    if (!message.fromMe) return;
+
+    const ownChatId = client.info?.wid?._serialized;
+    if (!ownChatId || db.normalizeUserId(message.to) !== db.normalizeUserId(ownChatId)) return;
+
+    const text = String(message.body || '').trim();
+    if (!/^(?:!|-)?\s*(?:lister|renter)(?:\s|$)/i.test(text)) return;
+
+    logger.info('Owner ShedShare outreach command received from the account self-chat.');
+    try {
+      await router.handleMessage(message);
+    } catch (error) {
+      logger.error('Could not process owner outreach command from the account self-chat.', error);
+      await message.reply('Sorry, I could not process that outreach command. Please check the format and try again.');
+    }
+  });
+
   client.on('message', async (message) => {
     // WhatsApp Status updates can arrive through the same message event as
     // chats. They are not replyable conversations; attempting message.reply
@@ -206,6 +227,7 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
       return;
     }
 
+    logger.info('Received a WhatsApp message event.');
     try {
       await router.handleMessage(message);
     } catch (error) {
@@ -222,6 +244,8 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
   async function shutdown(signal) {
     logger.info(`Shutting down bot after ${signal}...`);
     qrBrowser.close();
+    shedShareFollowUpService.stop();
+    businessFollowUpService.stop();
     await quizService.stopAll();
     if (db && typeof db.close === 'function') {
       db.close();

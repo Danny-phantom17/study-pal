@@ -69,7 +69,6 @@ function startQrBrowser() {
     const url = `http://127.0.0.1:${address.port}`;
     logger.info(`WhatsApp QR page: ${url}`);
     openBrowser(url);
-    openBrowser('https://web.whatsapp.com');
   });
 
   return {

@@ -15,6 +15,7 @@ Quizzes are not run in the group. If a student sends `!quiz` in a group, StudyPa
 
 - Private WAEC/JAMB-style quizzes from JSON question banks
 - Gemini explanations after every question
+- Two private-chat AI roles: StudyPal tutor and ShedShare customer-service secretary
 - Explanation of why the correct option is correct and why wrong options are wrong
 - Memory tips and natural follow-up tutoring
 - Quiz history and per-session summaries
@@ -63,7 +64,13 @@ Admin / owner:
 !rejectpayment <requestId> [reason]
 !adminplan <phone> <free|premium> [YYYY-MM-DD]
 !adminrole <phone> <student|admin|vip> [name]
+!lister <phone> | <name> | <location>
+!renter <phone> | <name> | <location>
 ```
+
+The ShedShare outreach commands are private-chat owner commands. `!lister` sends the supplier invitation and stores the contact role/name/location; `!renter` sends the customer invitation. The owner can enter either command in the StudyPal self-chat; StudyPal handles the prospect's replies and scheduled follow-up. `!account` (or `!accounts`) lists saved and recognized ShedShare outreach chats with the contact's number, name, lead type, area, and an AI summary of their reply and interest level. A contact with no reply is marked `Unknown` / `No reply yet`.
+
+The owner can add future business profiles directly in the WhatsApp self-chat without editing code. Send `!business help` for the format. Each profile stores its business name, description, offerings, intended customers, interaction rules, follow-up interval, and maximum number of follow-ups in SQLite. `!business list`, `!business show <key>`, and `!business accounts <key>` manage and inspect them. `!outreach <key> | <phone> | <name> | <location>` starts a customized conversation; subsequent replies use only that profile, and scheduled follow-ups obey its configured interval/count. Re-adding a key updates the profile; setting max follow-ups to 0 disables them. These profiles are private owner-managed records; customer chats only receive business information needed for that business's conversation.
 
 Community group:
 
@@ -82,6 +89,10 @@ Give me a mnemonic.
 Test me again.
 Make the questions harder.
 ```
+
+For ordinary private messages, Gemini routes explicit study requests to the StudyPal tutor and ShedShare marketplace questions to the customer-service secretary. If the intent is unclear, the bot asks which kind of help is needed. StudyPal commands and active quiz flows keep their existing handling. ShedShare answers use the product guidance in `services/ai/shedShareService.js`; the bot does not have live access to listings or bookings, so the website and booking screens remain authoritative for current availability, prices, and payment status.
+
+The ShedShare secretary reviews existing one-to-one chat histories and checks daily at 10:00 Africa/Lagos for clear ShedShare outreach with no reply that is at least 3 days old. It sends at most one follow-up per chat and no more than 10 per day. Group chats, unrelated messages, conversations with a reply or decline, and chats already followed up are excluded. The secretary thanks people who decline, asks interested prospects what items they rent out, and says ShedShare will notify them before launch as founding renters. Follow-up state is stored in the StudyPal SQLite database.
 
 ## Install
 
@@ -244,7 +255,7 @@ npm start
 ```
 
 When the QR code appears, open WhatsApp, go to Linked devices, and scan the code.
-The bot opens a local connection-status page and WhatsApp Web in your browser at startup. With an existing valid StudyPal session, the bot reconnects as usual and WhatsApp Web opens separately. The local status page uses a `127.0.0.1` address and shows a QR code only when WhatsApp requests a new link. Replies are sent without marking the chat as seen.
+For local use, `PUPPETEER_HEADLESS=false` opens the actual WhatsApp Web session used by StudyPal in a visible Chrome window, alongside the local connection-status page. That Chrome window uses StudyPal's saved session, so it can reconnect without another scan when the session is still valid. The status page shows a QR code only if WhatsApp requests a new link. Keep `PUPPETEER_HEADLESS=true` on servers without a display, such as Render. Replies are sent without marking the chat as seen.
 
 For the private reading coach, set `READING_COACH_PHONE_NUMBER` to the learner’s WhatsApp number in `.env` or the Render environment. That number can send `coach` in a private chat to get the day’s reading passage, send a voice note reading it for a saved score, or send an assignment photo for help. The coach command is private and is not listed in `help`. A new daily passage is sent when the learner asks for `coach` that day.
 

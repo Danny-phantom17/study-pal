@@ -131,6 +131,59 @@ CREATE TABLE IF NOT EXISTS ai_conversations (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE IF NOT EXISTS shedshare_followups (
+  chat_id TEXT PRIMARY KEY,
+  outreach_message_id TEXT NOT NULL,
+  status TEXT NOT NULL CHECK(status IN ('pending', 'sent', 'failed', 'closed')),
+  claimed_at TEXT NOT NULL,
+  sent_at TEXT,
+  followup_message_id TEXT
+);
+
+CREATE TABLE IF NOT EXISTS shedshare_leads (
+  user_id TEXT PRIMARY KEY,
+  lead_type TEXT NOT NULL CHECK(lead_type IN ('lister', 'renter')),
+  prospect_name TEXT NOT NULL,
+  location TEXT NOT NULL,
+  source TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS business_profiles (
+  business_key TEXT PRIMARY KEY,
+  business_name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  offerings TEXT NOT NULL,
+  target_customers TEXT NOT NULL,
+  interaction_rules TEXT NOT NULL,
+  followup_days INTEGER NOT NULL DEFAULT 3 CHECK(followup_days BETWEEN 1 AND 365),
+  max_followups INTEGER NOT NULL DEFAULT 1 CHECK(max_followups BETWEEN 0 AND 20),
+  enabled INTEGER NOT NULL DEFAULT 1 CHECK(enabled IN (0, 1)),
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS business_leads (
+  business_key TEXT NOT NULL,
+  user_id TEXT NOT NULL,
+  contact_name TEXT NOT NULL,
+  location TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'awaiting_reply',
+  outreach_message TEXT NOT NULL,
+  outreach_at TEXT NOT NULL,
+  last_customer_reply_at TEXT,
+  followups_sent INTEGER NOT NULL DEFAULT 0,
+  next_followup_at TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (business_key, user_id),
+  FOREIGN KEY (business_key) REFERENCES business_profiles(business_key)
+);
+
+CREATE INDEX IF NOT EXISTS idx_business_leads_followup
+  ON business_leads(status, next_followup_at);
+
 CREATE TABLE IF NOT EXISTS daily_goals (
   user_id TEXT PRIMARY KEY,
   goal_questions INTEGER NOT NULL DEFAULT 20,

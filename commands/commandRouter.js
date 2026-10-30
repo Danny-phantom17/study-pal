@@ -30,8 +30,12 @@ const {
   createPaymentReceiptCommand,
 } = require('./payment');
 const { logger } = require('../utils/logger');
+const { CLARIFY_INTENT_REPLY } = require('../services/ai/shedShareService');
+const { createShedShareOutreachCommand } = require('./shedShareOutreach');
+const { createShedShareAccountsCommand } = require('./shedShareAccounts');
+const { createBusinessProfileCommand, createBusinessOutreachCommand } = require('./businessProfile');
 
-function createCommandRouter({ prefix, quizService, sheetsService, db, stateStore, explanationFlow, tutorService, subscriptionService, sendDirectMessage, client, readingCoachService, readingCoachPhoneNumber }) {
+function createCommandRouter({ prefix, quizService, sheetsService, db, stateStore, explanationFlow, tutorService, subscriptionService, sendDirectMessage, client, readingCoachService, readingCoachPhoneNumber, shedShareService, businessSecretary }) {
   const pendingUpgradePrompts = new Map();
   // Per-user (DM only) state: while a user is choosing a quiz subject from
   // the numbered menu, this maps their userId -> the exact subject list
@@ -74,12 +78,22 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
     ['rejectpayment', createRejectPaymentCommand(db, sendDirectMessage)],
     ['paymentreceipt', createPaymentReceiptCommand(db)],
     ['whoami', createWhoAmICommand(db, client)],
+    ['lister', createShedShareOutreachCommand({ leadType: 'lister', db, client })],
+    ['renter', createShedShareOutreachCommand({ leadType: 'renter', db, client })],
+    ['account', createShedShareAccountsCommand({ db, client, shedShareService })],
+    ['accounts', createShedShareAccountsCommand({ db, client, shedShareService })],
+    ['business', createBusinessProfileCommand({ db })],
+    ['outreach', createBusinessOutreachCommand({ db, client, businessSecretary })],
   ]);
 
   async function handleMessage(message) {
     const text = (message.body || '').trim();
-    const contact = await message.getContact();
-    const username = contact.pushname || contact.name || contact.number || 'Unknown user';
+    const contact = await resolveWithTimeout(message.getContact(), 5000, null).catch((error) => {
+      logger.warn('Could not load the WhatsApp contact; continuing with sender ID.', error);
+      return null;
+    });
+    if (!contact) logger.warn('WhatsApp contact lookup timed out; continuing with sender ID.');
+    const username = contact?.pushname || contact?.name || contact?.number || 'Unknown user';
     const hasMedia = Boolean(message.hasMedia);
 
     if (!text && !hasMedia) return;
@@ -87,6 +101,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
     const chatId = message.from;
     const rawUserId = message.author || message.from;
     const userId = await resolveUserId(rawUserId, contact, db, client);
+    logger.info('WhatsApp sender resolved; routing message.');
     db.upsertUser(userId, username);
 
     const isPrivateChat = !chatId.endsWith('@g.us');
@@ -167,6 +182,8 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
       const { command, args, commandPrefix } = parsedCommand;
       const handler = commands.get(command);
 
+      logger.info(`Handling WhatsApp command: ${command}.`);
+
       if (!handler) {
         logger.info(`Invalid command "${command}" from ${username}`);
         await message.reply(`I do not recognize that command. Send ${prefix}help to see what I can do.`);
@@ -190,7 +207,44 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
       return;
     }
 
+    if (isPrivateChat && businessSecretary) {
+      const businessLead = db.getBusinessLead(userId);
+      if (businessLead) {
+        db.markBusinessLeadReplied(userId);
+        try {
+          const chat = await resolveWithTimeout(message.getChat(), 5000, null);
+          const recent = chat
+            ? await resolveWithTimeout(chat.fetchMessages({ limit: 12 }), 7000, [])
+            : [];
+          const reply = await businessSecretary.replyToCustomer({
+            profile: db.getBusinessProfile(businessLead.businessKey),
+            messages: recent.map((item) => ({ fromMe: item.fromMe, body: String(item.body || '').slice(0, 1200) })),
+          });
+          await message.reply(reply);
+        } catch (error) {
+          logger.error(`Could not respond for business profile ${businessLead.businessKey}`, error);
+          await message.reply(`Thanks for your message. I’ll check this with ${businessLead.businessName} and get back to you.`);
+        }
+        return;
+      }
+    }
+
     if (hasMedia) {
+      if (!tutorService && !shedShareService) return;
+      let media;
+      if (isPrivateChat && shedShareService) {
+        media = await downloadTutorMedia(message);
+        const recentChatMessages = await getRecentWhatsAppContext(message);
+        const intent = await shedShareService.classifyMessage({ chatId, userMessage: text, media, recentChatMessages });
+        if (intent === 'shedshare') {
+          await message.reply(await shedShareService.replyToCustomer({ userId, chatId, userMessage: text, media, recentChatMessages }));
+          return;
+        }
+        if (intent === 'unclear') {
+          await message.reply(CLARIFY_INTENT_REPLY);
+          return;
+        }
+      }
       if (!tutorService) return;
       if (subscriptionService) {
         const aiAccess = subscriptionService.tryConsumeAiMessage(userId);
@@ -201,7 +255,7 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
       }
 
       try {
-        const media = await downloadTutorMedia(message);
+        media ||= await downloadTutorMedia(message);
         if (!media.length) {
           await message.reply('I can read a photo or screenshot, and listen to a voice note. Please send a clear image or voice note again.');
           return;
@@ -265,6 +319,18 @@ function createCommandRouter({ prefix, quizService, sheetsService, db, stateStor
     if (handledAsQuizAnswer) return;
 
     if (isPrivateChat && tutorService && (hasMedia || text)) {
+      if (shedShareService) {
+        const recentChatMessages = await getRecentWhatsAppContext(message);
+        const intent = await shedShareService.classifyMessage({ chatId, userMessage: text, recentChatMessages });
+        if (intent === 'shedshare') {
+          await message.reply(await shedShareService.replyToCustomer({ userId, chatId, userMessage: text, recentChatMessages }));
+          return;
+        }
+        if (intent === 'unclear') {
+          await message.reply(CLARIFY_INTENT_REPLY);
+          return;
+        }
+      }
       if (subscriptionService) {
         const aiAccess = subscriptionService.tryConsumeAiMessage(userId);
         if (!aiAccess.allowed) {
@@ -302,6 +368,27 @@ async function downloadTutorMedia(message) {
   return [{ mimeType, data: media.data }];
 }
 
+async function getRecentWhatsAppContext(message) {
+  try {
+    const chat = await resolveWithTimeout(message.getChat(), 5000, null);
+    if (!chat) return [];
+
+    const messages = await resolveWithTimeout(chat.fetchMessages({ limit: 12 }), 5000, null);
+    if (!messages) return [];
+
+    return messages
+      .filter((item) => item.id?._serialized !== message.id?._serialized)
+      .slice(-10)
+      .map((item) => ({
+        role: item.fromMe ? 'business' : 'customer',
+        message: String(item.body || `[${item.type || 'media'} message]`).slice(0, 1200),
+      }));
+  } catch (error) {
+    logger.warn('Could not load recent WhatsApp chat context for intent detection.', error);
+    return [];
+  }
+}
+
 /**
  * WhatsApp's newer "LID" (Linked ID) privacy layer means message.author /
  * message.from sometimes arrives as "xxxxxxxxxxxxx@lid" instead of the
@@ -327,7 +414,9 @@ async function resolveUserId(rawUserId, contact, db, client) {
   // Requires whatsapp-web.js >= 1.34.7 (getContactLidAndPhone).
   if (client?.getContactLidAndPhone) {
     try {
-      const [resolved] = await client.getContactLidAndPhone([rawUserId]);
+      const contacts = await resolveWithTimeout(client.getContactLidAndPhone([rawUserId]), 5000, null);
+      if (!contacts) throw new Error('WhatsApp LID lookup timed out.');
+      const [resolved] = contacts;
       if (resolved?.pn) {
         return db.normalizeUserId(resolved.pn);
       }
@@ -344,6 +433,16 @@ async function resolveUserId(rawUserId, contact, db, client) {
 
   // Fallback: at least consistent, even if it won't match owner/VIP records.
   return db.normalizeUserId(rawUserId);
+}
+
+function resolveWithTimeout(promise, timeoutMs, fallback) {
+  let timer;
+  return Promise.race([
+    promise,
+    new Promise((resolve) => {
+      timer = setTimeout(() => resolve(fallback), timeoutMs);
+    }),
+  ]).finally(() => clearTimeout(timer));
 }
 
 /**

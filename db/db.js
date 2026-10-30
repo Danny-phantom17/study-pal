@@ -615,6 +615,189 @@ function createDb(dbPath) {
       .reverse();
   }
 
+  function claimShedShareFollowup(chatId, outreachMessageId) {
+    const now = new Date().toISOString();
+    const staleClaimBefore = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+    const result = db.prepare(
+      `INSERT INTO shedshare_followups (chat_id, outreach_message_id, status, claimed_at)
+       VALUES (?, ?, 'pending', ?)
+       ON CONFLICT(chat_id) DO UPDATE SET
+         outreach_message_id = excluded.outreach_message_id,
+         status = 'pending',
+         claimed_at = excluded.claimed_at,
+         sent_at = NULL,
+         followup_message_id = NULL
+       WHERE shedshare_followups.status = 'failed'
+          OR (shedshare_followups.status = 'pending' AND shedshare_followups.claimed_at < ?)`
+    ).run(chatId, outreachMessageId, now, staleClaimBefore);
+    return result.changes > 0;
+  }
+
+  function hasShedShareFollowupClaim(chatId) {
+    const row = db.prepare(
+      `SELECT status FROM shedshare_followups WHERE chat_id = ?`
+    ).get(chatId);
+    return Boolean(row && row.status !== 'failed');
+  }
+
+  function markShedShareFollowupSent(chatId, followupMessageId) {
+    db.prepare(
+      `UPDATE shedshare_followups
+       SET status = 'sent', sent_at = ?, followup_message_id = ?
+       WHERE chat_id = ? AND status = 'pending'`
+    ).run(new Date().toISOString(), followupMessageId || null, chatId);
+  }
+
+  function markShedShareFollowupFailed(chatId) {
+    db.prepare(
+      `UPDATE shedshare_followups SET status = 'failed' WHERE chat_id = ? AND status = 'pending'`
+    ).run(chatId);
+  }
+
+  function markShedShareFollowupClosed(chatId) {
+    db.prepare(
+      `UPDATE shedshare_followups SET status = 'closed' WHERE chat_id = ? AND status = 'pending'`
+    ).run(chatId);
+  }
+
+  function upsertShedShareLead({ userId, leadType, name, location, source = 'command' }) {
+    const normalizedUserId = normalizeUserId(userId);
+    const now = new Date().toISOString();
+    db.prepare(
+      `INSERT INTO shedshare_leads (user_id, lead_type, prospect_name, location, source, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT(user_id) DO UPDATE SET
+         lead_type = excluded.lead_type,
+         prospect_name = excluded.prospect_name,
+         location = excluded.location,
+         source = excluded.source,
+         updated_at = excluded.updated_at`
+    ).run(normalizedUserId, leadType, name, location, source, now, now);
+  }
+
+  function getShedShareLead(userId) {
+    const normalizedUserId = normalizeUserId(userId);
+    const row = db.prepare(
+      `SELECT user_id, lead_type, prospect_name, location, source
+       FROM shedshare_leads WHERE user_id = ?`
+    ).get(normalizedUserId);
+    if (!row) return null;
+    return {
+      userId: row.user_id,
+      leadType: row.lead_type,
+      name: row.prospect_name,
+      location: row.location,
+      source: row.source,
+    };
+  }
+
+  function getShedShareLeads() {
+    return db.prepare(
+      `SELECT user_id, lead_type, prospect_name, location, source, created_at, updated_at
+       FROM shedshare_leads ORDER BY updated_at DESC, prospect_name COLLATE NOCASE`
+    ).all().map((row) => ({
+      userId: row.user_id,
+      leadType: row.lead_type,
+      name: row.prospect_name,
+      location: row.location,
+      source: row.source,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at,
+    }));
+  }
+
+  function upsertBusinessProfile(profile) {
+    const now = new Date().toISOString();
+    db.prepare(
+      `INSERT INTO business_profiles
+        (business_key, business_name, description, offerings, target_customers, interaction_rules, followup_days, max_followups, enabled, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)
+       ON CONFLICT(business_key) DO UPDATE SET
+         business_name = excluded.business_name, description = excluded.description,
+         offerings = excluded.offerings, target_customers = excluded.target_customers,
+         interaction_rules = excluded.interaction_rules, followup_days = excluded.followup_days,
+         max_followups = excluded.max_followups, enabled = 1, updated_at = excluded.updated_at`
+    ).run(profile.key, profile.name, profile.description, profile.offerings, profile.targetCustomers,
+      profile.interactionRules, profile.followupDays, profile.maxFollowups, now, now);
+  }
+
+  function listBusinessProfiles() {
+    return db.prepare('SELECT * FROM business_profiles WHERE enabled = 1 ORDER BY business_name COLLATE NOCASE').all()
+      .map(mapBusinessProfile);
+  }
+
+  function getBusinessProfile(key) {
+    const row = db.prepare('SELECT * FROM business_profiles WHERE business_key = ? AND enabled = 1').get(String(key).toLowerCase());
+    return row ? mapBusinessProfile(row) : null;
+  }
+
+  function recordBusinessOutreach({ businessKey, userId, contactName, location, outreachMessage, followupAt }) {
+    const now = new Date().toISOString();
+    db.prepare(
+      `INSERT INTO business_leads
+        (business_key, user_id, contact_name, location, status, outreach_message, outreach_at, next_followup_at, created_at, updated_at)
+       VALUES (?, ?, ?, ?, 'awaiting_reply', ?, ?, ?, ?, ?)
+       ON CONFLICT(business_key, user_id) DO UPDATE SET
+         contact_name = excluded.contact_name, location = excluded.location, status = 'awaiting_reply',
+         outreach_message = excluded.outreach_message, outreach_at = excluded.outreach_at,
+         last_customer_reply_at = NULL, followups_sent = 0, next_followup_at = excluded.next_followup_at,
+         updated_at = excluded.updated_at`
+    ).run(businessKey, normalizeUserId(userId), contactName, location, outreachMessage, now, followupAt, now, now);
+  }
+
+  function getBusinessLead(userId) {
+    const row = db.prepare(
+      `SELECT l.*, p.business_name, p.description, p.offerings, p.target_customers, p.interaction_rules,
+              p.followup_days, p.max_followups
+       FROM business_leads l JOIN business_profiles p ON p.business_key = l.business_key
+       WHERE l.user_id = ? AND p.enabled = 1 ORDER BY l.updated_at DESC LIMIT 1`
+    ).get(normalizeUserId(userId));
+    return row ? { ...row, businessKey: row.business_key, businessName: row.business_name } : null;
+  }
+
+  function listBusinessLeads(businessKey) {
+    return db.prepare(
+      `SELECT user_id, contact_name, location, status, outreach_at, followups_sent
+       FROM business_leads WHERE business_key = ? ORDER BY updated_at DESC`
+    ).all(String(businessKey).toLowerCase());
+  }
+
+  function listBusinessLeads(businessKey) {
+    return db.prepare(
+      `SELECT user_id, contact_name, location, status, outreach_at, followups_sent
+       FROM business_leads WHERE business_key = ? ORDER BY updated_at DESC`
+    ).all(String(businessKey).toLowerCase());
+  }
+
+  function markBusinessLeadReplied(userId) {
+    const now = new Date().toISOString();
+    db.prepare(
+      `UPDATE business_leads SET status = 'replied', last_customer_reply_at = ?, next_followup_at = NULL, updated_at = ?
+       WHERE user_id = ? AND status = 'awaiting_reply'`
+    ).run(now, now, normalizeUserId(userId));
+  }
+
+  function listDueBusinessFollowups(now = new Date().toISOString()) {
+    return db.prepare(
+      `SELECT l.*, p.business_name, p.description, p.offerings, p.target_customers, p.interaction_rules,
+              p.followup_days, p.max_followups
+       FROM business_leads l JOIN business_profiles p ON p.business_key = l.business_key
+       WHERE l.status = 'awaiting_reply' AND l.next_followup_at IS NOT NULL
+         AND l.next_followup_at <= ? AND l.followups_sent < p.max_followups AND p.enabled = 1
+       ORDER BY l.next_followup_at LIMIT 10`
+    ).all(now).map((row) => ({ ...row, businessKey: row.business_key, businessName: row.business_name }));
+  }
+
+  function markBusinessFollowupSent(businessKey, userId, nextFollowupAt) {
+    const now = new Date().toISOString();
+    db.prepare(
+      `UPDATE business_leads SET followups_sent = followups_sent + 1,
+         next_followup_at = ?, updated_at = ?,
+         status = CASE WHEN followups_sent + 1 >= (SELECT max_followups FROM business_profiles WHERE business_key = ?) THEN 'followups_done' ELSE status END
+       WHERE business_key = ? AND user_id = ? AND status = 'awaiting_reply'`
+    ).run(nextFollowupAt, now, businessKey, businessKey, normalizeUserId(userId));
+  }
+
   // --- Daily AI usage ---
 
   function getAiUsageForDate(userId, date = localDateString()) {
@@ -830,6 +1013,24 @@ function createDb(dbPath) {
     hasOwnerAccess,
     recordConversationTurn,
     getRecentConversation,
+    claimShedShareFollowup,
+    hasShedShareFollowupClaim,
+    markShedShareFollowupSent,
+    markShedShareFollowupFailed,
+    markShedShareFollowupClosed,
+    upsertShedShareLead,
+    getShedShareLead,
+    getShedShareLeads,
+    upsertBusinessProfile,
+    listBusinessProfiles,
+    getBusinessProfile,
+    recordBusinessOutreach,
+    getBusinessLead,
+    listBusinessLeads,
+    listBusinessLeads,
+    markBusinessLeadReplied,
+    listDueBusinessFollowups,
+    markBusinessFollowupSent,
     getAiUsageForDate,
     incrementAiUsageForDate,
     createPaymentRequest,
@@ -957,6 +1158,19 @@ function ensureColumn(db, tableName, columnName, definition) {
   if (columns.some((column) => column.name === columnName)) return;
 
   db.exec(`ALTER TABLE ${tableName} ADD COLUMN ${columnName} ${definition}`);
+}
+
+function mapBusinessProfile(row) {
+  return {
+    key: row.business_key,
+    name: row.business_name,
+    description: row.description,
+    offerings: row.offerings,
+    targetCustomers: row.target_customers,
+    interactionRules: row.interaction_rules,
+    followupDays: row.followup_days,
+    maxFollowups: row.max_followups,
+  };
 }
 
 module.exports = { createDb };

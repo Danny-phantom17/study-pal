@@ -9,6 +9,10 @@ const { createCommandRouter } = require('./commandRouter');
 const { createSubscriptionService } = require('../services/subscriptionService');
 const { getConfig } = require('../config/env');
 const { createReadingCoachService } = require('../services/ai/readingCoachService');
+const { createShedShareService } = require('../services/ai/shedShareService');
+const { createShedShareFollowUpService } = require('../services/shedShareFollowUpService');
+const { createBusinessSecretary } = require('../services/ai/businessSecretary');
+const { createBusinessFollowUpService } = require('../services/businessFollowUpService');
 const { logger } = require('../utils/logger');
 
 /**
@@ -45,6 +49,10 @@ function createAiSetup({ sheetsService, prefix, client }) {
   });
   const tutorService = createTutorService({ aiProvider, db });
   const readingCoachService = createReadingCoachService({ aiProvider, db });
+  const shedShareService = createShedShareService({ aiProvider, db });
+  const shedShareFollowUpService = createShedShareFollowUpService({ client, db, shedShareService });
+  const businessSecretary = createBusinessSecretary({ aiProvider });
+  const businessFollowUpService = createBusinessFollowUpService({ client, db, businessSecretary });
   const stateStore = createConversationStateStore();
 
   const explanationFlow = createExplanationFlow({
@@ -104,10 +112,12 @@ function createAiSetup({ sheetsService, prefix, client }) {
     sendDirectMessage,
     client,
     readingCoachService,
+    shedShareService,
+    businessSecretary,
     readingCoachPhoneNumber: config.whatsapp.readingCoachPhoneNumber,
   });
 
-  return { db, quizService, router };
+  return { db, quizService, router, shedShareFollowUpService, businessFollowUpService };
 }
 
 module.exports = { createAiSetup };
