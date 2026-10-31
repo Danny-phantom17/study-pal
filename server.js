@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
+const http = require('node:http');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const { startQrBrowser } = require('./utils/qrBrowser');
@@ -35,6 +36,7 @@ const puppeteerHeadless = String(process.env.PUPPETEER_HEADLESS ?? 'false').toLo
 
 async function bootstrap() {
   logger.info('Starting WhatsApp Study Group Bot...');
+  startRenderHealthEndpoint();
   const qrBrowser = startQrBrowser();
   logger.info(`WhatsApp auth directory: ${webjsAuthDir || 'default .wwebjs_auth'}`);
   logger.info(`Puppeteer executable: ${puppeteerExecutablePath || 'managed by Puppeteer'}`);
@@ -275,6 +277,31 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
   logger.info('Initializing WhatsApp client...');
   await client.initialize();
   logger.info('WhatsApp client initialization finished.');
+}
+
+function startRenderHealthEndpoint() {
+  const port = Number(process.env.PORT);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) return null;
+
+  const server = http.createServer((request, response) => {
+    if (request.url !== '/' && request.url !== '/healthz') {
+      response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      response.end('Not found');
+      return;
+    }
+
+    response.writeHead(200, {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+    });
+    response.end(JSON.stringify({ status: 'ok', service: 'StudyPal' }));
+  });
+
+  server.on('error', (error) => logger.error('Render health endpoint failed.', error));
+  server.listen(port, '0.0.0.0', () => {
+    logger.info(`Render health endpoint listening on port ${port}.`);
+  });
+  return server;
 }
 
 bootstrap().catch((error) => {

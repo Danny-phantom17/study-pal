@@ -284,7 +284,11 @@ AI explains questions, but the question bank remains the source of truth.
 
 ## Deploy To Render
 
-This repo includes `render.yaml` for a Render Background Worker.
+This repo includes `render.yaml` for a Render Background Worker Blueprint. To create a regular Web Service manually instead, use the Render Dashboard's **New > Web Service** flow and connect this GitHub repository. The app binds to Render's `PORT` and responds at `/healthz` for service health checks.
+
+For a manual Web Service, select the Docker runtime and use the repository's `Dockerfile`. Set the health check path to `/healthz`, then configure the same environment variables shown in `render.yaml` and below. Add a persistent disk mounted at `/var/data/studypal`, and keep `WEBJS_AUTH_DIR=/var/data/studypal/.wwebjs_auth` and `STUDYPAL_DB_PATH=/var/data/studypal/studypal.db` so the WhatsApp login and database survive restarts. Render's persistent disks require a paid service plan; without one, the filesystem is temporary and WhatsApp may ask you to link the device again. Free Web Services can also spin down while idle, so they are not reliable for a continuously available WhatsApp bot.
+
+Blueprint setup (optional):
 
 1. Connect this repository to Render and create a Blueprint from the `render.yaml` at the repository root.
 2. Fill the prompted values in Render, including the Gemini key, WhatsApp admin/group settings, and bank details used for Premium payments.
