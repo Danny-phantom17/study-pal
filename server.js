@@ -32,7 +32,8 @@ const pairingPhoneNumber = normalizePairingPhoneNumber(
   process.env.WEBJS_PAIRING_PHONE_NUMBER || process.env.WHATSAPP_PAIRING_PHONE_NUMBER
 );
 const pairingCodeIntervalMs = normalizePositiveInteger(process.env.WEBJS_PAIRING_CODE_INTERVAL_MS, 180000);
-const puppeteerHeadless = String(process.env.PUPPETEER_HEADLESS ?? 'false').toLowerCase() === 'true';
+const puppeteerHeadless = process.env.RENDER === 'true'
+  || String(process.env.PUPPETEER_HEADLESS ?? 'false').toLowerCase() === 'true';
 
 async function bootstrap() {
   logger.info('Starting WhatsApp Study Group Bot...');
