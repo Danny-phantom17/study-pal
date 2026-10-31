@@ -49,6 +49,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
+COPY puppeteer.config.cjs ./
 RUN npm ci
 
 COPY . .
