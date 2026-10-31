@@ -288,6 +288,8 @@ This repo includes `render.yaml` for a Render Background Worker Blueprint. To cr
 
 For a manual Web Service, select the Docker runtime and use the repository's `Dockerfile`. Set the health check path to `/healthz`, then configure the same environment variables shown in `render.yaml` and below. Add a persistent disk mounted at `/var/data/studypal`, and keep `WEBJS_AUTH_DIR=/var/data/studypal/.wwebjs_auth` and `STUDYPAL_DB_PATH=/var/data/studypal/studypal.db` so the WhatsApp login and database survive restarts. Render's persistent disks require a paid service plan; without one, the filesystem is temporary and WhatsApp may ask you to link the device again. Free Web Services can also spin down while idle, so they are not reliable for a continuously available WhatsApp bot.
 
+For a one-time migration of an existing WhatsApp profile, set a strong private `WHATSAPP_SESSION_IMPORT_TOKEN` in the service environment and send a gzip-compressed tar archive to `POST /internal/whatsapp-session` with `Authorization: Bearer <token>` and `Content-Type: application/gzip`. The importer is disabled when the token is unset, rejects paths outside the `session-<WEBJS_CLIENT_ID>` folder, and waits for the archive before starting WhatsApp. Do not place the archive or its contents in Git.
+
 Blueprint setup (optional):
 
 1. Connect this repository to Render and create a Blueprint from the `render.yaml` at the repository root.

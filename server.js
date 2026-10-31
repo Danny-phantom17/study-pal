@@ -6,6 +6,7 @@ const http = require('node:http');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const { startQrBrowser } = require('./utils/qrBrowser');
+const { createWhatsAppAuthImporter } = require('./utils/whatsappAuthImporter');
 
 const { createAiSetup } = require('./commands/aiSetup');
 const { createGoogleSheetsService } = require('./services/googleSheetsService');
@@ -37,7 +38,13 @@ const puppeteerHeadless = process.env.RENDER === 'true'
 
 async function bootstrap() {
   logger.info('Starting WhatsApp Study Group Bot...');
-  startRenderHealthEndpoint();
+  const authImporter = createWhatsAppAuthImporter({
+    token: process.env.WHATSAPP_SESSION_IMPORT_TOKEN,
+    authDir: webjsAuthDir,
+    clientId: webjsClientId,
+    logger,
+  });
+  startRenderHealthEndpoint(authImporter);
   const qrBrowser = startQrBrowser();
   logger.info(`WhatsApp auth directory: ${webjsAuthDir || 'default .wwebjs_auth'}`);
   logger.info(`Puppeteer executable: ${puppeteerExecutablePath || 'managed by Puppeteer'}`);
@@ -277,16 +284,24 @@ Happy learning, and welcome once again to the StudyPal Community! 🚀📚`,
     });
   });
 
+  if (authImporter.shouldWaitForImport()) {
+    logger.info('Waiting for an authorized WhatsApp session import before starting the browser.');
+    const imported = await authImporter.waitForImport();
+    if (imported) logger.info('Saved WhatsApp session is ready; starting the browser.');
+    else logger.warn('Session import timed out; starting WhatsApp without the imported session.');
+  }
+
   logger.info('Initializing WhatsApp client...');
   await client.initialize();
   logger.info('WhatsApp client initialization finished.');
 }
 
-function startRenderHealthEndpoint() {
+function startRenderHealthEndpoint(authImporter) {
   const port = Number(process.env.PORT);
   if (!Number.isInteger(port) || port < 1 || port > 65535) return null;
 
-  const server = http.createServer((request, response) => {
+  const server = http.createServer(async (request, response) => {
+    if (await authImporter.handleRequest(request, response)) return;
     if (request.url !== '/' && request.url !== '/healthz') {
       response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
       response.end('Not found');
