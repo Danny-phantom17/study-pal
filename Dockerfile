@@ -1,6 +1,7 @@
 FROM node:22.22.0-bookworm-slim
 
 ENV PUPPETEER_HEADLESS=true
+ENV NODE_OPTIONS=--max-old-space-size=160
 
 WORKDIR /app
 

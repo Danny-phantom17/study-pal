@@ -41,6 +41,7 @@ async function bootstrap() {
   const qrBrowser = startQrBrowser();
   logger.info(`WhatsApp auth directory: ${webjsAuthDir || 'default .wwebjs_auth'}`);
   logger.info(`Puppeteer executable: ${puppeteerExecutablePath || 'managed by Puppeteer'}`);
+  logger.info(`Puppeteer headless mode: ${puppeteerHeadless}`);
   if (pairingPhoneNumber) {
     logger.info(`WhatsApp pairing code login enabled for phone number ending in ${pairingPhoneNumber.slice(-4)}.`);
   }
@@ -63,6 +64,7 @@ async function bootstrap() {
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
+        '--renderer-process-limit=1',
         // Everything below this line is new — these trim Chrome's baseline
         // RAM footprint on a memory-constrained host. None of them change
         // behavior; they just turn off subsystems whatsapp-web.js never
