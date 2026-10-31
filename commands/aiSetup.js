@@ -37,6 +37,7 @@ function createAiSetup({ sheetsService, prefix, client }) {
   const aiProvider = createAiProvider({
     provider: config.aiProvider,
     geminiApiKey: config.geminiApiKey,
+    geminiApiKeys: config.geminiApiKeys,
     openAiApiKey: config.openAiApiKey,
     openAiModel: config.openAiModel,
   });

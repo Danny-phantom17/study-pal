@@ -12,28 +12,43 @@ const RETRY_DELAY_MS = 1500;
  * @param {string} apiKey - GEMINI_API_KEY
  * @param {string} [model] - defaults to a cheap/fast, currently-available Gemini model
  */
-function createGeminiProvider({ apiKey, model = DEFAULT_MODEL } = {}) {
-  if (!apiKey) {
+function createGeminiProvider({ apiKey, apiKeys = [], model = DEFAULT_MODEL } = {}) {
+  const keys = [...new Set([...apiKeys, apiKey].filter(Boolean))];
+  if (!keys.length) {
     throw new Error('GEMINI_API_KEY is required to create the AI provider.');
   }
+  let preferredKeyIndex = 0;
 
   async function generateCompletion({ systemPrompt, userPrompt, media = [] }) {
     let lastError;
 
-    for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
-      try {
-        return await callGemini({ apiKey, model, systemPrompt, userPrompt, media });
-      } catch (error) {
-        lastError = error;
+    for (let offset = 0; offset < keys.length; offset += 1) {
+      const keyIndex = (preferredKeyIndex + offset) % keys.length;
+      for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
+        try {
+          const result = await callGemini({
+            apiKey: keys[keyIndex], model, systemPrompt, userPrompt, media,
+          });
+          preferredKeyIndex = keyIndex;
+          return result;
+        } catch (error) {
+          lastError = error;
 
-        // Only retry on transient overload (503) — anything else (bad key,
-        // bad request, model not found) will just fail the same way again.
-        if (error.status === 503 && attempt < MAX_RETRIES) {
-          await sleep(RETRY_DELAY_MS * (attempt + 1));
-          continue;
+          // A 429 may mean this project's rate or daily quota is exhausted.
+          // Try the next configured key; keys from the same Google project
+          // still share quota, so this only helps when another project has room.
+          if (error.status === 429) break;
+
+          // Retry transient overload on this key before considering another.
+          if (error.status === 503 && attempt < MAX_RETRIES) {
+            await sleep(RETRY_DELAY_MS * (attempt + 1));
+            continue;
+          }
+
+          // Bad requests and authentication failures won't be fixed by
+          // changing keys, so return the original error immediately.
+          throw error;
         }
-
-        throw error;
       }
     }
 
@@ -131,9 +146,9 @@ async function transcribeAudio({ apiKey, item }) {
   return String(data.text).trim();
 }
 
-function createAiProvider({ provider = 'gemini', geminiApiKey, openAiApiKey, openAiModel } = {}) {
+function createAiProvider({ provider = 'gemini', geminiApiKey, geminiApiKeys, openAiApiKey, openAiModel } = {}) {
   if (provider === 'openai') return createOpenAiProvider({ apiKey: openAiApiKey, model: openAiModel || DEFAULT_OPENAI_MODEL });
-  if (provider === 'gemini') return createGeminiProvider({ apiKey: geminiApiKey });
+  if (provider === 'gemini') return createGeminiProvider({ apiKey: geminiApiKey, apiKeys: geminiApiKeys });
   throw new Error(`Unsupported AI_PROVIDER: ${provider}`);
 }
 

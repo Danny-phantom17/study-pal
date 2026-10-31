@@ -38,6 +38,7 @@ const envSchema = z.object({
   COMMAND_PREFIX: z.string().trim().min(1).max(3).default('!'),
 
   GEMINI_API_KEY: optionalString,
+  GEMINI_API_KEYS: optionalString,
   AI_PROVIDER: z.enum(['gemini', 'openai']).default('gemini'),
   OPENAI_API_KEY: optionalString,
   OPENAI_MODEL: z.string().trim().min(1).default('gpt-6-luna'),
@@ -69,8 +70,9 @@ const envSchema = z.object({
 
   JWT_SECRET: optionalString,
 }).superRefine((config, context) => {
+  const hasGeminiApiKeys = config.GEMINI_API_KEYS.split(',').some((key) => key.trim());
   if (config.NODE_ENV === 'production'
-    && config.AI_PROVIDER === 'gemini' && !config.GEMINI_API_KEY) {
+    && config.AI_PROVIDER === 'gemini' && !config.GEMINI_API_KEY && !hasGeminiApiKeys) {
     context.addIssue({
       code: z.ZodIssueCode.custom,
       path: ['GEMINI_API_KEY'],
@@ -119,6 +121,10 @@ function loadConfig(environment = process.env) {
     port: env.PORT,
     commandPrefix: env.COMMAND_PREFIX,
     geminiApiKey: env.GEMINI_API_KEY,
+    geminiApiKeys: [...new Set([
+      env.GEMINI_API_KEY,
+      ...env.GEMINI_API_KEYS.split(',').map((key) => key.trim()).filter(Boolean),
+    ].filter(Boolean))],
     aiProvider: env.AI_PROVIDER,
     openAiApiKey: env.OPENAI_API_KEY,
     openAiModel: env.OPENAI_MODEL,

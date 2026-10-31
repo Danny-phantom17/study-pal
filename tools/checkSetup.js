@@ -52,7 +52,9 @@ function localQuestionBankReady() {
   return fs.existsSync(dataDir) && fs.readdirSync(dataDir).some((file) => file.endsWith('.json'));
 }
 
-reportGroup('Required AI Tutor', ['GEMINI_API_KEY']);
+const geminiConfigured = hasValue('GEMINI_API_KEY')
+  || String(process.env.GEMINI_API_KEYS || '').split(',').some((key) => key.trim());
+console.log(`\nRequired AI Tutor\n${geminiConfigured ? 'OK  ' : 'MISS'} GEMINI_API_KEY or GEMINI_API_KEYS`);
 reportGroup('Google Sheets - Apps Script (optional)', appsScriptGoogleSheets);
 reportGroup('Google Sheets - Service Account (optional)', serviceAccountGoogleSheets);
 reportGroup('Internet Question Lookup (optional)', optionalInternetLookup);
@@ -76,11 +78,11 @@ const limitsValid = [
 const sheetsReady = appsScriptGoogleSheets.every(hasValue) || serviceAccountGoogleSheets.every(hasValue);
 const customApiReady = hasValue('JAMB_QUESTION_API_URL');
 const googleSearchReady = hasValue('GOOGLE_SEARCH_API_KEY') && hasValue('GOOGLE_SEARCH_ENGINE_ID');
-const ready = hasValue('GEMINI_API_KEY') && nodeReady() && localQuestionBankReady() && limitsValid;
+const ready = geminiConfigured && nodeReady() && localQuestionBankReady() && limitsValid;
 
 console.log('\nStatus');
 console.log(`Node ${process.versions.node}: ${nodeReady() ? 'ready' : 'requires >=22.5.0'}`);
-console.log(`Gemini: ${hasValue('GEMINI_API_KEY') ? 'ready' : 'missing'}`);
+console.log(`Gemini: ${geminiConfigured ? 'ready' : 'missing'}`);
 console.log(`Local question bank: ${localQuestionBankReady() ? 'ready' : 'missing'}`);
 console.log(`Google Sheets: ${sheetsReady ? 'ready' : 'optional/not configured'}`);
 console.log(`Internet lookup: ${customApiReady || googleSearchReady ? 'ready' : 'optional/not configured'}`);

@@ -112,6 +112,9 @@ Copy `.env.example` to `.env` and fill in at least:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
+# Optional backups, comma-separated; rotate after quota/rate-limit errors.
+# Use keys from separate Google AI projects for separate project quotas.
+GEMINI_API_KEYS=backup_key_1,backup_key_2
 COMMAND_PREFIX=!
 QUIZ_QUESTION_COUNT=20
 QUIZ_TIME_LIMIT_SECONDS=30
@@ -296,6 +299,7 @@ Container command: npm start
 
 ```env
 GEMINI_API_KEY=...
+GEMINI_API_KEYS=backup_key_1,backup_key_2
 STUDY_GROUP_CHAT_ID=...
 ADMIN_WHATSAPP_NUMBER=...
 BANK_NAME=...
@@ -304,6 +308,11 @@ BANK_ACCOUNT_NUMBER=...
 ```
 
 `APPS_SCRIPT_WEB_APP_URL` is optional. Leave it unset if you do not use Google Sheets.
+The primary `GEMINI_API_KEY` is tried first. If it returns HTTP 429, StudyPal
+tries the comma-separated `GEMINI_API_KEYS` backups and remembers the key that
+worked for subsequent requests. Gemini quotas are per Google AI project, so
+multiple keys from one project share its quota. Store these keys as private
+environment variables; never commit real keys to GitHub.
 
 5. Keep these disk-backed values from `render.yaml`:
 
